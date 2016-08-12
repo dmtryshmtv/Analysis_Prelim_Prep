@@ -1,0 +1,403 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{physics}
+\usepackage{enumerate}
+
+\newcommand{\E}{\varepsilon}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 5}
+
+
+\begin{flashcard}
+    {Define Banach Space}
+    A normed linear space which is complete with respect to its norm.
+\end{flashcard}
+
+\begin{flashcard}
+    {$\Rl^n$ and $\Cx^n$ are Banach spaces with respect to which norms?}
+    $n$-tuples are Banach with respect to the max norm ($\infty$ norm), sum norm, and any $p$-norm in between.
+\end{flashcard}
+
+\begin{flashcard}
+    {$C([a,b])$ is a Banach spaces with respect to which norm?}
+    Continuous functions are Banach with respect to the sup norm ($\infty$ norm, uniform norm).
+\end{flashcard}
+
+\begin{flashcard}
+    {$C^k([a,b])$ is a Banach spaces with respect to which norm?}
+    $k$-continuously-differentiable functions are Banach with respect to the $C^k$ norm, which is the sum of the sup norms of all derivatives, from $0$ to $k$.
+    \begin{equation*}
+        \norm{f}_{C^k} = \sum_{i=0}^k \norm{f^{(i)}}_\infty
+    \end{equation*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define $\ell^p(\mathbb{N})$ for $1 \leq p \leq \infty$}
+    For $1 \leq p < \infty$, $\ell^p(\mathbb{N})$ is the space of all $p$-summable sequences, that is,
+    \begin{align*}
+        \ell^p(\mathbb{N}) = \left\{(x_n)_{n=1}^\infty\ |\ \sum_{i=1}^\infty\abs{x_i}^p < \infty\right\} \ \ \text{with} \ \ \norm{(x_n)}_{\ell^p} = \qty(\sum_{i=1}^\infty \abs{x_i}^p)^{\frac{1}{p}}.
+    \end{align*}
+    $\ell^\infty(\mathbb{N})$ is the space of all bounded sequences, that is,
+    \begin{align*}
+        \ell^\infty = \left\{\qty(x_n)_{n=1}^\infty\ |\ \sup_{i=1}^\infty\abs{x_i} < \infty\right\} \ \ \text{with} \ \ \norm{(x_n)}_{\ell^\infty} = \sup_{i=1}^\infty\abs{x_i}.
+    \end{align*}
+    $\ell^p(\mathbb{N})$ is Banach for $1 \leq p \leq \infty$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define $L^p([a,b])$ for $1 \leq p \leq \infty$}
+    For $1 \leq p < \infty$, $L^p([a,b])$ is the space of all Lebesgue-measurable functions which are $p$-integrable, that is,
+    \begin{align*}
+        L^p([a,b]) = \left\{f\ |\ \int_a^b\abs{f(x)}^p \dd x < \infty\right\} \ \ \text{with} \ \ \norm{(x_n)}_{L^p} = \qty(\int_a^b \abs{f(x)}^p \dd x)^{\frac{1}{p}}.
+    \end{align*}
+    $L^\infty([a,b])$ is the space of all Lebesgue-measurable functions which are essentially bounded (bounded on a subset of $[a,b]$ whose complement has measure $0$), that is,
+    \begin{align*}
+        L^\infty([a,b]) = \left\{f\ |\ \exists M < \infty\ :\ \abs{f(x)} \leq M \text{ a.e. in } [a,b]\right\} \ \ \text{with} \\
+        \norm{f}_{L^\infty} = \inf\left\{M\ |\ \abs{f(x)} \leq M \text{ a.e. in } [a,b]\right\} \qquad \qquad \qquad \
+    \end{align*}
+    $L^p([a,b])$ is Banach for $1 \leq p \leq \infty$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define Sobolev Spaces $W^{k,p}((a,b))$}
+    The Sobolev spaces consist of functions whose derivatives satisfy an integrability condition.  Namely all derivatives up to the $k$\textsuperscript{th} are in $L^p$.  The $W^{k,p}$ norm is defined as follows:
+    \begin{align*}
+        \norm{f}_{W^{k,p}} = \qty(\sum_{j=0}^k \int_a^b \abs{f^{(j)}(x)}^p \dd x)^{\frac{1}{p}} = \qty(\sum_{j=0}^k \norm{f^{(j)}}_{L^p}^p)^\frac{1}{p}
+    \end{align*}
+    All Sobolev Spaces are Banach.
+\end{flashcard}
+
+\begin{flashcard}
+    {Is the space of polynomial functions Banach?}
+    It is a linear subspace, but no, it is not Banach.  We use the Bernstein Polynomials to show it is dense in $C([0,1])$.  However, it is not closed since limits of polynomials may not be polynomials.  Since it is not closed, it is not complete, and thus not Banach.
+\end{flashcard}
+
+\begin{flashcard}
+    {Is the space of continuous functions with $f(0) = 0$ Banach?}
+    Yes, it is a closed linear subspace of a Banach space (namely, $C([0,1])$) and hence is Banach.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define Linear Operator}
+    A linear operator $T$ between linear spaces $X$ and $Y$ is a function $T\ :\ X \rightarrow Y$ such that
+    \begin{align*}
+        T(\lambda x + \mu y) = \lambda T(x) + \mu T(y) \qquad \forall \lambda,\mu \in \Rl\ (\text{or } \Cx)\ \text{and}\ x,y \in X.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define \emph{Bounded} Linear Operator}
+    A linear operator $T$ is bounded if $\exists M \geq 0$ such that
+    \begin{align*}
+        \norm{Tx} \leq M\norm{x} \qquad \forall x \in X.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the Operator Norm for bounded linear operators}
+    The norm of an operator $T$ is given by the following (all four are equivalent): \\
+
+    $\norm{T}$
+    \begin{itemize}
+        \item[] $= \inf\left\{M\ |\ \norm{Tx} \leq M\norm{x}\ \forall x \in X\right\}$,
+        \item[] $\displaystyle= \sup_{x\neq 0}\dfrac{\norm{Tx}}{\norm{x}}$,
+        \item[] $\displaystyle= \sup_{\norm{x} \leq 1} \norm{Tx}$,
+        \item[] $\displaystyle= \sup_{\norm{x} = 1} \norm{Tx}$.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe the four common matrix norms}
+    If $T\ :\ \Rl^n \rightarrow \Rl^m$ where $\Rl^n$ and $\Rl^m$ are equipped with the $2$-norm (Euclidean norm), then $\norm{T}_2 = \sqrt{r(A^TA)}$, where $r$ is the spectral radius and $A$ is the matrix of the operator $T$.  If $\Rl^n$ and $\Rl^m$ are equipped with the $1$-norm (sum norm), then $\norm{T}_1$ is the max column sum, i.e. $\norm{T}_1 = \max_{1 \leq j \leq n} \left\{\sum_{i=1}^m \abs{a_{ij}}\right\}$.  If $\Rl^n$ and $\Rl^m$ are equipped with the $\infty$-norm (max norm), then $\norm{T}_\infty$ is the max row sum, i.e. $\norm{T}_\infty = \max_{1 \leq i \leq m} \left\{\sum_{j=1}^n \abs{a_{ij}}\right\}$.  There is also the Hilbert-Schmidt norm of matrices, which is not derived from norms of $\Rl^n$ and $\Rl^m$.  It is basically the $2$-norm of the $m\times n$ tuple: $\norm{T}_{\text{HS}} = \qty(\sum_{i=1}^m\sum_{j=1}^n \abs{a_{ij}}^2)^{\frac{1}{2}}$.
+\end{flashcard}
+
+\begin{flashcard}
+    {How do the matrix norms extend to $\ell^\infty$ and $L^\infty$?}
+    Suppose $T\ :\ \ell^\infty(\mathbb{N}) \rightarrow \ell^\infty(\mathbb{N})$, each equipped with the sup-norm.  Then $T$ can be represented by an infinite matrix, and its norm is the max row sum: $\norm{T} = \sup_{i\in\mathbb{N}}\left\{\sum_{j=1}^\infty \abs{a_{ij}}\right\}$.  $T$ is only bounded if this norm is bounded.
+
+    Now suppose $K\ :\ C([0,1]) \rightarrow C([0,1])$, each equipped with the uniform norm, and suppose $k\ :\ [0,1]^2 \rightarrow \Rl$.  Define $K$ explicitly as
+    \begin{align*}
+        Kf(x) = \int_0^1 k(x,y)f(y)\dd y.
+    \end{align*}
+    (Note that this is called a Fredholm integral operator.)  Then the norm is the ``max row sum'' of the function $k$:
+    \begin{align*}
+        \norm{K} = \max_{0\leq x \leq 1} \left\{\int_0^1 \abs{k(x,y)}\dd y\right\}
+    \end{align*}
+    This is finite since $k$ is continuous on a compact set.
+\end{flashcard}
+
+\begin{flashcard}
+    {Linear maps are bounded if and only if they are continuous.}
+    Bounded $\implies$ continuous uses
+    \begin{itemize}
+        \item Linearlity.
+    \end{itemize}
+    Continuous $\implies$ bounded uses:
+    \begin{itemize}
+        \item Continuous $\implies$ continuous specifically at $0$.
+        \item Choose $\E = 1$, obtain $\delta$ from definition of continuity, and scale any point to be of magnitude $\delta$.
+        \item Linearity.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Bounded Linear Transformation (BLT) Theorem:\\ Suppose the domain of the bounded linear map $T$ is a dense subset $M$ of $X$.  Then there is a unique extension $\bar{T}$ with domain $X$, $\bar{T}x = Tx$ for all $x \in M$, and $\norm{\bar{T}} = \norm{T}$.}
+    \begin{itemize}
+        \item Define $\bar{T}x$ as the limit of images from $M$, which exists since bounded linear maps send Cauchy sequences to Cauchy sequences.
+        \item Show that $\bar{T}x$ is well-defined by considering two sequences in $M$.
+        \item Show that $\bar{T}$ is in fact an extension of $T$.
+        \item Show $\norm{\bar{T}} = \norm{T}$ by simple inequalities and extension.
+        \item Show uniqueness by considering two extensions and showing they are equal on all of $X$.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe the differences between linearly, topologically, and isometrically isomorphic linear spaces}
+    \begin{itemize}
+        \item $T$ is a linear isomorphism if it is bijective.
+        \item $T$ is a topological isomorphism if both $T$ and $T^{-1}$ are bounded.
+        \item $T$ is a isometric isomorphism if $T$ also preserves norms, i.e. $\norm{Tx} = \norm{x}$ for all $x$.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define equivalent norms}
+    Two norms are equivalent if each can bound the other, i.e. $\exists c, C \in \Rl$ such that
+    \begin{align*}
+        c\norm{x}_1 \leq \norm{x}_2 \leq C\norm{x}_1
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Open Mapping Theorem:}
+    If $T\ :\ X \rightarrow Y$ is a bijective, bounded linear map between Banach spaces, then $T^{-1}\ :\ Y \rightarrow X$ is bounded.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the kernel and range of a linear map}
+    The kernel of a map $T$ is any point in the domain which is mapped to $0$.  The range of a map $T$ is any point in the codomain which is mapped to from at least one point in the domain.
+    \begin{align*}
+        \ker T = \left\{x \in X\ |\ Tx = 0\right\}
+    \end{align*}
+    \begin{align*}
+        \text{ran}\,T = \left\{y \in Y\ |\ \exists x \in X\ :\ Tx = y\right\}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {The kernel and range of a linear map $T$ are linear subspaces of the domain and codomain, rspectively.  If $T$ is bounded, the kernel is closed.}
+    To show linear subspaces, use linearity of $T$.  The show closure, use continuity of $T$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Is it possible for finite dimensional linear maps to be surjective and not injective or vice-versa?  How about infinite dimensional linear maps?}
+    For finite-dimensional maps, surjectivity is equivalent to injectivity.  However, a counter-example in finite dimensions are the left and right shift operators on $\ell^\infty(\mathbb{N})$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the operator norm of the Volterra Integral Operator $K$ acting on $C([a,b])$ with the maximum norm? \\ \begin{align*}Kf(x) = \int_a^x f(y) \dd y\end{align*}}
+    $\norm{K} = b-a$ since
+    \begin{align*}
+        \norm{Kf} \leq \sup_{a\leq x \leq b}\int_a^x \abs{f(y)}\dd y \leq \int_a^b \abs{f(y)} \dd y \leq \int_a^b\norm{f}\dd y = (b - a)\norm{f}
+    \end{align*}
+    so $\norm{K} \leq (b - a)$.  However, let $g \equiv 1$.  Then $\norm{g} = 1$ and 
+    \begin{align*}
+        \norm{Kg} = \norm{\int_a^x \dd y} = \norm{x - a} = b - a
+    \end{align*}
+    Thus $\norm{K} = b - a$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Leibniz Integral Rule}
+    Let $f(x,t)$ be a function such that the partial derivative of $f$ with respect to $t$ exists and is continuous.  Then
+    \begin{align*}
+        \frac{\dd}{\dd t}\qty(\int_{a(t)}^{b(t)}f(x,t)\dd x) = \int_{a(t)}^{b(t)} \frac{\partial f}{\partial t}\dd x + f(b(t),t)\cdot b'(t) - f(a(t),t)\cdot a'(t).
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Let $T$ be a bounded linear map between two Banach spaces $X$ and $Y$.  Then the following are equivalent: \\ \hphantom{} (a) there is a constant $c > 0$ such that $$c\norm{x} \leq \norm{Tx}\ \ \forall x \in X;$$ (b) $T$ has closed range, and the only solution of the equation $Tx = 0$ is $x = 0$.}
+    (a) $\implies$ (b) uses:
+    \begin{itemize}
+        \item Bounded linear maps send Cauchy sequences to Cauchy sequences
+        \item Completeness of Banach spaces
+        \item Continuity of $T$
+    \end{itemize}
+    (b) $\implies$ (a) uses:
+    \begin{itemize}
+        \item Closed subspaces of Banach spaces are Banach
+        \item Open Mapping Theorem
+        \item Definition of inverse map
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Given a finite-dimensional Banach space, the components of a vector with respect to any basis of a finite-dimensional space can be bounded by the norm of the vector.  Also, the norm of a vector can be bounded by the $1$-norm of that vector.  In particular, let $\{e_1, \dots, e_n\}$ be a basis of a finite-dimensional Banach space $X$ with norm $\norm{\cdot}$.  Then $\exists m,M > 0$ such that if $x = \sum_{i=1}^n x_ie_i$, then $$m\sum_{i=1}^n \abs{x_i} \leq \norm{x} \leq M\sum_{i=1}^n \abs{x_i}.$$}
+    The proof uses:
+    \begin{itemize}
+        \item Homogeneity of norm
+        \item Heine Borel Theorem
+        \item Compositions of continuous functions are continuous
+        \item Continuous functions on compact domains acheive their supremum and infimum
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Every finite-dimensional normed linear space is a Banach space.}
+    The proof uses:
+    \begin{itemize}
+        \item Components of vectors can be bounded by the vectors' norms.
+        \item Completeness gives limits to Cauchy sequences.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Every linear operator on a finite-dimensional Banach space is bounded.}
+    The proof uses:
+    \begin{itemize}
+        \item Linearity of $T$
+        \item Components of vectors can be bounded by the vectors' norms.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Any two norms on a finite-dimensional space are equivalent.}
+    The proof uses:
+    \begin{itemize}
+        \item Components of vectors can be bounded by the vectors' norms \dots twice.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {The space of bounded linear maps $\mathcal{B}(X,Y)$ is a normed linear space}
+    Addition and scalar multiplication are pointwise
+    \begin{align*}
+        (S + T)x = Sx + Tx, \qquad \qquad (\lambda T)x = \lambda(Tx).
+    \end{align*}
+    The operator norm defines a norm on $\mathcal{B}(X,Y)$.
+    \begin{align*}
+        \norm{T} = \sup_{x\neq 0}\frac{\norm{Tx}}{\norm{x}}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Compositions of bounded linear maps are bounded linear maps and their norms are bounded by the product of the norms of the components. $$\norm{ST} \leq \norm{S}\norm{T}.$$}
+    For all $x$,
+    \begin{align*}
+        \norm{STx} \leq \norm{S}\norm{Tx} \leq \norm{S} \norm{T} \norm{x}.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define uniform convergence of operators.}
+    If $(T_n)$ is a sequence of operators in $\mathcal{B}(X,Y)$ and
+    $$\lim_{n\rightarrow \infty}\norm{T_n - T} = 0$$ for some $T \in \mathcal{B}(X,Y)$, then we say that $T_n$ converges uniformly to $T$, or that $T_n$ converges to $T$ in the uniform, or operator norm, topology on $\mathcal{B}(X,Y)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Let $X = C([0,1])$ equipped with the uniform norm.  Give an example of a sequence of Fredholm integral operators on $X$ that converges to $0$.}
+    Let $K_n$ be given by $$K_nf(x) = \int_0^1 xy^n f(y) \dd y.$$  Then $K_n \rightarrow 0$ uniformly since
+    \begin{align*}
+        \norm{K_n - 0} = \norm{K_n} = \max_{0\leq x \leq 1}\left\{\int_0^1 \abs{xy^n}\dd y\right\} \rightarrow 0 \ \ \text{as}\ \ n \rightarrow 0.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {If $X$ is a normed linear space and $Y$ is a Banach space, then $\mathcal{B}(X,Y)$ is a Banach space.}
+    Let $(T_n)$ be a Cauchy sequence in $\mathcal{B}(X,Y)$.  Then for any $x \in X$, $\norm{T_nx - T_mx} \leq \norm{T_n - T_m}\norm{x}$ by linearity and the definition of the operator norm.  Since $(T_n)$ is Cauchy, we have $(T_nx)$ is Cauchy for any $x \in X$.  Since $Y$ is complete, then for each $x$, $\exists y_x \in Y$ such that $T_nx \rightarrow y_x$.  Next we define our candidate limit operator $T$ by $Tx = y_x$.  $T$ is clearly linear, but we still need to show it is bounded and the uniform limit of the sequence $(T_n)$.  Choose an $\E > 0$ and note by the triangle inequality and definition of operator norm,
+    \begin{align*}
+        \norm{T_nx - Tx} \leq \norm{T_n - T_m}\norm{x} + \norm{T_mx - Tx}.
+    \end{align*}
+    By the definition of Cauchy, $\exists N_\E$ such that $n,m \geq N_\E \implies \norm{T_n - T_m} < \frac{\E}{2}$.  Then since $T_nx \rightarrow y_x = Tx$, $\exists M_x$ such that $m > M_x \implies \norm{T_mx - Tx} < \frac{\E}{2}$.  This gives $\norm{T_n x - Tx} < \E$.  Finally, $\norm{Tx} \leq \norm{Tx - T_nx} + \norm{T_nx} < \norm{T_n x} + \E$.  Since $\E$ was arbitrary, $T$ is bounded.  Thus $T_n - T$ is bounded, and $\norm{T_n - T} < \E$.  Again, since $\E$ was arbitrary $T_n \rightarrow T$ uniformly.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define a compact operator}
+    A linear operator $T\ :\ X \rightarrow Y$ is compact if $T(B)$ is a precompact subset of $Y$ for every bounded subset $B$ of $X$. \\
+
+    OR \\
+
+    A linear operator $T$ is compact if every bounded sequence in $X$ has a subsequence whose image converges in $Y$.
+\end{flashcard}
+
+\begin{flashcard}
+    {(a) If $S$ and $T$ are compact operators, any linear combination is compact.  \\ (b) If $(T_n)$ is a sequence of compact operators that comverges uniformly to $T$, then $T$ is compact.  \\ (c) If $T$ is an operator with finite-dimensional range, then $T$ is compact. \\ (d) If $S$ is compact and $T$ is bounded, or if $S$ is bounded and $T$ is compact, $TS$ is compact.}
+    \begin{enumerate}[(a)]
+        \item Uses a subsequence of a subsequence.
+        \item Uses subsequences of subsequences of $\dots$ and a diagonal subsubsequence argument.
+        \item Uses Bolzano Weierstrass
+        \item One uses compactness and continuity, and the other uses boundedness and compactness.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define strong convergence of operators}
+    A sequence $(T_n)$ of operators converges strongly to $T$ if $T_nx \rightarrow Tx$ for every $x \in X$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Uniform convergence of operators implies strong convergence.}
+    Suppose $T_n \rightarrow T$ uniformly.  Then $\norm{T_n - T} \rightarrow 0$.  Then for any $x \in X$, 
+    \begin{align*}
+        \norm{T_n x - T x} = \norm{(T_n - T)x} \leq \norm{T_n - T}\norm{x} \rightarrow 0,
+    \end{align*}
+    which shows $T_nx \rightarrow Tx$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Give examples of strongly convergent sequences of operators that do not converge uniformly}
+    Let $X = \ell^p(\mathbb{N})$ for $1 \leq p < \infty$.  Then for $n \in \mathbb{N}$, define $P_n$ as the projection
+    \begin{align*}
+        P_n(x_1, x_2, \dots, x_n, x_{n+1}, x_{n+2}, \dots) = (x_1, x_2, \dots, x_n, 0, 0, \dots)
+    \end{align*}
+    Note $\norm{P_n - P_m} = 1$ for $n > m$ since $x = (0, 0, \dots, 0, 1, 0, \dots)$, where the $(n - m + 1)$\textsuperscript{st} component of $x$ is $1$, gets mapped to itself.  So $(P_n)$ is not a Cauchy sequence and thus cannot converge uniformly.  However, for any given sequence $x$, $\norm{P_nx - Ix}_{\ell^p} = \norm{(0, 0, \dots, 0, x_{n+1}, x_{n+2}, \dots)}_{\ell^p} \rightarrow 0$ since sequences in $\ell^p(\mathbb{N})$ decay to $0$ for $1 \leq p < \infty$.  Thus $P_n \rightarrow I$ strongly. \\
+
+    Let $X = C([0,1])$ and let $K_n$ be a sequence of functionals given by $K_nf = \int_0^1 \sin(n \pi x)f(x) \dd x.$  Use integration by parts to show $K_np \rightarrow 0$ for all polynomials $p$ and use Weierstrass Approximation Theorem to say the same for any continuous function.  Thus $K_n \rightarrow 0$ strongly.  However, let $g_n(x) = \sin(n \pi x)$.  Then $P_n g_n = \frac{1}{2}$, which shows $\norm{K_n} \geq \frac{1}{2}$ for each $n \in \mathbb{N}$.  Thus $K_n$ does not converge uniformly to $0$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define linear functional, algebraic dual space, and topological dual space}
+    A linear functional is a scalar-valued linear map from a linear space to $\Rl$ (or $\Cx$). \\
+
+    An algebraic dual space consists of all linear functionals on a linear space. \\
+
+    A topological dual space consists of all continuous linear functionals on a linear space.  Given a space $X$, the topological dual space is denoted $X^*$.
+\end{flashcard}
+
+\begin{flashcard}
+    {The dual space of a finite dimensional space $X$ is linear isomorphic to $X$.}
+    Suppose $\{e_1, \dots, e_n\}$ is a basis for $X$.  We can form functionals $\{\omega_1, \dots, \omega_n\}$ such that $\omega_i(e_j) = \delta_{i,j}$ (Kronecker delta function).  This set of functionals forms a basis for the dual space $X^*$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Hahn-Banach Theorem}
+    If $Y$ is a linear subspace of a normed linear space $X$ and $\psi\ :\ Y \rightarrow \Rl$ is a bounded linear functional on $Y$ with $\norm{\psi} = M$, then $\exists$ a bounded linear functional $\phi\ : X \rightarrow \Rl$ such that $\phi$ restricted to $Y$ is equal to $\psi$ and $\norm{\phi} = M$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the bidual of a Banach space, and reflexivity of Banach spaces}
+    The bidual of a Banach space $X$ is the dual of its dual, i.e. $X^{**}$.  For each $x \in X$, we can define a linear functional $F_x \in X^{**}$ by $F_x(\phi) = \phi(x)$.  This means there is an embedding of $X$ inside $X^{**}$.  If $X$ and $X^{**}$ are isomorphic, we say $X$ is reflexive.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define weak convergence of a sequence in $X$ and weak-$*$ convergence of a sequence in $X^*$.  Then define weak convergence of a sequence in $X^*$ and weak-$*$ convergence of a sequence in $X^{**}$.}
+    A sequence $(x_n) \in X$ converges weakly to $x$, denoted $x_n \rightharpoonup x$, if $\phi(x_n) \rightarrow \phi(x)$ for every bounded linear functional $\phi \in X^*$.  A sequence $(\phi_n) \in X^*$ converges weak-$*$ly to $\phi$, denoted $\phi_n \rightharpoonup^* \phi$, if $\phi_n(x) \rightarrow \phi(x)$ for every $x \in X$. \\
+
+    A sequence $(\phi_n) \in X^*$ converges weakly to $\phi$, denoted $\phi_n \rightharpoonup \phi$, if $F(\phi_n) \rightarrow F(\phi)$ for every bounded linear functional $F \in X^{**}$.  A sequence $(F_n) \in X^{**}$ converges weak-$*$ly to $F$, denoted $F_n \rightharpoonup^* F$, if $F_n(\phi) \rightarrow F(\phi)$ for every $\phi \in X^*$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Banach-Alaoglu Theorem}
+    Let $X^*$ be the dual space of a Banach space $X$.  The closed unit ball in $X^*$ is weak-$*$ compact.  In other words, let $(\phi_n)$ be a sequence in the unit ball of $X^*$.  Then there is a subsequence $(\phi_{n_k})$ and a linear functional $\phi$ in the unit ball of $X^*$ such that $\phi_{n_k} \rightharpoonup^* \phi$.
+\end{flashcard}
+
+\end{document}
+

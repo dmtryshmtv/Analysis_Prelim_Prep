@@ -1,0 +1,369 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+
+\newcommand{\E}{\varepsilon}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 6}
+
+
+\begin{flashcard}
+    {Define an inner product}
+    An inner product on a complex linear space $X$ is a map $(\cdot,\cdot)\ :\ X\times X \rightarrow \Cx$ such that for all $x, y, z \in X$ and $\lambda,\mu \in \Cx$,
+    \begin{enumerate}[(a)]
+        \item $(x, \lambda y + \mu z) = \lambda(x, y) + \mu(x, z)$ (linear in the second argument);
+        \item $(y, x) = \overline{(x, y)}$ (Hermitian symmetric);
+        \item $(x, x) \geq 0$ (nonnegative);
+        \item $(x, x) = 0 \iff x = 0$ (positive definite);
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a pre-Hilbert space?}
+    A pre-Hilbert space (or inner-product space) is a linear space with an inner product defined.
+\end{flashcard}
+
+\begin{flashcard}
+    {Can we always define a norm given an inner product?}
+    Yes.  In fact the most common norm we will see is the following:
+    \begin{align*}
+        \norm{x} = \sqrt{(x, x)}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define a Hilbert space}
+    A Hilbert space is a complete inner-product space.  That is, a Banach space with a norm derived from a defined inner-product.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the standard inner-product on $\Cx^n$?}
+    Given $x = (x_1, \dots, x_n)$ and $y = (y_1, \dots, y_n)$ in $\Cx^n$, then
+    \begin{align*}
+        (x, y) = \sum_{i=1}^n \overline{x_i}y_i
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Can we define an inner product on $C([a,b])$?  How can we complete the space to make it Hilbert?  How about $C^k([a,b])$?}
+    Let $f, g \in C([a,b])$.  Then, analagous to the inner-product on $\Cx^n$, we can define $(f,g)$ as follows:
+    \begin{align*}
+        (f,g) = \int_a^b \overline{f(x)}g(x) \dd x
+    \end{align*}
+    This makes $C([a,b])$ a pre-Hilbert space.  The completion of $C([a,b])$ is $L^2([a,b])$, which is the only Hilbert $L^p$ space.  For $f, g \in C^k([a,b])$,
+    \begin{align*}
+        (f,g) = \sum_{i=0}^k\int_a^b \overline{f^{(i)}(x)}g^{(i)}(x) \dd x = \sum_{i=0}^k \qty(f^{(i)}, g^{(i)})_{C([a,b])}
+    \end{align*}
+    This makes $C^k([a,b])$ a pre-Hilbert space.  The completion of $C^k([a,b])$ is the Sobolev space $W^{k,2}((a,b))$, which is also denoted $H^k((a,b))$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define inner products on $\ell^2(\mathbb{Z})$ and $\Cx^{m\times n}$.}
+    For $x = (x_n)_{n=-\infty}^\infty$ and $y = (y_n)_{n=-\infty}^\infty$ in $\ell^2(\mathbb{Z})$,
+    \begin{align*}
+        (x,y) = \sum_{n=-\infty}^\infty \overline{x_n}y_n
+    \end{align*}
+    For $A = (a_{ij})$ and $B = (b_{ij})$ in $\Cx^{m\times n}$,
+    \begin{align*}
+        (A, B) = \tr (A^* B) = \sum_{i=1}^m\sum_{j=1}^n\overline{a_{ij}}b_{ij}
+    \end{align*}
+    The corresponding norm is the Hilbert-Schmidt norm.
+\end{flashcard}
+
+\begin{flashcard}
+    {State and prove the Cauchy-Schwarz Inequality}
+    If $x,y \in X$, where $X$ is an inner product space, then
+    \begin{align*}
+        \abs{(x,y)} \leq \norm{x} \norm{y}.
+    \end{align*}
+    For any $\lambda \in \Cx$, by nonnegativity, $0 \leq (x - \lambda y, x - \lambda y)$, which implies, by linearity in the second argument, anti-linearity in the first argument, and definition of norm,
+    \begin{align*}
+        \lambda(x,y) + \overline{\lambda}(y,x) \leq \norm{x}^2 + \abs{\lambda}^2\norm{y}^2
+    \end{align*}
+    Now choose $\lambda = \frac{(y,x)}{\norm{y}^2}$.  Then substitution gives
+    \begin{align*}
+        2\frac{\abs{(x,y)}^2}{\norm{y}^2} \leq \norm{x}^2 + \frac{\abs{(x,y)}^2}{\norm{y}^2}.
+    \end{align*}
+    Simple algebra gives the result.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the parallelogram law}
+    A normed linear space $X$ is an inner product space with a norm derived from the inner product by $\norm{x} = \sqrt{(x,x)}$ if and only if the following holds:
+    \begin{align*}
+        \norm{x + y}^2 + \norm{x - y}^2 = 2\norm{x}^2 + 2\norm{y}^2 \qquad \forall x,y\in X
+    \end{align*}
+    Geometrically, the sum of the squares of the diagonals of a parallelogram equal the sum of the squares of the sides.  If the above equation holds, then
+    \begin{align*}
+        (x,y) = \frac{1}{4}\qty(\norm{x + y}^2 - \norm{x - y}^2 - i\norm{x + iy}^2 + i\norm{x - iy}^2)
+    \end{align*}
+    defines an inner product on $X$.  This is called the polarization formula.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the inner product on the Cartesian product of two inner product spaces}
+    Let $(X, (\cdot,\cdot)_X)$ and $(Y, (\cdot,\cdot)_Y)$ be two inner product spaces.  Then the Cartesian product space is the space containing all tuples,
+    \begin{align*}
+        X\times Y = \{(x,y)\ |\ x \in X, y \in Y\}
+    \end{align*}
+    and the natural inner product is simply the sum of the inner products of the components:
+    \begin{align*}
+        ((x_1,y_1),(x_2,y_2))_{X\times Y} = (x_1,x_2)_X + (y_1,y_2)_Y.
+    \end{align*}
+    This gives rise to the natural norm on $X\times Y$:
+    \begin{align*}
+        \norm{(x,y)} = \sqrt{\norm{x}^2 + \norm{y}^2}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Prove the inner product in continuous}
+    Let $X$ be an inner product space.  Choose $(x_1,y_1),(x_2,y_2) \in X\times X$ such that
+    \begin{align*}
+        \norm{(x_1,y_1) - (x_2,y_2)} < \delta = \frac{1}{2}\max\left\{\frac{\E}{\norm{y_1}},\frac{\E}{\norm{x_2}}\right\}.
+    \end{align*}
+    Assume for now $\delta \neq 0$.  Then in particular, $\norm{x_1 - x_2} < \delta$ and $\norm{y_1 - y_2} < \delta$.  Then
+    \begin{align*}
+        \abs{(x_1,y_1) - (x_2,y_2)} = \abs{(x_1,y_1) - (x_2,y_1) + (x_2,y_1) - (x_2,y_2)}
+    \end{align*}
+    Then by linearity, triangle inequality, and the Cauchy-Schwarz inequality,
+    \begin{align*}
+        \abs{(x_1, y_1) + (x_2, y_2)} \leq \norm{x_1 - x_2}\norm{y_1} + \norm{x_2}\norm{y_1 - y_2} < \delta(\norm{y_1} + \norm{x_2}) = \E
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define orthogonality and orthogonal complement}
+    Two vectors $x$ and $y$ are called orthogonal, denoted $x \perp y$, if their inner product is equal to $0$:
+    \begin{align*}
+        (x,y) = 0
+    \end{align*}
+    Subsets $A$ and $B$ are orthogonal if every element in $A$ is orthogonal to every element in $B$.  That is, $A \perp B$ if $a \perp b$, $\forall a \in A$ and $b \in B$. \\
+
+    The orthogonal complement of a subset $A$, denoted $A^\perp$, in a Hilbert space $\hilb$ is the set of all elements in $\hilb$ orthogonal to every element in $A$.  That is,
+    \begin{align*}
+        A^\perp = \left\{x \in \hilb\ :\ x \perp a,\ \forall a \in A\right\}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {The orthogonal complement of a subset of a Hilbert space is closed.}
+    The proof uses:
+    \begin{itemize}
+        \item linearity of the inner product
+        \item continuity of the inner product
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Projection Theorem}
+    Let $M$ be a closed linear subspace of a Hilbert space $\hilb$.  Then
+    \begin{enumerate}[(a)]
+        \item For each $x \in \hilb$, $\exists!$ closest point $y \in M$ such that $\norm{x - y} = \min_{z \in M}\norm{x - z}$;
+        \item The point $y \in M$ closest to $x$ is the unique element of $M$ with the property that $(x - y) \perp M$.
+    \end{enumerate}
+
+    The proof uses:
+    \begin{itemize}
+        \setlength{\itemsep}{2pt}
+        \item Definition of Infimum
+        \item Parallelogram Law
+        \item Norm and Inner product are continuous
+        \item Cauchy $\implies$ convergent in complete spaces
+        \item Convexity of normed linear spaces
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the orthogonal direct sum and state the most important result about orthogonal complements}
+    Given two orthogonal closed linear subspaces $M$ and $N$, the orthogonal direct sum of $M$ and $N$, denoted $M \oplus N$, is the smallest linear subspace containing $M$ and $N$, i.e.
+    \begin{align*}
+        M \oplus N = \left\{m + n\ |\ m \in M\ \text{and}\ n \in N\right\}
+    \end{align*}
+
+    If $M$ is a closed linear subspace of $\hilb$, then $M \oplus M^\perp = \hilb$.  If $M$ is not closed, we still have $\overline{M} \oplus M^\perp = \hilb$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define an orthonormal basis of a finite-dimensional Hilbert space}
+    Let $\hilb$ be a finite-dimensional Hilbert space.  A set of vectors $\{e_1, \dots, e_n\}$ is an orthonormal basis of $\hilb$ if $\norm{e_i} = 1$ for each $i = 1, \dots, n$, $e_i \perp e_j$ for $i \neq j$, and for all $x \in \hilb$, $\exists!x_k \in \Cx$ such that
+    \begin{align*}
+        x = \sum_{i=1}^n x_ie_i
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Give the standard bases in $\Cx^n$, $\ell^2(\mathbb{Z})$, and $L^2(\torus)$}
+    The standard basis in $\Cx^n$ is $\{e_1, \dots, e_n\}$ where $e_i = (0, 0, \dots, 0, 1, 0, \dots, 0, 0)$ where all components are $0$ except for a $1$ in the $i$\textsuperscript. component. \\
+
+    The standard basis for $\ell^2(\mathbb{Z})$ is $\{\dots, e_{-1}, e_0, e_1, \dots\}$, where $e_i = (\delta_{ij})_{j=-\infty}^\infty$ and $\delta_{ij}$ is the Kronecker delta function. \\
+
+    The standard basis for $L^2(\torus)$ is $\{\dots, e_{-1}, e_0, e_1, \dots\}$ where $e_n(x) = \dfrac{1}{\sqrt{2\pi}}e^{inx}$
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe the inner product space of quasiperiodic functions}
+    Define $X$ to be the space of all functions of the form $a(t) = \displaystyle\sum_{k=1}^n a_ke^{i\omega_k t}$.  We can define an inner product on $X$ by
+    \begin{align*}
+        (a,b) = \lim_{T\rightarrow \infty}\int_{-T}^T\overline{a(t)}b(t) \dd t
+    \end{align*}
+    which simplifies to $$(a,b) = \displaystyle\sum_{k=1}^n \overline{a_k}b_k.$$
+
+    Note the set $$\Omega = \{e^{i\omega t}\ |\ \omega \in \Rl\}$$ is an uncountable orthonormal set, which means $X$ is not separable.  $\Omega$ is, in fact, an orthonormal basis of $X$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define unconditional convergence}
+    Let $\{x_\alpha \in X\ |\ \alpha \in I\}$ be an indexed set in a Banach space $X$ and $I$ may be uncountable.  For each finite subset $J$ of $I$, define the partial sum $S_J$ by
+    \begin{align*}
+        S_J = \sum_{\alpha\in J} x_\alpha
+    \end{align*}
+    The unordered sum of the indexed set converges unconditionally to $x \in X$, denoted
+    \begin{align*}
+        x = \sum_{\alpha \in I} x_\alpha,
+    \end{align*}
+    if for every $\E > 0$, there is a finite subset $J^\E$ of $I$ such that $\norm{S_J - x} < \E$ for every finite subset $J$ of $I$ which contains $J^\E$. \\
+
+    All unconditionally convergent series have only countably many nonzero terms.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define absolute convergence}
+    A sum $\sum_{\alpha \in I} x_i$ converges absolutely if $\sum_{\alpha \in I}\norm{x_i}$ converges unconditionally. \\
+
+    Absolute convergence implies unconditional convergence.
+\end{flashcard}
+
+\begin{flashcard}
+    {What does it mean to be a Cauchy unordered series?}
+    An unordered sum $\sum_{\alpha \in I}$ is Cauchy if for every $\E$, there is a finite subset $J^\E$ of $I$ such that $\norm{S_J} < \E$ for every finite $J \subset I\setminus J^\E$
+\end{flashcard}
+
+\begin{flashcard}
+    {Unordered sums in Banach spaces converge if and only if they are Cauchy}
+    Cauchy $\implies$ convergent uses the following outline:
+    \begin{itemize}
+        \item Define an increasing class $(J_n)$ of finite subsets of $I$.
+        \item Show that $(S_{J_n})$ is Cauchy.
+        \item Since $X$ is banach, $(S_{J_n})$ converges to some limit $x \in X$.  Use $x$ as the candidate limit for the original Cauchy series.
+        \item Use an $\frac{\E}{2}$ trick with the Cauchy criterion and the definition of $x$ to complete the proof
+    \end{itemize}
+    Convergent $\implies$ Cauchy uses the following:
+    \begin{itemize}
+        \item Set operations ($\setminus$, $\cup$)
+        \item Triangle inequality
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {State and prove the general Pythagorean Theorem}
+    Let $U = \{u_\alpha\ |\ \alpha \in I\}$ be an indexed, orthogonal subset of a Hilbert space $\hilb$.  The sum $\sum_{\alpha \in I}u_\alpha$ converges unconditionally if an only if $\sum_{\alpha \in I}\norm{u_\alpha}^2$ converges unconditionally, and in that case,
+    \begin{align*}
+        \norm{\sum_{\alpha \in I} u_\alpha}^2 = \sum_{\alpha \in I} \norm{u_\alpha}^2.
+    \end{align*}
+    For any finite subset $J$ of $I$,
+    \begin{align*}
+        \norm{\sum_{\alpha \in J} u_\alpha}^2 = \sum_{\alpha,\beta \in J}(u_\alpha, u_\beta) = \sum_{\alpha \in J} (u_\alpha, u_\alpha) = \sum_{\alpha \in J} \norm{u_\alpha}^2.
+    \end{align*}
+    It then follows that $\sum_{\alpha \in I} u_\alpha$ converges if and only if $\sum_{\alpha \in I}\norm{u_\alpha}^2$ converges.  Then since the norm is continuous, the result holds.
+\end{flashcard}
+
+\begin{flashcard}
+    {State Bessel's Inequality}
+    Let $U = \{u_\alpha\ |\ \alpha \in I\}$ be an orthnormal set in a Hilbert space $\hilb$, and choose any $x \in \hilb$.  Then
+    \begin{enumerate}[(a)]
+        \item $\displaystyle\sum_{\alpha \in I} \abs{(u_\alpha, x)}^2 \leq \norm{x}^2$.
+        \item $x_U \coloneqq \sum_{\alpha \in I} (u_\alpha, x)u_\alpha$ converges. ($x_U$ is the projection of $x$ on to the subspace spanned by $U$.)
+        \item $x - x_U \in U^\perp$
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the closed linear span of a general subset $U$, and then for an orthonormal subset $U$}
+    The closed linear space of a subset $U$ of a Hilbert space $\hilb$, denoted $[U]$, is given by
+    \begin{align*}
+        [U] =   \left\{\sum_{u \in U}c_uu\ |\ c_u \in \Cx \text{ and } \sum_{u \in U}c_uu \text{ converges unconditionally}\right\}
+    \end{align*}
+    If $U = \{u_\alpha\ |\ \alpha \in I\}$ is an orthonormal set, then
+    \begin{align*}
+        [U] = \left\{\sum_{\alpha \in I} c_\alpha u_\alpha\ |\ c_\alpha \in \Cx \text{ and } \sum_{\alpha \in I} \abs{c_\alpha}^2 < \infty\right\}
+    \end{align*}
+    This simplification follows from the Pythagorean Theorem.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the five equivalent conditions defining an orthonormal basis of $\hilb$}
+    Uf $U = \{u_\alpha\ |\ \alpha \in I\}$ is an orthonomal subset of a Hilbert space $\hilb$, then the following conditions are equivalent:
+    \begin{enumerate}[(a)]
+        \setlength{\itemsep}{-3pt}
+        \item $(u_\alpha, x) = 0$ for all $\alpha \in I$ implies $x = 0$;
+        \item $x = x_U = \sum_{\alpha \in I}(u_\alpha, x)u_\alpha$ for all $x \in \hilb$;
+        \item $\norm{x}^2 = \sum_{\alpha \in I} \abs{(u_\alpha, x)}^2$ for all $x \in \hilb$;
+        \item $[U] = \hilb$;
+        \item $U$ is a maximal orthonormal set.
+    \end{enumerate}
+    In English,
+    \begin{enumerate}[(a)]
+        \setlength{\itemsep}{-3pt}
+        \item The only element orthogonal to every element in $U$ is $0$.
+        \item Every element is equal to its own projection onto $[U]$.
+        \item The Pythagorean Theorem, simplified, since $\norm{u_\alpha} = 1$ for all $\alpha$
+        \item $U$ spans all of $\hilb$
+        \item No non-zero orthogonal vector can be added to the set $U$.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {State Parseval's Identity}
+    Suppose $U = \{u_\alpha\ |\ \alpha \in I\}$ is an orthonormal basis of $\hilb$.  Define $x = \sum_{\alpha \in I} x_\alpha u_\alpha$ and $y = \sum_{\alpha \in I} y_\alpha u_\alpha$.  Then
+    \begin{align*}
+        (x, y) = \sum_{\alpha \in I}\overline{x_\alpha}y_\alpha
+    \end{align*}
+    sicne $x_\alpha = (u_\alpha, x)$ and $y_\alpha = (u_\alpha, y)$ for $\alpha \in I$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What does every Hilbert space have?}
+    Every Hilbert space has an orthonormal basis.  Also, given any orthonormal subset $U$ of a Hilbert space $\hilb$, there is an orthonormal basis of $\hilb$ containing $U$.  In other words, one can always extend an orthonormal set to an orthonormal basis.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Gram-Schmidt orthonormalization procedure}
+    The Gram-Schmidt orthonormalization procedure is a way of constructing a countable orthonormal set $U$ given a countable set of linearly independent vectors $V$ such that $[U] = [V]$.  Define $u_n$ as follows:
+    \begin{align*}
+        u_1 = \frac{v_1}{\norm{v_1}} \qquad \text{and} \qquad u_{n+1} = c_{n+1}\qty(v_{n+1} - \sum_{k=1}^n (u_k,v_{k+1})u_k)
+    \end{align*}
+    where $c_{n+1}$ is chosen to $\norm{u_{n_1}} = 1$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Give examples of how the Gram-Schmidt orthonormalization procedure works}
+    Define a weighted inner-product on the continuous functions $C([a,b])$ by
+    \begin{align*}
+        (f,g) = \int_a^b w(x)\overline{f(x)}g(x)\dd x
+    \end{align*}
+    Denote $C_w([a,b])$ as the set of functions whos norm is finite, i.e.
+    \begin{align*}
+        C_w([a,b]) = \left\{f\ :\ [a,b] \rightarrow \Cx\ |\ f \text{ is continuous and } (f,f) < \infty\right\}
+    \end{align*}
+    and complete this space to obtain the Hilbert space $L_w([a,b])$.
+
+    Set $M = \{x^n\ |\ n \in \mathbb{N}\}$.  This set is linearly independent, but may not orthonormal.  Given $L_w([-1,1])$ with $w(x) \equiv 1$, the G-S procedure on $M$ produces the Legendre polynomials.  Given $L_w([-1,1])$ with $w(x) = \sqrt{1 - x^2}$, the G-S procedure on $M$ produces the Tchebyschev polynomials.  Given $L_w(\Rl)$ with $w(x) = \exp[-\frac{x^2}{2}]$, the G-S procedure on $M$ produces the Hermite polynomials.
+\end{flashcard}
+
+
+
+\end{document}
+
