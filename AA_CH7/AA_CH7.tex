@@ -204,7 +204,7 @@
 \end{flashcard}
 
 \begin{flashcard}
-    {Define Sobolev space on $\torus$ in terms of Fourier coefficients.}
+    {Define the Sobolev space $H^1(\torus)$ in terms of Fourier coefficients.}
     The Sobolev space $H^1(\torus) = W^{1,2}(\torus)$ consists of all functions
     \begin{align*}
         f(x) = \frac{1}{\sqrt{2\pi}}\sum_{n \in \mathbb{N}}\hat{f}_n e^{inx} \in L^2(\torus) \qquad \text{such that} \qquad \sum_{n \in \mathbb{N}} n^2 \abs{\hat{f}_n}^2 < \infty.
@@ -227,10 +227,33 @@
 \begin{flashcard}
     {Define a weak derivative of an $L^2$ function using test functions and the theory of bounded linear operators on Hilbert spaces.}
     Let $f \in H^1(\torus)$ and define the bounded linear functional $F\ :\ C^1(\torus) \subset L^2(\torus) \rightarrow \Cx$ by
+    \vspace{-10pt}
     \begin{align*}
         F(\phi) = -\int_\torus f \phi' \dd x.
     \end{align*}
-    Since $F$ is a bounded linear functional defined on $C^1(\torus)$ and $C^1(\torus)$ is dense in $H^1(\torus)$, then we can uniquely extend $F$ to a bounded linear functional on $H^1(\torus)$.
+    Since $F$ is a bounded linear functional defined on $C^1(\torus)$ and $C^1(\torus)$ is dense in $L^2(\torus)$, then we can uniquely extend $F$ to a bounded linear functional on $L^2(\torus)$.  Since $L^2(\torus)$ is a Hilbert space, the Riesz Representation Theorem states there is a unique $f' \in L^2$ such that $F(\phi) = (\overline{f'}, \phi)$ for all $\phi$, which gives
+    \begin{align*}
+        \int_\torus f'\phi\dd x = - \int_\torus f \phi' \dd x.
+    \end{align*}
+    The weak derivative of $f$, denoted $f'$, is the unique element of $L^2(\torus)$ such that the above holds for all $\phi \in C^1(\torus)$.  $\phi$ in this context is known as a smooth ``test function.''
+\end{flashcard}
+
+\begin{flashcard}
+    {Define a general Sobolev space $H^k(\torus)$ for $k \in \Rl^+$.}
+    For $k \geq 0$,
+    \begin{align*}
+        H^k(\torus) = \left\{f \in L^2\ |\ f(x) = \sum_{n=-\infty}^\infty c_ne^{inx},\ \ \sum_{n=-\infty}^\infty \abs{n}^{2k}\abs{c_n}^2 < \infty\right\}.
+    \end{align*}
+    That is, an $L^2$ function is in $H^k$ if its Fourier coefficients are $n^kc_n$ square summable. \\
+
+    When $k \in \mathbb{N}$, $H^k$ corresponds to functions with $k$ weak derivatives in $L^2$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the most simple Sobolev Embedding Theorem.}
+    If $f \in H^k(\torus)$ and $k > \frac{1}{2}$, then $f \in C(\torus)$. \\
+
+    That is, if $f$ has more than half of a weak derivative, then it is continuous.
 \end{flashcard}
 
 \end{document}
