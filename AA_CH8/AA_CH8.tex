@@ -1,0 +1,312 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 8}
+
+
+\begin{flashcard}
+    {Define complementary subspace, codimension, and prejection.}
+    If $X$ is a linear space and $M$ is a linear subspace of $X$, then $N$ is a complementary subspace of $M$ if every $x \in X$ can be uniquely represented by $x = n + m$ where $n \in N$ and $m \in M$.  This implies $M \cap N = \{0\}$. \\
+
+    If $M$ is a linear subspace of $X$, then $M$ may have infinitely many complementary subspaces.  All of the complementary subspaces of $M$ have the same dimension, which is called the codimension of $M$. \\
+
+    A projection on a linear space $X$ is a linear map $\f{P}{X}{X}$ such that $P^2 = P$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Show $X = \ker P \oplus \ran P$ for any projection $P$ on a linear space $X$.}
+    First note that $x = Px$ if and only if $x \in \ran P$, since if $x = Py$ then $Px = P^2x = Py = x$. \\
+
+    Let $x \in \ker P \cap \ran P$.  Then $x = Px = 0$. \\
+
+    Let $x \in X$.  Then $x - Px \in \ker P$ since
+    \begin{align*}
+        P(x - Px) = Px - P^2x = Px - Px = 0.
+    \end{align*}
+    Then $x = Px + (x - Px)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define orthogonal projection.}
+    An orthogonal projection $P$, on a Hilbert space $\hilb$, is a function $\f{P}{\hilb}{\hilb}$ such that
+    \begin{align*}
+        P^2 = P \qquad \text{and} \qquad (Px, y) = (x, Py) \ \ \forall x, y \in \hilb
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the norm of a non-zero orthogonal projection?}
+    Using the Cauchy-Schwarz Inequality,
+    \begin{align*}
+        \norm{Px} = \frac{\norm{Px}^2}{\norm{Px}} = \frac{(Px, Px)}{\norm{Px}} = \frac{(x, P^2x)}{\norm{Px}} = \frac{(x, Px)}{\norm{Px}} \leq \frac{\norm{x}\norm{Px}}{\norm{Px}} = \norm{x},
+    \end{align*}
+    so $\norm{P} \leq 1$.  However, there is an $x \in \ran P$ with $\norm{x} \neq 0$ (since $P$ is non-zero.  Then
+    \begin{align*}
+        \norm{Px} = \norm{x},
+    \end{align*}
+    which shows $\norm{P} \geq 1$, and thus $\norm{P} = 1$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Prove that a Hilbert space is the orthogonal direct sum of an orthogonal projection's range and kernel.}
+    Let $P$ be an orthogonal projection on $\hilb$.  We know $\hilb = \ker P \oplus \ran P$ where $\oplus$ is just a (not necessarily orthogonal) direct sum.  However, if $x = Py \in \ran P$ and $z \in \ker P$, then
+    \begin{align*}
+        (x, z) = (Py, z) = (y, Pz) = (y, 0) = 0
+    \end{align*}
+    and thus $\ker P \perp \ran P$.
+\end{flashcard}
+
+\begin{flashcard}
+    {If $P$ is the orthogonal projection on to a closed linear subspace $M$ of a Hilbert space $\hilb$, and $Q$ is the orthogonal projection on to a $M^\perp$, how are $P$ and $Q$ related?}
+    \begin{align*}
+        I - P = Q.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the orthogonal projection on to a one-dimensional subspace $U$ of $\hilb$?}
+    Let $\{u\}$ be a basis of $U$.  Then define $P_U$ by
+    \begin{align*}
+        P_u x = \frac{(u,x)}{\norm{u}^2}u.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Give examples of orthogonal projections on to a finite dimensional space, a countably infinite dimensional space, and an uncountably infinite dimensional space.}
+    Let $\hilb = \Rl^n$ and $\mathbf{u}$ be any unit vector.  The orthogonal projection in the direction of $\mathbf{u}$ is the rank one matrix $\mathbf{u}\mathbf{u}^T$.  The component of a vector $\mathbf{x}$ in the direction of $\mathbf{u}$, i.e.~the projection of $\mathbf{x}$ on to $[\{\mathbf{u}\}]$ is
+    \vspace{-5pt}
+    \begin{align*}
+        P_\mathbf{u}\mathbf{x} = \frac{(\mathbf{u}, \mathbf{x})}{\norm{\mathbf{u}}^2}\mathbf{u} = \qty(\mathbf{u}^T\mathbf{x})\mathbf{u}.
+    \end{align*}
+    Let $\hilb = \ell^2(\mathbb{Z})$ and $u = e_n = (\delta_{k.n})_{k=-\infty}^\infty$ and $x = (x_k)$.  Then $P_{e_n}x = x_ne_n$ gives a vector of all $0$s except for the $n$\textsuperscript{th} component of $x$ in the $n$\textsuperscript{th} position.
+    Let $\hilb = L^2(\torus)$ and $u(x) \equiv \frac{1}{\sqrt{2\pi}}$, which is the constant function with $\norm{u} = 1$.  Then $P_u$ maps a function $f$ to its mean $\langle f \rangle$, i.e.
+    \vspace{-5pt}
+    \begin{align*}
+        P_u f = \frac{1}{2\pi}\int_\torus f(x) \dd x.
+    \end{align*}
+    Then $f = \langle f \rangle + \tilde{f}$ is the decomposition of a function into a constant mean part and a fluctuating, $0$ mean part.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Riesz Representation theorem and state what the proof uses.}
+    If $\phi$ is a bounded linear functional on a Hilbert space $\hilb$, then there is a unique $y\in\hilb$ such that $\phi(x) = (y,x)$ for all $x \in \hilb$.
+
+    The proof uses
+    \begin{itemize}
+        \item The kernel of a bounded linear operator is a closed subspace.
+        \item Defining a clevel orthogonal projection $P$ whose kernel is equal to $\ker \phi$.
+        \item Arbitrary vectors can be decomposed by $\hilb = \ker P \oplus \ran P$.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the adjoint of an operator?  Why are the important in the context of projections on Hilbert spaces?}
+    The adjoint of an bounded linear operator $A$ on a Hilbert space $\hilb$ is denoted $A^*$ and is the unique operator in $\mathcal{B}(\hilb)$ such that
+    \begin{align*}
+        (x, Ay) = (A^*x, y) \qquad \forall x, y \in \hilb.
+    \end{align*}
+    An operator $A$ is called self-adjoint if $A = A^*$.  All orthogonal projects are self-adjoint, that is, for any projection $P$ on $\hilb$, we have
+    \begin{align*}
+        (Px, y) = (x, Py) \qquad \forall x,y\in\hilb.
+    \end{align*}
+    This is not true for all projections - just orthogonal projections.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the adjoint of a real-valued matrix?  How about a complex-valued matrix?}
+    If $A$ is a real-valued matrix in $\Rl^{n\times n}$, then $A^* = A^T$.  That is, the adjoint is the transpose. \\
+
+    If $A$ is a complex-valued matrix in $\Cx^{n\times n}$, then $A^* = \overline{A^T}$.  That is, the adjoint is the Hermitian conjugate matrix..
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the adjoint of the left-shift operator on $\ell^2(\mathbb{N})$?}
+    Let $T \in \mathcal{B}(\ell^2(\mathbb{N}))$ by
+    \begin{align*}
+        T(x_1,x_2,x_3,\dots) = (x_2,x_3,x_4,\dots).
+    \end{align*}
+    Then $T^* = S$, the right-shift operator, given by
+    \begin{align*}
+        S(x_1,x_2,x_3,\dots) = (0, x_1, x_2,\dots)
+    \end{align*}
+    because
+    \begin{align*}
+        (x,Ty) = \sum_{i=1}^\infty \overline{x_i}y_{i+1} = (Sx, y).
+    \end{align*}
+    This is analagous to the transpose of a matrix since the transpose of the infinite matrix representing $T$ is the infinite matrix representing $S$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the adjoint of a Fredholm integral operator $K \in \mathcal{B}(L^2([0,1]))$?}
+    Let $K \in \mathcal{B}(L^2([0,1]))$ by
+    \begin{align*}
+        Kf(x) = \int_0^1 k(x,y)f(y)\dd y
+    \end{align*}
+    for some continuous function $\f{k}{[0,1]\times[0,1]}{\Cx}$.  Then $K^*$ is given explicitly by integration against the complex conjugate, transpose kernel:
+    \begin{align*}
+        K^*f(x) = \int_0^1 \overline{k(y,x)}f(y)\dd y.
+    \end{align*}
+    This is analagous to the Hermitian conjugate of a matrix.
+\end{flashcard}
+
+\begin{flashcard}
+    {If $\f{A}{\hilb}{\hilb}$ is a bounded linear operator, show
+    \begin{align*}
+        \overline{\ran A} = (\ker A^*)^\perp, \qquad \text{and} \qquad \ker A = (\ran A^*)^\perp.
+    \end{align*}}
+    Let $x \in \ran A$.  Then $x = Ay$ for some $y \in \hilb$.  Then $(x,z) = (Ay,z) = (y, A^*z) = 0$ for any $z \in \ker A^*$.  Thus $x \in (\ker A^*)^\perp$, which is closed, and so $\overline{\ran A} \subset (\ker A^*)^\perp$. \\
+
+    If $x \in (\ran A)^\perp$, then $0 = (Ay,x) = (y,A^*x)$ for every $y \in \hilb$, which shows $A^* x = 0$ for every $x \in (\ran A)^\perp$, i.e.~$x \in \ker A^*$, so $(\ran A)^\perp \subset \ker A^*$.  Then $(\ker A^*)^\perp \subset (\ran A)^{\perp\perp} = \overline{\ran A},$ which shows $(\ker A^*)^\perp = \overline{\ran A}$.  The clever move here was $X \subset Y \implies Y^\perp \subset X^\perp$. \\
+
+    Then taking $A = A^*$ in the above equality gives $(\ker A)^\perp = \overline{\ran A^*}$.  Then taking orthogonal complements gives $\ker A = \overline{\ran A^*}^\perp = (\ran A^*)^\perp$. \\
+
+    A succint way of stating this theorem is
+    \begin{align*}
+        \hilb = \overline{\ran A} \oplus (\ker A^*)^\perp.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Suppose that $\f{A}{\hilb}{\hilb}$ is a bounded linear operator on a Hilbert space $\hilb$ with closed range.  When does the equation $Ax = y$ have a solution?}
+    The equation $Ax = y$ has a solution for $x$ if and only if $y \perp \ker A^*$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Fredhold alternative?}
+    A bounded linear operator $A$ on a Hilbert space $\hilb$ satisfies the Fredholm alternative if either
+    \begin{enumerate}[(a)]
+        \item either $Ax = 0$, $A^*x = 0$ have only the zero solution, and the equations $Ax = y$, $A^*x = y$ have a unique solution for every $y \in \hilb$;
+        \item or $Ax = 0$, $A^*x = 0$ have nontrivial, finite-dimensional solution spaces of the same dimension, $Ax = y$ has a (nonunique) solution if and only if $y \perp z$ for every solution $z$ of $A^*z = 0$, and $A^*x = y$ has a (nonunique) solution if and only if $y \perp z$ for every solution $z$ of $Az = 0$.
+    \end{enumerate}
+    In English, either
+    \begin{enumerate}[(a)]
+        \item $A$ and $A^*$ are bijective;
+        \item or $A$ and $A^*$ are not injective, but have the same nullity.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {Why is the multiplication operator $Mf(x) = xf(x)$ not always solvable?}
+    Even though $\ker M^* = \ker M = \{0\}$, and hence every $g \in L^2([0,1])$ is orthogonal to $\ker M^*$, $Mf = g$ is not always solvable since $\ran M$ is properly dense in $L^2([0,1])$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a Fredholm operator?  What is the index of a Fredholm operator?  What is the result regarding indeces of Fredholm operators?}
+    A bounded linear operator $A$ on a Hilbert space $\hilb$ is a Fredhold operator if
+    \begin{enumerate}[(a)]
+        \item $\ran A$ is closed;
+        \item $\ker A$ and $\ker A^*$ are finite-dimensional.
+    \end{enumerate}
+
+    The index of a Fredholm operator $A$, denoted $\ind A$, is the integer
+    \begin{align*}
+        \ind A = \dim \ker A - \dim \ker A^*.
+    \end{align*}
+
+    If $A$ is Fredholm and $K$ is compact, then $A + K$ is Fredholm and
+    \begin{align*}
+        \ind A = \ind (A + K).
+    \end{align*}
+    That is, the index of a Fredholm is unchanged by compact perturbations.  Since $I$ is Fredholm, and $\ind I = 0$, then $\ind (I + K) = 0$ for compact $K$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the most important sesquilinear form derived from a bounded linear operator $A$ on a Hilbert space $\hilb$?  What is the associated quadratic form?  What is it mean to be a non-negative operator?  How about a positive (positive definite) operator?}
+    Given a linear operator $A$, define the sesquilinear form $\f{a}{\hilb\times\hilb}{\Cx}$ by $a(x,y) = (x, Ay)$.  The associated quadrative form is $q_A(x) = a(x,x)$, or $q_A(x) = (x, Ax)$. \\
+
+    $A$ is called nonnegative if its quadratic form is nonnegative for all $x \in \hilb$, i.e.~$q_A(x) \geq 0$, $\forall x \in \hilb$.  $A$ is positive definite if $q_A(x) > 0$, $\forall x \in \hilb$.
+\end{flashcard}
+
+\begin{flashcard}
+    {How can we define an inner product on a Hilber space $\hilb$ given a positive definite bounded linear operator $A$?}
+    \begin{align*}
+        (x,y)_A \coloneqq (x, Ay)
+    \end{align*}
+    defines an inner product on $\hilb$.  In addition, $(\cdot,\cdot)_A$ is equivalent to $(\cdot,\cdot)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {If $A$ is a bounded, self-adjoint operator on a Hilbert space $\hilb$, what is an easy formula for $\norm{A}$?}
+    \begin{align*}
+        \norm{A} = \sup_{\norm{x}=1}\abs{q_A(x)}, \qquad \text{where $q$ is the quadratic form $q_A(x) = (x, Ax)$.}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Prove that if $A$ is a bounded operator on a Hilbert space $\hilb$, then $\norm{A^*A} = \norm{A}^2$.}
+    \begin{align*}
+        \norm{A}^2 = \sup_{\norm{x}=1}\norm{Ax}^2 = \sup_{\norm{x}=1}\abs{(Ax,Ax)} = \sup_{\norm{x}=1}\abs{q_{A^*A}(x)} = \norm{A^*A}
+    \end{align*}
+    If $A$ is self adjoint, the $A^* = A$ and $\norm{A}^2 = \norm{A^2}$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a unitary operator?  What is an easy equivalent way to check an operator is unitary?}
+    A linear map $\f{U}{\hilb_1}{\hilb_2}$ between real or complex Hilbert spaces $\hilb_1$ and $\hilb_2$ is said to be orthogonal (real) or unitary (complex), respectively, if it is invertible and if
+    \begin{align*}
+        (Ux,Uy) = (x,y), \qquad \forall x,y \in \hilb_1
+    \end{align*}
+
+    Unitary operators preserve inner products. \\
+
+    Two Hilbert spaces are isomorphic if there exists a unitary operator between them. \\
+
+    An operator $U$ is unitary if and only if its inverse is it's adjoint.  That is, $U$ is unitary if and only if $U^* = U^{-1}$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe a general unitary operator between two Hilbert spaces of the same (possibly infinite dimension.  What is the Hilbert transform?)}
+    Let $\hilb_1$ and $\hilb_2$ have the same (possibly infinite) dimension.  Then their bases can be indexed by the same index set.  Suppose $\hilb_1$ has basis $\{u_\alpha\}$ and $\hilb_2$ has basis $\{v_\alpha\}$.  Then any $x \in \hilb_1$ can be written as
+    \vspace{-7pt}
+    \begin{align*}
+        x = \sum_\alpha c_\alpha u_\alpha, \qquad \text{where } c_\alpha = (u_\alpha, x).
+    \end{align*}
+    Let $\lambda_\alpha$ be complex numbers with $\abs{\lambda_\alpha} = 1$ and define $\f{U}{\hilb_1}{\hilb_2}$ by
+    \vspace{-7pt}
+    \begin{align*}
+        Ux = \sum_\alpha \lambda_\alpha (u_\alpha,x)v_\alpha.
+    \end{align*}
+    Then $U$ is unitary, and thus $\hilb_1 \cong \hilb_2$.  The Hilbert transform $\mathbb{H}$ is of this form.  Define $\f{\mathbb{H}}{\hilb_0 \subset L^2(\torus)}{\hilb_0}$ ($\hilb_0 = \left\{f \in L^2(\torus)\ |\ \langle f \rangle = 0\right\}$ is the space of $L^2$ functions with $0$ mean) by
+    \vspace{-7pt}
+    \begin{align*}
+        \mathbb{H}f = \mathbb{H}\qty(\sum_{n\in\mathbb{N}}\hat{f}_ne^{inx}) = \sum_{n\in\mathbb{N}}\qty(i(\sgn{n})\hat{f}_n e^{inx}).
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the most famous unitary operator (besides maybe the identity operator)?}
+    The most famous (and most useful) unitary operator is the Fourier transform, $\f{\mathcal{F}}{L^2(\torus)}{\ell^2(\mathbb{N})}$, which is given by
+    \begin{align*}
+        \mathcal{F}f = \mathcal{F}\qty(\sum_{n\in\mathbb{N}}c_n e^{inx}) = (c_n)_{n\in\mathbb{N}}, \qquad \text{where } c_n = \frac{1}{\sqrt{2\pi}}\int_\torus f(x) e^{-inx}\dd x.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a normal operator?}
+    A operator $A$ is said to be normal if it commutes with its adjoint, that is,
+    \begin{align*}
+        AA^* = A^*A.
+    \end{align*}
+\end{flashcard}
+
+\end{document}
+
