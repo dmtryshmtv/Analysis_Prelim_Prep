@@ -308,5 +308,77 @@
     \end{align*}
 \end{flashcard}
 
+\begin{flashcard}
+    {Define weak convergence in Hilbert space.}
+    Let $\hilb$ be a Hilbert space.  A sequence $(x_n) \in \hilb$ converges weakly to $x$, denoted $x_n \rightharpoonup x$ if
+    \begin{align*}
+        \lim_{n\rightarrow \infty} (x_n,y) = (x,y), \qquad \forall y \in \hilb.
+    \end{align*}
+
+    This is a special case of weak convergence in a Banach space $X$, which states $x_n \rightharpoonup x$ if
+    \begin{align*}
+        \phi(x_n) \rightarrow x, \qquad \forall \phi \in X^*.
+    \end{align*}
+
+    In Hilbert space, $\hilb^* \cong \hilb$, and by the Reisz Representation Theorem, every linear functional can be uniquely represented as an inner product against an element in $\hilb$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the uniform boundedness (Banach-Steinhaus) Theorem.}
+    Suppose that $\left\{\phi_n \in X^*\ |\ n \in \mathbb{N}\right\}$ is a set of linear functionals on a Banach space $X$ such that $\left\{\phi_n(x)\ |\ n \in \mathbb{N}\right\}$ is bounded for every $x \in X$.  Then $\left\{\norm{\phi_n}\ |\ n \in \mathbb{N}\right\}$ is bounded. \\
+
+    That is, if the values of the countable set of functionals evaluated at each point is bounded, then the functionals themselves are bounded in operator norm.
+\end{flashcard}
+
+\begin{flashcard}
+    {What are sufficient and necessary conditions for a sequence $(x_n) \in \hilb$ to converge weakly to $x$?}
+    Let $D$ be a dense subset of a Hilbert space $\hilb$.  Then $x_n \rightharpoonup x$ if and only if
+    \begin{enumerate}[(a)]
+        \item $\exists M \in \Rl$ such that $\norm{x_n} \leq M$ for $n \in \mathbb{N}$;
+        \item $(x_n, y) \rightarrow (x,y)$ for each $y \in D$.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {Give an example of a weakly convergent sequence which (a) oscillates to death, (b) goes up the spout, and (c) wanders off to infinity}
+    \begin{enumerate}[(a)]
+        \item Oscillates to death: Let $f_n = \sin(n\pi x) \in L_2([0,1])$.  Then $\int_0^1 f(x) \sin(n\pi x) \dd x \rightarrow 0$ as $n \rightarrow \infty$, but $\norm{f_n} = \frac{1}{\sqrt{2}}$ for al $n \in \mathbb{N}$.  So $f_n \rightharpoonup 0$ but $f_n \not\rightarrow 0$.
+        \item Goes up the spout: Let $f_n = \mathcal{X}_{[0, \frac{1}{n}]}\sqrt{n} \in L^2([0,1])$.  Then for any polynomial $p$, $\int_0^1 p(x)f_n(x)\dd x = \sqrt{n}\int_0^\frac{1}{n} p(x) \dd x \rightarrow 0$ as $n \rightarrow \infty$.  Also, $\norm{f_n} = 1$ for each $n \in \mathbb{N}$.  Then since polynomials are dense in $L^2([0,1])$, $f_n \rightharpoonup 0$ but $f_n \not\rightarrow 0$.
+        \item Wanders off to infinity: Let $f_n = \mathcal{X}_{[n, n+1]} \in L^2(\Rl)$.  Then $\norm{f_n} = 1$ for $n \in \mathbb{N}$.  Also, for any function $c(x)$ with compact support, $\int_\Rl f_n(x)c(x) \dd x \rightarrow 0$ as $n \rightarrow \infty$.  Then since functions with compact support are dense in $L^2(\Rl)$, $f_n \rightharpoonup 0$ but $f_n \not\rightarrow 0$.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {In the context of Hilbert spaces, what in addition to weak convergence does one need in order to show strong convergence?}
+    Suppose $x_n \rightharpoonup x$.  In general,
+    \begin{align*}
+        \norm{x} \leq \liminf_{n\rightarrow \infty}\norm{x_n}.
+    \end{align*}
+    If $\displaystyle\lim_{n\rightarrow \infty} \norm{x_n} = \norm{x}$, then $x_n \rightarrow x$.
+
+    The proof uses:
+    \begin{itemize}
+        \item continuity of the inner product
+        \item Cauchy-Schwarz Inequality
+        \item Definition of convergence in norm (strong convergence)
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Banach-Alaoglu Theorem?  What is it's analog in finite-dimensional Hilbert space?}
+    The closed unit ball of a Hilbert space is weakly compact. \\
+
+    A set is weakly precompact if and only if it is bounded. \\
+
+    This is the infinite-dimensional analog of the Heine-Borel Theorem (for finite-dimensional Hilbert spaces, closed and bounded $\iff$ compact). \\
+
+    The proof uses
+    \begin{itemize}
+        \item a diagonal argument on sequences that converge using Heine-Borel on $\Cx$
+        \item The Reisz Representation Theorem
+        \item The Bounded Linear Transformation Theorem (Bounded linear transformations on dense subsets of a Banach space $X$ can be uniquely extended to bounded linear transformations on $X$.)
+    \end{itemize}
+\end{flashcard}
+
 \end{document}
 
