@@ -228,5 +228,31 @@
     Let $M$ be an invariant subspace of the bounded, self-adjoint operator $A$ on a Hilbert space $\hilb$.  Choose an arbitrary $y \in M^{\perp}$.  Then $\forall x \in M$, $(x,y) = 0$.  Also, since $Ax \in M$, then $(Ax, y) = 0$ for all $x \in M$.  Then since $A$ is self-adjoint, $0 = (Ax,y) = (x,Ay)$, and thus $Ay \perp x$ for all $x \in M$, which shows $Ay \in M^\perp$.  Thus $M^\perp$ is an invariant subspace of $A$.
 \end{flashcard}
 
+\begin{flashcard}
+    {Prove that if $\lambda$ belongs to the residual spectrum of a bounded linear operator $A$ on a Hilbert Space, then $\overline{\lambda}$ is an eigenvalue of $A^*$.}
+    Let $\lambda$ be in the residual spectrum of $A$.  Then $\ran (A - \lambda I)$ is not dense in $\hilb$.  By the projection theorem, $\exists x \in \hilb$ with $x \neq 0$ such that $x \perp \ran (A - \lambda I)$.  This implies $x \in \ker ((A - \lambda I)^*) = \ker (A^* - \overline{\lambda} I)$.  Thus $x$ is an eigenvector of $A^*$ corresponding to $\overline{\lambda}$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe the spectrum of a bounded self-adjoint operator $A$ on a Hilbert space.}
+    The spectrum is real and contained in $[-\norm{A}, \norm{A}]$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Nonzero eigenvalues of compact operators have something that nonzero eigenvalues of non-compact, infinite-dimensional operators have.  What is it?}
+    Nonzero eigenvalues of compact operators have finite multiplicity.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the spectral theorem for compact, self-adjoint operators.}
+    Let $\f{A}{\hilb}{\hilb}$ be a compact, self-adjoint operator on a Hilbert space $\hilb$.  Then there is an orthonormal basis of $\hilb$ consisting of eigenvectors of $A$.  The nonzero eigenvalues of $A$ form a finite or countably infinite set $\{\lambda_k\}$ of real numbers, and
+    \begin{align*}
+        A = \sum_k \lambda_k P_k
+    \end{align*}
+    where $P_k$ is the orthogonal projection onto the finite-dimensional eigenspace of eigenvectors with eigenvalue $\lambda_k$.  If the number of nonzero eigenvalues is countably infinite, then the series above converges to $A$ in the operator norm. \\
+
+    In other words, every compact, self-adjoint operator on a Hilbert space can be decomposed into the sum of orthogonal projections onto its eigenspaces.
+\end{flashcard}
+
 \end{document}
 
