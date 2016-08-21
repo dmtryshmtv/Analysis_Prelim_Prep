@@ -1,0 +1,73 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{array}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+
+\begin{document}
+
+\cardfrontfoot{Lieb and Loss Chapter 1}
+
+
+\begin{flashcard}
+    {Define the support of a continuous function.}
+    Let $\f{f}{\Rl^n}{\Cx}$ be a continuous function.  Then the support of $f$, denoted $\supp f$, is the closure of the set on which $f(x) \neq 0$.  That is,
+    \begin{align*}
+        \supp f = \overline{\{x \in \Rl^n\ |\ f(x) \neq 0\}}.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define $C^k(\Omega)$ and $C^\infty(\Omega)$.  Then define $C_C^\infty(\Omega)$.}
+    $C^k(\Omega)$ is the set of $k$-times differentiable functions on $\Omega$.  Functions in $C^k(\Omega)$ for every $k > 0$ are said to be in $C^\infty(\Omega)$, that is, infinitely differentiable functions.  $C_C^\infty(\Omega)$ is the set of infinitely differentiable functions on $\Omega$ which have support bounded and contained in $\Omega$ (compact when $\Omega = \Rl^n$).  That is,
+    \begin{align*}
+        C^k(\Omega) = \left\{\f{f}{\Omega}{B}\ |\ \frac{\partial^i f}{\partial x^i} \text{ for } i = 0, \dots, k \in C(\Omega)\right\}
+    \end{align*}
+    \begin{align*}
+        C^\infty(\Omega) = \left\{\f{f}{\Omega}{B}\ |\ f \in C^k(\Omega) \text{ for } k \in \mathbb{N}\right\}
+    \end{align*}
+    \begin{align*}
+        C_C^\infty(\Omega) = \left\{f \in C^\infty(\Omega)\ |\ \supp(f) \text{ is compact} \right\}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define Urysohn's Lemma in the context of $\Rl^n$.}
+    Let $\Omega \subset \Rl^n$ be an open set and let $K \subset \Omega$ be compact.  Then there exists a nonnegative function $\psi \in C_C^\infty$ with $\psi(x) = 1$ for $x \in K$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define $\sigma$-algebra}
+    Let $\Sigma$ be a collection of subsets of $\Omega$.  Then $\Sigma$ is called a $\sigma$-algebra if
+    \begin{enumerate}[(i)]
+        \item If $A \in \Sigma$, then $A^C \in \Sigma$;
+        \item If $A_1, A_2,\dots$ is a countable family of sets in $\Sigma$, then $\bigcup_{n=1}^\infty A_i \in \Sigma$;
+        \item and $\Omega \in \Sigma$.
+    \end{enumerate}
+
+    In English,
+    \begin{enumerate}[(i)]
+        \item $\Sigma$ is closed under complemets;
+        \item $\Sigma$ is closed under countable unions;
+        \item and $\Sigma$ contains the entire set $\Omega$.
+    \end{enumerate}
+\end{flashcard}
+
+\end{document}
+
