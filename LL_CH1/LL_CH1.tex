@@ -12,6 +12,7 @@
 \newcommand{\E}{\varepsilon}
 \newcommand{\ran}{\mathrm{ran}\,}
 \newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\esssupp}{\mathrm{ess}\,\mathrm{supp}\,}
 \newcommand{\ind}{\mathrm{ind}\,}
 \newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
 \newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
@@ -48,7 +49,7 @@
 \end{flashcard}
 
 \begin{flashcard}
-    {Define Urysohn's Lemma in the context of $\Rl^n$.}
+    {State Urysohn's Lemma in the context of $\Rl^n$.}
     Let $\Omega \subset \Rl^n$ be an open set and let $K \subset \Omega$ be compact.  Then there exists a nonnegative function $\psi \in C_C^\infty$ with $\psi(x) = 1$ for $x \in K$.
 \end{flashcard}
 
@@ -88,6 +89,239 @@
 \begin{flashcard}
     {Define measure space}
     A measure space consists of a set $\Omega$, a $\sigma$-algebra $\Sigma$ of $\Omega$, and a measure $\mu$ on $\Sigma$.  A measure space is denoted $(\Omega, \Sigma, \mu)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Describe the Dirac $\delta$ measure and the Lebesgue measure.}
+    Let $\Omega \subset \Rl^n$ and fix $y \in \Omega$  Let $\Sigma$ be a $\sigma$-algebra on $\Omega$.  Define $\f{\delta_y}{\Sigma}{\Rl\cup\infty}$ by
+    \begin{equation*}
+        \begin{aligned}
+            \delta_y(A) = \begin{cases}
+                1 & \text{if } y \in A \\
+                0 & \text{if } y \not\in A
+            \end{cases}
+        \end{aligned}
+    \end{equation*}
+    In English, the Dirac measure simply measures whether or not a set contains a fixed point $y$.
+
+    The Lebesgue measure on subsets of $\Rl^n$ is the most common measure.  It gives the Euclidean volume of ``nice'' sets (Borel sets).  The Lebesgue measure is denoted $\mathcal{L}$, or simply $\abs{\cdot}$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Lebesgue measure of a ball of radius $r$?}
+    Let $B_{x,r} \subset \Rl^n$ be an open $n$-dimensional ball centered around $x$ with readius $r$.  Then
+    \begin{align*}
+        \mathcal{L}(B_{x,r}) = \abs{B_{0,1}}r^n  = \frac{1}{n}\abs{\mathbb{S}^{n-1}}r^n
+    \end{align*}
+    where
+    \begin{align*}
+        \abs{\mathbb{S}^{n-1}} = \frac{2\pi^{n/2}}{\Gamma\qty(\frac{n}{2})}.
+    \end{align*}
+    $\mathbb{S}^{n-1}$ denotes the sphere of radius $1$ in $\Rl^n$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is inner- and outer-regularity for the Lebesgue measure?}
+    The Lebesgue measure has inner-regularity:
+    \begin{align*}
+        \mathcal{L}^n(A) = \inf\left\{\mathcal{L}^n(O)\ |\ A \subset O \text{ and } O \text{ is open}\right\}
+    \end{align*}
+    and outer-regularity:
+    \begin{align*}
+        \mathcal{L}^n(A) = \sup\left\{\mathcal{L}^n(C)\ |\ C \subset A \text{ and } C \text{ is compact}\right\}.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What does it mean dor a measure space to be $\sigma$-finite?  Tell why the measure space $(\Rl^n, \mathcal{B}, \mathcal{L}^n)$ is $\sigma$-finite.}
+    A measure space $(\Omega, \Sigma, \mu)$ is called $\sigma$-finite if there is a sequence $(A_i) \in \Sigma$ with $\mu(A_i) < \infty$ for all $i \in \mathbb{N}$ such that $\Omega = \bigcup_{i=1}^\infty A_i$.
+
+    $(\Rl^n, \mathcal{B}, \mathcal{L}^n)$ is $\sigma$-finite since $\Rl^n$ is the union of the balls of radius $1$ centered at every point $q = (q_1, \dots, q_n) \in \mathbb{Q}^n$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Given two measure spaces $(\Omega_1, \Sigma_1, \mu_1)$ and $(\Omega_2, \Sigma_2, \mu_2)$, define their product space.  What is the section property?}
+    Let $\Omega = \Omega_1 \times \Omega_2 = \left\{(\omega_1, \omega_2)\ |\ \omega_1 \in \Omega_1 \text{ and } \omega_2 \in \Omega_2\right\}$.  Then define a rectangle $A$ in $\Omega$ of $A_1 \in \Sigma_1$ and $A_2 \in \Sigma_2$, by
+    \begin{align*}
+        A = A_1 \times A_2.
+    \end{align*}
+    Define the measure $\Sigma$ to be the smallest $\sigma$-algebra containing all rectangles from $\Sigma_1$ and $\Sigma_2$ (all sets in $\Omega$ of the above form).  Finally, it can be shown there is a unique measure $\mu$ on $\Sigma$ such that
+    \begin{align*}
+        \mu(A) = \mu(A_1 \times A_2) = \mu_1(A_1)\mu_2(A_2).
+    \end{align*}
+    This is called the ``product measure'' $\mu$ on $\Sigma$.  Then $(\Omega, \Sigma, \mu)$ is a measure space.
+
+    This space has the ``section property,'' which states that for any $A \in \Sigma$, the set $\{x \in \Omega_1\ | (x,y) \in A\} \in \Sigma_1$ for any $y \in \Omega_2$, and the set $\{y \in \Omega_2\ | (x,y) \in A\} \in \Sigma_2$ for any $x \in \Omega_1$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define monotone class and algebra of sets.}
+    A monotone class $\mathcal{M}$ is a collection of sets such that
+    \begin{enumerate}[(i)]
+        \item if $A_i \in \mathcal{M}$ for $i = 1,2,\dots$, and if $A_1 \subset A_2 \subset \dots$, then $\bigcup_i A_i \in \mathcal{M}$,
+        \item if $B_i \in \mathcal{M}$ for $i = 1,2,\dots$, and if $B_1 \supset B_2 \supset \dots$, then $\bigcap_i B_i \in \mathcal{M}$.
+    \end{enumerate}
+
+    A collection of sets $\mathcal{A}$ is called an algbra of sets if for every $A$ and $B$ in $\mathcal{A}$, their differences $A \setminus B$ and $B \setminus A$, as well as their union $A \cup B$ are in $\mathcal{A}$.  That is, algebras of sets are collections of sets closed under finite unions and complements.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the monotone class theorem.  Describe the general method of proof used.}
+    Let $\Omega$ be a set an $\mathcal{A}$ be an algebra of sets on $\Omega$ with $\emptyset,\Omega \in \mathcal{A}$.  Then there exists a smallest monotone class $\mathcal{S}$ containing $\mathcal{A}$, and $\mathcal{S}$ is also the smallest $\sigma$-algebra containing $\mathcal{A}$. \\
+
+    In general, define subsets of $S$ which hold properties you want to hold for all of $S$.  Prove those subsets are monotone classes, and thus, by the definition of $S$, these subsets must be equal to $S$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the uniqueness of measures theorem.}
+    Let $\Omega$ be a set and $\mathcal{A}$ an algebra of sets on $\Omega$ with $\emptyset,\Omega \in \mathcal{A}$.  Let $\Sigma$ be the smallest $\sigma$-algebra containing $\mathcal{A}$.  Let $\mu_1$ be a $\sigma$-finite measure in the sense that there exists a sequence of sets $(A_i) \in \mathcal{A}$ with $\mu_1(A_i) < \infty$ for all $i \in \mathbb{N}$ and $\Omega = \bigcup_{i=1}^\infty A_i$.  Then suppose $\mu_1(A_i) = \mu_2(A_i)$ for all $i \in \mathbb{N}$.  Then $\mu_1(A) = \mu_2(A)$ for all $A \in \Sigma$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define level sets and measureable functions.}
+    Let $\f{f}{\Omega}{\Rl}$ be a real-valued function on a measure space $(\Omega,\Sigma,\mu)$.  A level set $L_f(t)$ is defined as all points $x \in \Omega$ with $f(x) > t$, that is
+    \begin{align*}
+        L_f(t) = \left\{x \in \Omega\ |\ f(x) > t\right\}.
+    \end{align*}
+    We say $f$ is a measurable function if every level set is measurable, i.e.~$f$ is measurable if $L_f(t) \in \Sigma$ for every $t \in \Rl$.
+
+    Complex valued functions are considered measurable if their real and imaginary parts are measurable.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define upper- and lower-semicontinuity.  How do they relate to continuity?}
+    A measurable function $f$ is lower-semicontinuous if $L_f(t)$ is open for every $t \in \Rl$.  $f$ is upper-semicontinuous if $U_f(t)$ is open for every $t \in \Rl$, where
+    \begin{align*}
+        U_f(t) = \left\{x \in \Omega\ |\ f(x) < t\right\}.
+    \end{align*}
+    A measurable function $f$ is continuous if and only if it is both upper- and lower-semicontinuous.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the essential support of a measurable function $f$.}
+    Let $f$ be a measurable function.  Let $\tilde{\Omega}$ be the collection of all open sets $\omega$ with $f(x) = 0$ for $\mu$-almost every $x \in \omega$.  Define $\omega^* \coloneqq \bigcup\tilde{\Omega}$.  Then the essential support of $f$, denoted $\esssupp f$, is the complement of $\omega^*$, that is
+    \begin{align*}
+        \esssupp f = (\omega^*)^C
+    \end{align*}
+
+    The important difference between the support and essential support is the use of open sets.  For example, $\mathcal{X}_\mathbb{Q}$ has support $\Rl$ but essential support $\emptyset$.  This is because $\mathbb{Q}$ is not an open set.
+\end{flashcard}
+
+\begin{flashcard}
+    {Use Riemann integration to define the integral of a measurable function $f$ over $\Omega$.  What is the qualitatively different intuition from classical Riemann integration?}
+    Suppose $f$ is a nonnegative, real-valued $\Sigma$-measurable function on $\Omega$.  Then
+    \begin{align*}
+        \int_\Omega f(x) \mu(\dd x) \coloneqq \int_0^\infty \mu\qty(L_f(t)) \dd t
+    \end{align*}
+    where $L_f(t)$ is the lower level set
+    \begin{align*}
+        L_f(t) = \left\{x \in \Omega\ |\ f(x) > t\right\}.
+    \end{align*}
+    While Riemann integration is a limit of Riemann approximations, i.e.~splitting the function into vertically oriented rectangles, integration in general seeks to find the ``volume'' under the curve by splitting the function into horizonatally oriented rectangles.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a summable function?  What is another name for summable functions?}
+    A measurable function $f$ is $\mu$-summable, or $\mu$-integrable, if $\int f \dd\mu < \infty$.
+\end{flashcard}
+
+\begin{flashcard}
+    {State and sketch the proof of the Monotone Convergence Theorem.}
+    Let $f_1,f_2,\dots$ be an increasing sequence of summable functions on $(\Omega, \Sigma, \mu)$.  Define $f(x) \coloneqq \lim_{j\rightarrow \infty} f_j(x)$.  Then $f$ is measurable, and $\lim_{j\infty}\int f_j < \infty \iff \int f < \infty$, in which case
+    \begin{align*}
+        \int f = \lim_{j\rightarrow \infty} \int f_j.
+    \end{align*}
+
+    Sketch: First note that $\bigcup_{j=1}^\infty L_{f_j}(t) = L_f(t)$, $(\mu(L_{f_j}(t)))$ is an increasing real sequence, and $\mu(L_{f_j}(t)) \rightarrow \mu(L_f(t))$.  Then show, using convergence of Riemann sums, that
+    \begin{align*}
+        \int_0^\infty \mu(L_f(t)) = \lim_{j\rightarrow\infty} \int_0^\infty \mu(L_{f_j}(t))
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {State Fatou's Lemma.}
+    Let $f_1,f_2,\dots$ be a sequence of non-negative, summable functions on $(\Omega,\Sigma,\mu)$, and define $f$ to be the pointwise $\liminf$ of $f_j$, that is,
+    \begin{align*}
+        f(x) \coloneqq \liminf_{j\rightarrow\infty}f_j(x).
+    \end{align*}
+    Then
+    \begin{align*}
+        \liminf_{j\rightarrow \infty} \int f_j \geq \int f.
+    \end{align*}
+
+    Intuitively, the least integral is at least as large as the integral of all the least values.
+\end{flashcard}
+
+\begin{flashcard}
+    {State the Dominated Convergence Theorem.}
+    Let $f_1,f_2,\dots$ be a sequence of complex-valued summable functions on $(\Omega,\Sigma,\mu)$ and assume these functions converge to a function $f$ pointwise almost everywhere.  If there is a summable, nonnegative function $G$ on $(\Omega,\Sigma,\mu)$ such that $\abs{f_j(x)} \leq G(x)$ for all $j = 1,2,\dots$, then $\abs{f(x)} \leq G(x)$ and
+    \begin{align*}
+        \lim_{j\rightarrow\infty}\int f_j = \int f.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {State the theorem involving the ``Missing Term in Fatou's Lemma''.}
+    Let $f_1,f_2,\dots$ be a sequence of complex-valued summable functions that converge pointwise almost everywhere to a function $f$.  Also assume each $f_j$ is uniformly $p$\textsuperscript{th} power summable, i.e.
+    \begin{align*}
+        \int_\Omega \abs{f_j(x)}^p < C
+    \end{align*}
+    for a constant $C$ independent of $j$.  Then
+    \begin{align*}
+        \lim_{j\rightarrow\infty} \int_\Omega \abs{\abs{f_j(x)}^p - \abs{f_j(x) - f(x)}^p - \abs{f(x)}^p}\dd x = 0.
+    \end{align*}
+
+    That is, if $f_j$ is a bounded sequence in $L^p(\Omega)$ and $f_j \rightarrow f$ pointwise almost everywhere, then the above equality holds.
+\end{flashcard}
+
+\begin{flashcard}
+    {State Fubini's Theorem and give an example of when it cannot be used.}
+    Let $(\Omega_i, \Sigma_i, \mu_i)$, $i = 1,2$, be two measure spaces and let $f$ be a $\Sigma = \Sigma_1\times\Sigma_2$-measurable function on $\Omega = \Omega_1\times\Omega_2$ (also denote $\mu = \mu_1 \times \mu_2$).  If $f \geq 0$, then the following three integrals are equal (in the sense that all three can be infinite):
+    \begin{enumerate}[ 1) ]
+        \item $\displaystyle \int_{\Omega_1\times\Omega_2} f(x,y)(\mu_1\times\mu_2)(\dd x\dd y)$
+        \item $\displaystyle \int_{\Omega_1}\qty(\int_{\Omega_2}f(x,y) \mu_2\dd y) \mu_1\dd x$
+        \item $\displaystyle \int_{\Omega_2}\qty(\int_{\Omega_1}f(x,y) \mu_1 \dd x) \mu_2 \dd y$
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}
+    {State Egorov's Theorem.}
+    Let $(\Omega, \Sigma, \mu)$ be a finite measure space.  Let $f_1,f_2,d\dots$ a sequence of complex-valued measurable functions on $\Omega$ such that $f_n(x) \rightarrow f(x)$ pointwise almost everywhere on $\Omega$.  Then $\forall\E > 0$, $\exists A_\E \subset \Omega$ such that $\mu(A_\E) > \mu(\Omega) - \E$ and $f_n \rightarrow f$ in the uniform norm on $A_\E$.  That is,
+    \begin{align*}
+        \sup_{x \in A_\E}\abs{f_n(x) - f(x)} \rightarrow 0.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {Define Simple functions and their integral.}
+    A simple function is a measurable function $f$ that takes only finitely many values.  That is,
+    \begin{align*}
+        f(x) = \sum_{i=1}^NC_i\mathcal{X}_{A_i}
+    \end{align*}
+    where $C_i \in \Cx$ and $A_i$ are measurable subsets of the measure space $\Omega$.  The integral of a simple function is simply the weighted sum of the measures of the sets $A_i$, that is,
+    \begin{align*}
+        \int f = \sum_{i=1}^N C_i\mu(A_i).
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {How are simple functions dense in a measure space?}
+    Simple functions are dense in the $L^1$ norm.  The theorem states: \\
+
+    Let $(\Omega,\Sigma,\mu)$ be a measure space with $\Sigma$ generated by an algebra $\mathcal{A}$.  Assume that $\Omega$ is a $\sigma$-finite in the strong sense mentioned above.  Let $f$ be a simplex-valued summable function and let $\E > 0$.  Then there is a simple function $h_\E$ such that
+    \begin{align*}
+        \int_\Omega \abs{f - h_\E}\dd\mu < \E.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {How are infinitely differentiable functions dense in a measurable subset of $\Rl^n$?}
+    $C^\infty$ functions are dense in the $L^1$ norm.  The theorem states: \\
+
+    Let $\Omega$ be an open subset of $\Rl^n$ and let $\mu$ be a measure on the Borel $\sigma$-algebra of $\Omega$.  Let $\mathcal{A}$ be the algebra of half-open rectangles and assume $\Omega$ is $\sigma$-finite in the strong sense.  Assume, also, that every finite, closed rectangle that is contained in $\Omega$ has finite $\mu$-measure.  If $f$ is a $\mu$-summable function, then, for each $\E > 0$, there is a $C^\infty(\Rl^n)$ function $g_\E$ such that
+    \begin{align*}
+        \int_\Omega \abs{f - g_\E}\dd\mu < \E.
+    \end{align*}
 \end{flashcard}
 
 \end{document}
