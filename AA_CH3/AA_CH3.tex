@@ -1,0 +1,59 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{array}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\Lip}{\mathrm{Lip}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 3}
+
+
+\begin{flashcard}
+    {What is a contraction mapping?}
+    Let $\f{T}{(X,d)}{(X,d)}$ be a map on a metrix space $X$.  We say $T$ is a contraction mapping (or just contraction) if there is a small constant $c \in [0,1)$ such that
+    \begin{align*}
+        d(T(x),T(y)) \leq c d(x,y) \qquad \forall x,y \in X.
+    \end{align*}
+    Contractions maps points closer together. \\
+
+    Contractions are uniformly continuous.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a fixed point of a map $T$?  What is the relationship between contraction mappings and fixed points?}
+    A point $x \in X$ is called a fixed point of $T$ if $Tx = x$. \\
+
+    Every contraction mapping has a unique fixed point.
+\end{flashcard}
+
+\begin{flashcard}
+    {How is the Contraction Mapping Theorem applicable to Fredholm Integral Operators?}
+    Define a map $\f{T}{C([a,b]}{C([a,b]})$ by $Tf = g + Kf$ where
+    \begin{align*}
+        (Kf)(x) = \int_a^b k(x,y)f(y)\dd y
+    \end{align*}
+    for some $k \in C([a,b]^2)$ with ``max row sum'' less than $1$, i.e. $\displaystyle\max_{a\leq x\leq b}\left\{\int_a^b\abs{k(x,y)}\dd y\right\} < 1$.  Then for any $g \in C([a,b])$, there is a unique $f \in C([a,b])$ such that $(I - Kj)f = g$. \\
+
+    This is shown by proving $T$ is a contraction mapping, which shows that there is a unique $f \in C([a,b])$ such that $Tf = f$.
+\end{flashcard}
+
+\end{document}
+

@@ -1,0 +1,119 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{array}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\Lip}{\mathrm{Lip}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+\def\topo{\mathcal{T}}
+\def\sopo{\mathcal{S}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 4}
+
+
+\begin{flashcard}
+    {What is a topology?  What is an open set?  What is a closed set?  What is a topological space?}
+    A topology $\topo$ on a nonempty set $X$ is a collection of subsets of $X$, such that:
+    \begin{enumerate}[\ (a)]
+        \item $\emptyset, X \in \topo$.
+        \item The union of an arbitrary collection of open sets (may be uncountable) is open.
+        \item The intersection of a finite number of open sets is open.
+    \end{enumerate}
+    Sets in $\topo$ are called open sets.  A set is called closed if its complement is open.  Sets can be both open and closed, or neither open nor closed. \\
+
+    A topological space is the pair $(X,\topo)$, or just $X$ if $\topo$ is clear from the context.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the trivial topology?  What is the discrete topology?}
+    The trivial topology (also known as the indiscrete topology) is $\{\emptyset, X\}$.  It is called indiscrete because it cannot distinguish points. \\
+
+    The discrete topology is the power set of $X$, $\mathcal{P}(X)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a metric topology?}
+    Let $(X,d)$ be a metric space.  Then let $\topo$ be the set of all open sets as defined in the context of metric spaces.  Then $\topo$ is called the metric topology on $X$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is an induced topology?}
+    Let $(X,\topo)$ be a topological space and $Y \subset X$.  The induced (or relative) topology of $Y$ in $X$, denoted $\topo_Y$, are all subsets of $Y$ which are the intersection of $Y$ with some open set in $\topo$, that is,
+    \begin{align*}
+        \topo_Y = \{H \subset Y\ |\ H = G \cap Y \text{ for some } G \in \topo\}.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a topological neighborhood?  What is a Hausdorff topology?}
+    A subset $V$ of $X$ is a topological neighborhood of a point $x$ if there is an open set $G$ such that $x \in G \subset V$. \\
+
+    A topology $\topo$ on $X$ is called Hausdorff if for every $x \neq y$ there are neighborhoods $V_x$ or $x$ and $V_y$ of $y$ such that $V_x \cap V_y = \emptyset$.  That is, every pair of distinct points has a pair of nonintersecting neighborhoods.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define convergence, continuity, and homeomorphisms using topological neighborhoods.}
+    A sequence $x_n$ converges to a point $x \in X$ if for every neighborhood $V$ of $x$ there is a number $N$ such that $x_n \in V$ for every $n \geq N$. \\
+
+    A function $\f{f}{X}{Y}$ is continuous at $x \in X$ if for every neighborhood $W$ of $f(x)$ there is a neighborhod $V$ of $x$ such that $f(V) \subset W$. \\
+
+    A function $\f{f}{X}{Y}$ is a homeomorphism if it is bijective and both $f$ and $f^{-1}$ are continuous.  If there is a homeomorphism between $X$ and $Y$, we say $X$ and $Y$ are homeomorphic.  Homeomorphic topological spaces are indistinguishable in the sense that $G \in \topo_X \iff f(G) \in \topo_Y$, and $(x_n) \rightarrow x \in X \iff (f(x_n)) \rightarrow f(x) \in Y$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the topological definition of compactness?  What can we say when the topological space is a metric space?}
+    A subset $K$ of a topological space $X$ is compact if every open cover of $K$ contains a finite open subcover. \\
+
+    In metric spaces, compactness is equivalent to sequential compactness, which is that every sequence has a convergent subsequence.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a base for a topology?  What is a neighborhood base?  What does it mean for a topological space to be first-countable?  Second-countable?  How are bases and neighborhood bases related?}
+    A subset $\mathcal{B}$ of a topology $\topo$ is a base for $\topo$ if for every $G \in \topo$ there is a collection of sets $B_\alpha \in \mathcal{B}$ such that $G = \bigcup_\alpha B_\alpha$.  That is, every open set is the union of basis elements. \\
+
+    A colection $\mathcal{N}$ of neighborhoods of a point $x \in X$ is a neighborhood base for $x$ if for each neighborhood $V$ of $x$, there is a neighborhood $W \in \mathcal{N}$ with $W \subset V$.  That is, every neighborhood contains a neighborhood base element. \\
+
+    A topological space is first-countable if every $x \in X$ has a countable neighborhood base.  A topological space is second-countable if it has a countable base. \\
+
+    A collection of sets $\mathcal{B}$ is a base if and only if it contains a neighborhood base for every $x \in X$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What does it mean for one topology to be stronger or weaker than another?  What are the implications for convergence?  Can we always compare any two topologies?}
+    Let $\topo_1$ and $\topo_2$ be two topologies on the same space $X$.  Then $\topo_1$ is stronger (sometimes referred to as finer) than $\topo_2$ if $\topo_2 \subset \topo_1$, that is, $\topo_1$ has more open sets.  We can also say $\topo_2$ is weaker (or coarser) than $\topo_1$. \\
+
+    If a sequence converges with respect to a topology, than it converges with respect to any weaker topology. \\
+
+    It is not always possible to compare topologies because it is possible that $\topo_1$ and $\topo_2$ are two topologies on $X$ but $\topo_1 \not\subset \topo_2$ and $\topo_2 \not\subset \topo_1$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the relationship between topological comparisons and continuity?}
+    Suppose $\f{f}{(X,\topo_1)}{(Y,\sopo_1)}$ is continuous.  Then
+    \begin{enumerate}[\ (a)]
+        \item If $\topo_2$ is finer than $\topo_1$, then $\f{f}{(X,\topo_2)}{(Y,\sopo_1)}$ is continuous.
+        \item If $\sopo_2$ is coarser than $\sopo_1$, then $\f{f}{(X,\topo_1)}{(Y,\sopo_2)}$ is continuous.
+    \end{enumerate}
+
+    The identity map $\f{I}{(X,\topo_1)}{(X,\topo_2)}$ is continuous if and only if $\topo_1$ is finer than $\topo_2$.  That is, $I$ is continuous if and only if it loses information.
+\end{flashcard}
+
+\end{document}
+

@@ -1,0 +1,93 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{array}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\Lip}{\mathrm{Lip}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+
+\begin{document}
+
+\cardfrontfoot{Applied Analysis Chapter 2}
+
+
+\begin{flashcard}
+    {Which type of convergence preserves continuity?}
+    Uniform convergence preserves continuity.  Pointwise convergence does not.  This is why $C([0,1])$ is Banach only with respect to the $\infty$-norm.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define the support of a continuous function.  Then define $C_b(X)$, $C_0(X)$, and $C_c(X)$.}
+    The support of a continuous function $f$, denoted $\supp f$, is the closure of the subset of $X$ on which $f$ is non-zero, that is,
+    \begin{align*}
+        \supp f \coloneqq \overline{\left\{x \in X\ |\ f(x) \neq 0\right\}}.
+    \end{align*}
+    $C_c(X)$ is defined as functions in $C(X)$ with compact support.  $C_b(x)$ is the space of bounded continuous functions (which is equal to $C(X)$ when $X$ is compact).  $C_0(X)$ is the closure of $C_c(X)$ in $C_b(X)$, that is $\overline{C_c(X)} = C_b(X)$ (this space can be thought of as functions which approach $0$ at infinity).  We have the following inclusions: $C_c(X) \subset C_0(X) \subset C_b(X) \subset C(X)$.  Examples:
+    \begin{equation*}
+        \begin{aligned}
+            f(x) &= x^2 \in C(\Rl)\ \ \ \ \qquad f(x) \equiv 1 \in C_b(\Rl) \\
+            f(x) &= e^{-x^2} \in C_0(\Rl) \qquad f(x) = \begin{cases}(1 - x^2) & \text{if } \abs{x} \leq 1 \\ 0 & \text{if } \abs{x} > 1 \end{cases} \in C_c(\Rl)
+        \end{aligned}
+    \end{equation*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Weierstrass Approximation Theorem?  How is it different from Taylor's Theorem?  How is this generalized to the Stone-Weierstrass Theorem?}
+    Polynomials are dense in $C([a,b])$ (with respect to the uniform norm). \\
+
+    Taylor's Theorem states that functions with sufficiently many derivatives can be locally approximated by its Taylor Polynomial.  The Weierstrass Approximation Theorem states that any continuous function (which may not be differentiable) can be globally approximated (on an interval $[a,b]$) by a polynomial. \\
+
+    The Stone-Weierstrass Theorem states the following: Let $H$ be a compact Hausdorff space (rather than simply intervals $[a,b]$).  Let $A$ be any subalgebra of $H$ (rather than polynomials on $[a,b]$) which separates points ($\forall x,y \in H$ with $x \neq y$, $\exists f \in A$ such that $f(x) \neq f(y)$).  Then $A$ is dense in $C(H)$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is an equicontinuous family of functions?  What is uniform equicontinuity?}
+    A family of functions $\mathcal{F} \subset C(X)$ is equicontinuous if for every $x \in X$ and $\E > 0$, there is a $\delta > 0$ such that $d(x,y) < \delta \implies d(f(x),f(y)) < \E$ for all $f \in \mathcal{F}$. \\
+
+    A family of functions $\mathcal{F} \subset C(X)$ is uniformly equicontinuous if for every $\E > 0$, there is a $\delta > 0$ such that $d(x,y) < \delta \implies d(f(x),f(y)) < \E$ for all $x,y \in X$ and $f \in \mathcal{F}$. \\
+
+    Uniform equicontinuity means that the $\delta$ is chosen independently of $x$.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the relationship between uniform equicontinuity and compact metric spaces?}
+    An equicontinuous family of functions on a compact metric space is uniformly equicontinuous.
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the Arzel\'{a}-Ascoli Theorem?}
+    Let $K$ be a compact metric space.  A subset of $C(K)$ is compact if and only if it is closed, bounded, and equicontinuous. \\
+
+    Or, a subset of $C(K)$ is precompact if and only if it is bounded and equicontinuous.
+\end{flashcard}
+
+\begin{flashcard}
+    {What does it mean if a function is Lipschitz continuous?  What is a function's Lipschitz constant?  Define $\mathcal{F}_M$.  Is $\mathcal{F}_M$ compact?}
+    A function $f$ on a metric space $X$ is Lipschitz continuous if it doesn't change too fast, i.e.~if its derivative (if it has one) is bounded, that is, $f$ is Lipschitz continuous if $\exists M \geq 0$ such that $d(f(x), f(y)) \leq Md(x,y)$ for all $x \neq y \in X$. \\
+
+    If a function $f$ is Lipschitz continuous, we an define it's Lipschitz constant, denoted $\Lip f$, as
+    \begin{align*}
+        \Lip f = \inf \{M\ |\ d(f(x),f(y)) \leq Md(x,y)\ \forall x \neq y \in X\}
+    \end{align*}
+    We define $\mathcal{F}_M \subset C(X)$ as $\mathcal{F}_M \coloneqq \{f \in C(X)\ |\ \Lip f \leq M\}$. \\
+
+    $\mathcal{F}_M$ is equicontinuous and closed, but not bounded, so it is not compact.  We can say, by Arzel\'{a}-Ascoli, that any bounded subset of $\mathcal{F}_M$ is precompact, and so any closed and bounded subset of $\mathcal{F}_M$ is compact.  An example of a closed and bounded subset of $\mathcal{F}_M$ are the ``pinched'' Lipschitz functions $\mathcal{B}_M$ on a compact metric space $K$, that is $\mathcal{B}_M \coloneqq \{\f{f}{K}{X} \in \mathcal{F}_M\ |\ f(x_0) = 0\}$.
+\end{flashcard}
+
+\end{document}
+
