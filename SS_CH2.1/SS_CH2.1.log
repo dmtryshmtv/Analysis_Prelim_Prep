@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  12 SEP 2016 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 SEP 2016 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1300,37 +1300,29 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] [4
 
-]
-Overfull \hbox (0.79996pt too wide) in paragraph at lines 114--114
-[][]  
- []
+] [5
 
+] [6
 
-Overfull \hbox (0.79996pt too wide) in paragraph at lines 114--114
-[][]  
- []
+] [7
 
-[5
+] [8
 
-]
-Overfull \hbox (0.79996pt too wide) in paragraph at lines 114--114
-[][]  
- []
+] [9
 
+] [10
 
-Overfull \hbox (0.79996pt too wide) in paragraph at lines 114--114
-[][]  
- []
+] [11
 
-[6
+] [12
 
 ] (/Users/samuelfleischer/School/UCD/Analysis_Prelim_Prep/SS_CH2.1/SS_CH2.1.aux
 ) ) 
 Here is how much of TeX's memory you used:
- 9988 strings out of 493089
- 179251 string characters out of 6134842
- 233937 words of memory out of 5000000
- 13380 multiletter control sequences out of 15000+600000
+ 9989 strings out of 493089
+ 179259 string characters out of 6134842
+ 234937 words of memory out of 5000000
+ 13381 multiletter control sequences out of 15000+600000
  14098 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,25n,39p,10470b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1352,14 +1344,15 @@ ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
 15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
 Output written on /Users/samuelfleischer/School/UCD/Analysis_Prelim_Prep/SS_CH2
-.1/SS_CH2.1.pdf (6 pages, 189718 bytes).
+.1/SS_CH2.1.pdf (12 pages, 222144 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 131 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
