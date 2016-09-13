@@ -1,0 +1,115 @@
+\documentclass[avery5388,grid,frame]{flashcards}
+
+\cardfrontstyle[\large\slshape]{headings}
+\cardbackstyle{empty}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{array}
+
+\newcommand{\E}{\varepsilon}
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\ind}{\mathrm{ind}\,}
+\newcommand{\Lip}{\mathrm{Lip}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\sgn}[1]{\mathrm{sgn}\left[#1\right]}
+\newcommand{\f}[3]{#1\ :\ #2 \rightarrow #3}
+\def\Rl{\mathbb{R}}
+\def\Cx{\mathbb{C}}
+\def\hilb{\mathcal{H}}
+\def\torus{\mathbb{T}}
+\def\topo{\mathcal{T}}
+\def\sopo{\mathcal{S}}
+
+\begin{document}
+
+\cardfrontfoot{Shkoller Analysis Chapter 2.1}
+
+
+\begin{flashcard}
+    {State the Divergence Theorem}
+    Let $\Omega \subset \Rl^n$ be a Lipschitz domain and $w = (w_1, \dots, w_n) \in \mathcal{C}^1(\overline{\Omega})$ with outward pointing normal $N$.  Then
+    \begin{align*}
+        \int_\Omega \div w\ \dd x = \int_{\partial \Omega} w \cdot N \dd S
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {State Green's First and Second Identities.}
+    Let $\Omega$ be a smooth domain and let $u \in \mathcal{C}^2(\overline{\Omega})$ and $v \in \mathcal{C}^1(\overline{\Omega})$-funtions.  Then we have Green's First Identity:
+    \begin{align*}
+        \int_\Omega \grad v \cdot \grad u + v\laplacian u \dd x = \int_\Omega \div\qty(v\grad u)\dd x = \int_{\partial \Omega} v \frac{\partial u}{\partial N}\dd S
+    \end{align*}
+    Exchanging $u$ and $v$ in Green's First Identity and finding the difference gives Green's Second Identity:
+    \begin{align*}
+        \int_\Omega \qty(v \laplacian u - u\laplacian v)\dd x = \int_{\partial \Omega}\qty[v\frac{\partial u}{\partial N} - u \frac{\partial v}{\partial N}]\dd S
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a ``test function''?}
+    Test functions are smooth functions with compact support, i.e.
+    \begin{align*}
+        \mathcal{C}_c^\infty = \left\{u \in \mathcal{C}^\infty\ :\ \supp u \subset \mathcal{V} \Subset \Omega\right\}.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is a weak derivative of an $L^1_{\text{loc}}$ function?}
+    Let $u \in L^1_{\text{loc}}(\Omega)$.  Then $v^\alpha \in L^1_\text{loc}(\Omega)$ is called the $\alpha^\text{th}$ weak derivative of $u$, written $v^\alpha = D^\alpha u$, if
+    \begin{align*}
+        \int_\Omega u(x) D^\alpha \phi(x) \dd x = (-1)^{\abs{\alpha}}\int_\Omega  v^\alpha(x)\phi(x)\dd x \qquad \forall \phi \in \mathcal{C}_c^\infty(\Omega),
+    \end{align*}
+    where $\alpha \in \mathbb{N}^n$ is a multi-index with $\abs{\alpha} = \alpha_1 + \dots + \alpha_n$.
+\end{flashcard}
+
+\begin{flashcard}
+    {Why does $f$ have a weak-derivative, but $g$ does not?
+    \begin{equation*}
+        \begin{aligned}
+            f(x) = \begin{cases}
+                x & \text{ if } x \in (0,1) \\
+                1 & \text{ if } x \in (1,2)
+            \end{cases}
+        \end{aligned}
+    \end{equation*}
+    \begin{equation*}
+        \begin{aligned}
+            g(x) = \begin{cases}
+                x & \text{ if } x \in (0,1) \\
+                2 & \text{ if } x \in (1,2)
+            \end{cases}
+        \end{aligned}
+    \end{equation*}}
+    We can explicitly calculate the weak derivative (using integration by parts) of $f$.  For $g$, however, assuming a weak derivative exists results in a contradiction by exploiting the boundary terms in the integration by parts that don't cancel each other out.
+\end{flashcard}
+
+\begin{flashcard}
+    {Define $W^{1,p}(\Omega)$ for $1 \leq p \leq \infty$.  Then define $W^{k,p}(\Omega)$ for $1 \leq p \leq \infty$ and $k \in \mathbb{N}$.  What is the norm in $W^{k,p}$?}
+    \begin{align*}
+        W^{1,p}(\Omega) = \left\{u \in L^p(\Omega)\ |\ \text{the weak derivative $u'$ of $u$ exists, and } u' \in L^p(\Omega)\right\}
+    \end{align*}
+    \begin{align*}
+        W^{k,p}(\Omega) = \left\{u \in L^1_\text{loc}(\Omega)\ |\ D^\alpha u \text{ exists and is in } L^p(\Omega) \text{ for } \abs{\alpha} \leq k\right\}
+    \end{align*}
+    \begin{align*}
+        \norm{u}_{W^{k,p}(\Omega)} = \qty(\sum_{\abs{\alpha}\leq k}\norm{D^\alpha u}_{L^p(\Omega)}^p)^{\frac{1}{p}}
+    \end{align*}
+    \begin{align*}
+        \norm{u}_{W^{k,\infty}(\Omega)} = \sum_{\alpha \leq k} \norm{D^\alpha u}_{L^\infty(\Omega)}
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}
+    {What is the ``simple version'' of the Sobolev Embedding Theorem?}
+    Let $kp > 2$ and $u \in \mathcal{C}_c^\infty(\Rl^2)$.  Then
+    \begin{align*}
+        \norm{u}_{L^\infty(\Rl^2)} \leq C \norm{u}_{W^{k,p}(\Rl^2)}
+    \end{align*}
+    In English, $W^{k,p}$ functions are bounded in $\Rl^2$.
+\end{flashcard}
+
+\end{document}
+
