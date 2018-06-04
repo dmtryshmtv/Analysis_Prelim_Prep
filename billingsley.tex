@@ -9,6 +9,7 @@
 \usepackage{enumerate}
 \usepackage{array}
 \usepackage{enumitem}
+\usepackage{hyperref}
 
 
 \newcommand{\N}{\mathbb{N}}
@@ -193,15 +194,47 @@
     Suppose that $\frac 1 p + \frac 1 q = 1$ for $p,q>1$. Then:
     $$\E[|XY|] \leq \E[|X|^p]^{\frac 1 p} \E[|Y|^q]^{\frac 1 q}$$
 
-    \emph{Proof:} YOung's. \href{https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality#Proof_of_H%C3%B6lder's_inequality}{Here.}
+    \emph{Proof:} Young's. \href{https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality#Proof_of_H%C3%B6lder's_inequality}{Here.}
 \end{flashcard}
 
 
 \begin{flashcard}
     {State and prove the strong law of large numbers}
-    
+    If $X_n$ are iid and $\E[X_n] = m$, then
+    $$\Pr(\lim_n n^{-1} S_n = m) = 1$$
+
+    \emph{Proof:} WLOG $m=0$. It is enough to show that $\Pr(|n^{-1} S_n| \geq \epsilon \text{ i.o}) = 0$ for each $\epsilon$.
+
+    Let $\E[X_i^2] = \sigma^2$ and $\E[X_i^4] = \xi^4$. By independence, we have
+    $$\E[S_n^4] = n \xi^4 + 3n(n-1) \sigma^4 \leq K n^2$$
+    where $K$ does not depend on $n$. By Markov's inequality for $k=4$,
+    $$\Pr(|S_n| \geq n \epsilon) \leq K n^{-2} \epsilon^{-4},$$
+    so the result follows by the first Borel-Cantelli lemma (the event probs are summable, hence the lim sup is $0$).
 \end{flashcard}
 
+
+\begin{flashcard}
+    {State and prove the weak law of large numbers}
+    If $X_n$ are iid and $\E[X_n] = m$, then for all $\epsilon$
+    $$\lim_n \Pr(| n^{-1} S_n - m| \geq \epsilon) = 0.$$
+
+    \emph{Proof:} By appealing to the strong law, we have
+    $$\Pr(| n^{-1} S_n - m| \geq \epsilon) \leq \frac{\Var(S_n)}{n^2 \epsilon^2} = \frac{n \Var(X_1)}{n^2 \epsilon^2} \rightarrow 0.$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a measurable mapping? What are some properties?}
+    For two measure spaces $(\Omega, \F)$ and $(\Omega', \F')$, a transformation $T: \Omega \rightarrow \Omega'$ is measurable $\F / \F'$ iff for all $A \in \F'$, $T^{-1}(A) \in \F$.
+
+    Composition of measurable functions is measurable.
+
+    If $T^{-1}(A) \in \F$ for each $A \in \mathcal A$, where $\mathcal A$ generates $\F'$, then $T$ is $\F / \F'$ measurable.
+
+    A random vector is measurable iff each component function is measurable.
+
+    Continuous functions are measurable. If $f_k: \Omega \rightarrow \R$ are measurable,
+\end{flashcard}
 
 
 \end{document}
