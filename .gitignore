@@ -3,4 +3,5 @@ random_pdfs/
 *.fdb_latexmk
 *.fls
 *.log
+*.out
 *.synctex.gz
