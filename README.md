@@ -6,7 +6,7 @@ Mostly probability theory and statistics.
 ### Billingsley.
 
 - [x] Up to ch 6 (basic measure theory, independence, Borel-Cantelli lemmas, simple random variables, some tail bounds)
-- [ ] Ch 13 and 14 (measurable functions)
+- [x] Ch 13 and 14 (measurable mappings, pushforward measure, change-of-variables formula)
 - [ ] Ch 15 - 18
 - [ ] Ch 20-22
 - [ ] Ch 25

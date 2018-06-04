@@ -227,13 +227,55 @@
     {What is a measurable mapping? What are some properties?}
     For two measure spaces $(\Omega, \F)$ and $(\Omega', \F')$, a transformation $T: \Omega \rightarrow \Omega'$ is measurable $\F / \F'$ iff for all $A \in \F'$, $T^{-1}(A) \in \F$.
 
-    Composition of measurable functions is measurable.
-
     If $T^{-1}(A) \in \F$ for each $A \in \mathcal A$, where $\mathcal A$ generates $\F'$, then $T$ is $\F / \F'$ measurable.
 
     A random vector is measurable iff each component function is measurable.
 
-    Continuous functions are measurable. If $f_k: \Omega \rightarrow \R$ are measurable,
+    Continuous functions are measurable. If $f_k: \Omega \rightarrow \R$ are measurable $\F$, then $g(f_1(w),\dots,f_k(w))$ is measurable $\F$ if $g: \R^k \rightarrow \R$ is measurable.
+
+    Composition of measurable functions is measurable. Sum, sup, lim sup, product are measure-preserving. A limit of measurable functions is measurable if the limit exists everywhere. We can construct a sequence of simple measurable functions that increase to any given measurable function.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the pushforward measure?}
+    Given $(\Omega, \F)$ and $(\Omega',\F')$ and a measurable transformation $T:\Omega \rightarrow \Omega'$ and a measure $\mu$ on $\F$, then $\mu T^{-1}(A') = \mu (T^{-1}(A'))$ is a pushforward measure on $\F'$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the change-of-variables formula?}
+    A measurable function $g$ on $\Omega'$ is integrable with respect to the pushforward measure $\mu T^{-1} = T(\mu)$ iff the composition $g \circ T$ is integrable with respect to the measure $\mu$. In that case,
+    $$\int_{\Omega'} g d(\mu T^{-1}) = \int_{\Omega} g \circ T d\mu$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Say a few things about distribution functions.}
+    A distribution function for a random variable $X$ on $\R$ is $F(x) = \Pr(X \leq x)$. It is non-decreasing, right-continuous (by continuity from above). By continuity from below, $\lim_{y \uparrow x} F(y) = F(x^-) = \Pr(X < x)$.
+
+    For every non-decreasing, right-continuous function with $\lim_{x \rightarrow -\infty} F(x) = 0$ and $\lim_{x \rightarrow \infty} F(x) = 1$, there exists on some probability space a random variable $X$ for $F$ is the distribution function.
+
+    If $\lim_n F_n(x) = F(x)$ for all $x$, then we write $F_n \implies F$ and say that the distributions converge weakly and their corresponding random variables converge weakly.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {How is the integral defined for a non-negative measurable function? Properties?}
+    $\int_\Omega f d\mu = \sup \sum_i (\inf_{w \in A_i} f(w)) \mu(A_i)$ where the sup is taken over all partitions of $\Omega$.
+
+    If $f \leq g$ then $\int f \leq \int g$.
+
+    If $f_n \uparrow f$ then $\int f_n \uparrow \int f$.
+
+    The integral is linear.
+
+    If $f = 0$ a.e., then $\int f = 0$. If the measure of the set where $f$ is non-zero is positive, then the integral is positive. If the integral exists, then $f < \infty$ a.e. 
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
 \end{flashcard}
 
 
