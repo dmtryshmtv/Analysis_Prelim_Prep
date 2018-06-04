@@ -8,6 +8,7 @@
 \usepackage{physics}
 \usepackage{enumerate}
 \usepackage{array}
+\usepackage{enumitem}
 
 
 \newcommand{\N}{\mathbb{N}}
@@ -21,6 +22,8 @@
 \newcommand{\ra}{\rangle}
 %\newcommand{\alert}[1]{\textcolor{red}{#1}}
 \newcommand{\Var}{\text{Var}}
+\newcommand{\sigf}{\sigma-\text{field}}
+\newcommand{\F}{\mathcal F}
 
 
 \begin{document}
@@ -28,9 +31,173 @@
 
 
 \begin{flashcard}
-    {Borel-Cantelli Lemma 1}
+    {Define a field and a $\sigf$}
+    A field on a set $\Omega$ is a collection of subsets $\F$ such that:
+    \begin{enumerate}
+        \item (at least contains two sets) $\emptyset, \Omega \in \F$,
+        \item (closer under complement) if $A \in \F$, then $A^c \in \F$,
+        \item (closure under finite union) if $A, B \in \F$, then $A \cup B \in \F$
+    \end{enumerate}
 
+    A $\sigf$ $\F$ on the set $\Omega$ also has:
+    \begin{enumerate}[resume]
+        \item (closure under countable union) if $A_1, \dots \in \F$, then $\cup_i A_i \in \F$.
+    \end{enumerate}
 \end{flashcard}
+
+
+\begin{flashcard}
+    {Define a probability measure and give some of its properties}
+    A probability measure on a set $\Omega$ with field $\F$ is a function $P: \F \rightarrow [0, \infty)$ with:
+    \begin{enumerate}
+        \item $0 \leq P(A) \leq 1, \forall A \in \F$,
+        \item $P(\emptyset) = 0$ and $P(\Omega) = 1$,
+        \item if $A_1, \dots$ are disjoint and $\cup_i A_i \in \F$, then
+        $$P(\cup_i A_i) = \sum_i P(A_i)$$
+    \end{enumerate}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {List some properties of probability measures}
+    A probability measure $P$ on $\Omega$ with field $\F$ has
+    \begin{enumerate}
+        \item (monotonicity), if $A \subset B$, then $P(A) \leq P(B)$,
+        \item (inclusion-exclusion) $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ and more generally
+        $$P(\cup A_n) = \sum_i P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k)$$
+        $$+ \dots + (-1)^{n+1} P(A_1 \cap \dots A_n),$$
+        \item (countably subadditive) if $A_1, \dots \in \F$ and $\cup_i A_i \in \F$, then $P(\cup_i A_i) \leq \sum_i P(A_i)$,
+        \item (continuous from below) if $A_1 \subset A_2 \dots \subset A$, then $P(A_n) \uparrow P(A)$
+        \item (continuous from above) if $A_1 \supset A_2 \dots \supset A$, then $P(A_n) \downarrow P(A)$
+    \end{enumerate}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Briefly describe the process of showing the Lebesgue measure exists}
+    Theorem 3.1 (Cartheodory extension theorem): a probability measure on a field can be uniquely extended to the generated $\sigf$ if the measure is $\sigma$-finite.
+
+    Hence, to construct the Lebesgue measure, first we define the Lebesgue measure that assigns to half-open intervals the interval length, second we verify that this is a well-defined measure on the Borel field, and then we apply theorem 3.1.
+
+    Proving theorem 3.1 is involved. Also, studying $\sigma(\mathcal B_0)$ is necessary, where $\mathcal B_0$ is the field of finite unions and intersections of intervals.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Define $\lim \sup_n A_n$ and $\lim \inf_n A_n$ of sets and give an interpretation and an inequality}
+    $\lim \sup_n A_n = \cup_n \cap_{k \geq n} A_k$. If $w$ is in LHS, then for every $n$, there exists some $k \geq n$ so that $w \in A_k$, hence $w$ is in infinitely many of the $A_n$. ``Infinitely often''.
+
+    $\lim \inf_n A_n = \cap_n \cup_{k \geq n} A_k$. If $w$ is in LHS, then there exists $n$ such that for all $k \geq n$, $w \in A_k$ for all $k$. Hence, $w$ is in all but finitely many $A_n$. ``Eventually''.
+
+    $$P(\lim \inf_n A_n) \leq \lim \inf_n P(A_n)$$
+    $$\leq \lim \sup_n P(A_n) \leq P(\lim \sup_n A_n)$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Define measure-theoretic independence (events, collections of events, $\sigf$)}
+    \begin{itemize}
+        \item Two events $A$ and $B$ are independent if $P(A \cap B) = P(A) P(B)$.
+        \item A collection of events $\{ A_1, \dots, A_n \}$ are independent if
+        $$P(A_{k_1} \cap \dots A_{k_j}) = P(A_{k_1}) \dots P(A_{k_j})$$
+        for all $2 \leq j \leq n$ and $1 \leq k_1 < \dots < k_n \leq n$.
+        \item A collection of classes $\mathcal A_1, \dots, \mathcal A_n$ in a $\sigf$ $\F$ are independent if for each choice of $A_i \in \mathcal A_i$, the collection $\{ A_n \}$ is independent.
+        \item Two $\sigf$s $\mathcal A$ and $\mathcal B$ are independent if for every $A \in \mathcal A$ and $B \in \mathcal B$, we have $\mu(A \cap B) = \mu(A) \mu(B)$.
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State the Borel-Cantelli Lemma 1 and proof}
+    If $\sum P(A_n) < \infty$, then $P(\lim \sup_n A_n) = 0$.
+
+    \emph{Proof:} Observe that $\lim \sup_n A_n \subset \cup_{k \geq m} A_k$ for all $m$.
+    This implies that
+    $$P(\lim \sup_n A_n) \leq P(\cup_{k \geq m} A_k) \leq \sum_{k \geq m} P(A_k).$$
+    Since this holds for arbitrary $m$ and the right hand side sum goes to $0$ if the infinite sum converges, the lemma follows.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State the Borel-Cantelli Lemma 2 and proof}
+    If $\{ A_n \}$ are independent and $\sum P(A_n) = \infty$ then $P(\lim \sup_n A_n) = 1$.
+
+    \emph{Proof:} It is enough to show that $P(\cup_n \cap_{k \geq n} A_k^c) = 0$ for which it is enough to show that $P(\cap_{k \geq n} A_k^c) = 0$ for all $k$. Note that $1 - x \leq e^{-x}$, then (by independence)
+    $$P(\cap_{k = n}^{n + j} A_k^c) = \prod_{k = n}^{n+j} 1 - P(A_k) \leq \exp \{ - \sum_{k = n}^{n + j} P(A_k) \}.$$
+    But since the sum diverges, as $j \rightarrow \infty$, the RHS goes to 0, hence
+    $$P( \cap_{k=n}^\infty A_k^c ) = \lim_j P(\cap_{k=n}^{n+j} A_k^c) = 0$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Define tail $\sigf$ and state the Kolmogorov 0-1 law}
+    Given a sequence of events $A_1, A_2, \dots$ in a probability space $(\Omega, \F, P)$, the tail $\sigf$ associated with the sequence $\{ A_n \}$ is
+    $$\mathcal T = \cap_{n=1}^\infty \sigma(A_n, A_{n+1}, \dots).$$
+    The $\lim \sup_n A_n$ and $\lim \inf_n A_n$ are events in the tail $\sigf$.
+
+    The Kolmogorov zero-one law: if $A_1, A_2, \dots$ are independent, then for each event $A$ in the tail $\sigf$, $P(A)$ is either 0 or 1.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Simple random variables}
+    A random variables $X$ on $(\Omega, \F)$ is simple iff it can be written as
+    $$X(w) = \sum_i x_i I_{A_i}$$
+    for some finite set of $x_i$ and $A_i \in \F$.
+
+    Simple random variables $X_n$ converge to $X$ with probability 1 ($\lim_n X_n = X$) iff $\forall \epsilon > 0$,
+    $$P(|X_n - X| > \epsilon \text{ i.o.}) = 0$$
+    which, if the above holds, implies that
+    $$\lim_n P(|X_n - X| > \epsilon) = 0.$$
+
+    Note that
+    $$\{ \lim_n X_n = X \}^c = \cup_\epsilon \{ | X_n - X | \geq \epsilon \text{ i.o.} \} = \cup_\epsilon \cup_n \cap_{k \geq n} \{ |X_n - X| \geq \epsilon \}.$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the Markov's inequality}
+    Markov's inequality: For a random variable $X$, nonnegative, then for positive $\alpha$, we have
+    $$P(X \geq \alpha) \leq \frac 1 \alpha \E[X].$$
+
+    \emph{Proof:} Note that for any convex $f$ and any set $A$, we have that
+    $$\min_{x \in A} f(x) \mathbf 1_{A} \leq E[X \mathbf 1_{A}] \leq E[X]$$
+
+    Hence, with $f(x) = x$ and $A = [\alpha,\infty)$, the result follows. If we use $f(x) = |x|^k$, then we have for positive $\alpha$:
+    $$\Pr(|X| \geq \alpha) \leq \frac 1 \alpha^k \E[|X|^k]$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Chebyshev's inequality}
+    Chebyshev's inequality: for a random variable $X$, we have
+    $$\Pr(|X - m| \geq \alpha) \leq \frac 1 \alpha^2 \Var(X)$$
+
+    \emph{Proof:} Applying Markov's inequality with $k=2$ and subtracting $m = \E[X]$, we obtain the desired result.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Jensen's inequality (finite case)}
+    Jensen's inequality says that for a convex function $\phi(x)$ and a random variable $X$, we have
+    $$\E[\phi(X)] \geq \phi(\E[X])$$
+
+    \emph{Proof:} the proof follows by induction and by noting the for simple random variables, the expectation is a linear function.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Holder's inequality}
+    Suppose that $\frac 1 p + \frac 1 q = 1$ for $p,q>1$. Then:
+    $$\E[|XY|] \leq \E[|X|^p]^{\frac 1 p} \E[|Y|^q]^{\frac 1 q}$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the strong law of large numbers}
+    
+\end{flashcard}
+
 
 
 \end{document}
