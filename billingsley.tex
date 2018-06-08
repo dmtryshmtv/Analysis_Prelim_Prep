@@ -129,6 +129,10 @@
     $$P( \cap_{k=n}^\infty A_k^c ) = \lim_j P(\cap_{k=n}^{n+j} A_k^c) = 0$$
 \end{flashcard}
 
+\begin{flashcard}
+    {What's a use case of the Borel-Cantelli lemmas (both)?}
+\end{flashcard}
+
 
 \begin{flashcard}
     {Define tail $\sigf$ and state the Kolmogorov 0-1 law}
@@ -137,6 +141,11 @@
     The $\lim \sup_n A_n$ and $\lim \inf_n A_n$ are events in the tail $\sigf$.
 
     The Kolmogorov zero-one law: if $A_1, A_2, \dots$ are independent, then for each event $A$ in the tail $\sigf$, $P(A)$ is either 0 or 1.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of the 0-1 law?}
 \end{flashcard}
 
 
@@ -170,6 +179,11 @@
 
 
 \begin{flashcard}
+    {What's a use case of Markov's inequality?}
+\end{flashcard}
+
+
+\begin{flashcard}
     {State and prove Chebyshev's inequality}
     Chebyshev's inequality: for a random variable $X$, we have
     $$\Pr(|X - m| \geq \alpha) \leq \frac 1 \alpha^2 \Var(X)$$
@@ -179,7 +193,12 @@
 
 
 \begin{flashcard}
-    {State and prove Jensen's inequality (finite case)}
+    {What's a use case of Chebyshev's inequality?}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Jensen's inequality (finite case).}
     Jensen's inequality says that for a convex function $\phi(x)$ and a random variable $X$, we have
     $$\E[\phi(X)] \geq \phi(\E[X])$$
 
@@ -190,7 +209,13 @@
 
 
 \begin{flashcard}
-    {State and prove Holder's inequality}
+    {What's a use case of Jensen's inequality?}
+    Markov's inequality. Non-negativity of the Kullback-Leibler divergence and hence mutual information. The fact that $H(X) \leq \log | \mathcal X |$. The fact that $H(X | Y) \leq H(X)$. Independence bound on entropy (entropy of a collection of random variables is bounded above by the sum of their individual entropies).
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Holder's inequality.}
     Suppose that $\frac 1 p + \frac 1 q = 1$ for $p,q>1$. Then:
     $$\E[|XY|] \leq \E[|X|^p]^{\frac 1 p} \E[|Y|^q]^{\frac 1 q}$$
 
@@ -199,7 +224,12 @@
 
 
 \begin{flashcard}
-    {State and prove the strong law of large numbers}
+    {What's a use case of Holder's inequality?}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the strong law of large numbers.}
     If $X_n$ are iid and $\E[X_n] = m$, then
     $$\Pr(\lim_n n^{-1} S_n = m) = 1$$
 
@@ -214,12 +244,22 @@
 
 
 \begin{flashcard}
-    {State and prove the weak law of large numbers}
+    {State and prove the weak law of large numbers.}
     If $X_n$ are iid and $\E[X_n] = m$, then for all $\epsilon$
     $$\lim_n \Pr(| n^{-1} S_n - m| \geq \epsilon) = 0.$$
 
     \emph{Proof:} By appealing to the strong law, we have
     $$\Pr(| n^{-1} S_n - m| \geq \epsilon) \leq \frac{\Var(S_n)}{n^2 \epsilon^2} = \frac{n \Var(X_1)}{n^2 \epsilon^2} \rightarrow 0.$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Demonstrate a use of the strong law.}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Demonstrate a use of the weak law.}
 \end{flashcard}
 
 
@@ -270,7 +310,224 @@
 
     The integral is linear.
 
-    If $f = 0$ a.e., then $\int f = 0$. If the measure of the set where $f$ is non-zero is positive, then the integral is positive. If the integral exists, then $f < \infty$ a.e. 
+    If $f = 0$ a.e., then $\int f = 0$. If the measure of the set where $f$ is non-zero is positive, then the integral is positive. If the integral exists, then $f < \infty$ a.e.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State some properties of the general integral (addition, limits)}
+    \begin{itemize}
+        \item Monotonicity: (i) if $f \leq g$ and are integrable, then $\int f d\mu \leq \int g d\mu$,
+        \item Linearity: if $f,g$ are integrable, then $\int (\alpha f + \beta g) d\mu \leq \alpha \int f d\mu + \beta \int g d\mu$.
+        \item Monotone convergence: if $0 \leq f_n \uparrow f$ a.e., then $\int f_n d\mu \uparrow \int f d\mu$,
+        \item Fatou's lemma: for non-negative $f_n$, $\int \lim \inf f_n d\mu \leq \lim \inf \int f_n d\mu$,
+        \item Dominated convergence: if $|f_n| \leq g$ a.e., where $g$ is integrable, and if $f_n \rightarrow f$ a.e., then $f$ and $f_n$ are integrable and $\int f_n d\mu \rightarrow \int f d\mu$.
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Give an application of MCT.}
+    Consider the space $\{ 1, 2, \dots \}$ with the counting measure. If for all $m$, we have $0 \leq x_{n,m} \uparrow x_m$ as $n \rightarrow \infty$, then $\lim_n \sum_m x_{n,m} = \sum_m x_m$.
+
+    For an infinite sequence of measures $\mu_n$ on $\F$, $\mu(A) = \sum_n \mu_n(A)$ defines another measure (countably additive because sums can be reversed in a nonnegative double series). You can show that $\int f d\mu = \sum_n \int f d\mu_n$ holds for all nonnegative $f$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Give an application of DOM.}
+    Consider the sequence $f_n = X 1_{A_n} $ where $A_n \downarrow A$ with $\mu(A) = 0$ and $A_1 = \Omega$. Assuming that $f_1$ is absolutely integrable, note that $|f_1| \geq |f_n|$ hence the sequence is dominated and therefore $\lim_n \int f_n d\mu = \int X 1_{A} d\mu = 0$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Give an application of Fatou's lemma.}
+    Consider on $(\R, \mathcal R, \lambda)$ the functions $f_n = n^2 I_{(0,n^{-1})}$ and $f = 0$ satisfy $f_n \rightarrow 0$ for each $x$, but $\int f d\lambda = 0$ and $\int f_n d\lambda = n \rightarrow \infty$. Hence Fatou's lemma inequality can be strict. Note that DOM and MCT do not apply here, as $f_n$ are unbounded.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the continuous mapping theorem?}
+    A sequence of random variables $X_n$ converging in distribution/probability/as to $X$ implies that $g(X_n)$ converges to $g(X)$ if $g$ is continuous.
+
+    If $g$ is just a function on $\R \rightarrow \R$ and it's a composition, this is fine. However, if you want this to state something about the expectation, then $g(X) \coloneqq \E[X^k]$ (so $g$ is now an operator), this is only continuous if the moments are bounded. However even in a space of bounded moment random variables (aka. $L^p(X)$), one can find a sequence of random variables whose integrals will blow up, so this $g$ is not a bounded operator, hence not continuous.
+
+    If random variables converge in distribution, then do their moments converge? No:
+    $Pr(X_n = n^2) = 1/n, Pr(X_n = 0) = 1 - 1/n.$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {When do the integral values determine the integrands?}
+    If $f$ and $g$ are nonnegative and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ and if $\mu$ is $\sigf$ then $f = g$ a.e.
+
+    If $f$ and $g$ are integrable and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ then $f = g$ a.e.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a density?}
+    $\delta$ is a density if it is a nonnegative function so that for two measures $\nu$ and $\mu$ we have
+    $$\nu(A) = \int_A \delta d\mu, \quad A \in \F$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is Scheffe's theorem?}
+    Suppose $\nu_n(A) = \int_A \delta_n d\mu$ and $\nu(A) = \int_A \delta d\mu$ for densities $\delta_n$ and $\delta$. If
+    $$\nu_n(\Omega) = \nu(\Omega)< \infty, \quad n = 1,2\dots,$$
+    and if $\delta_n \rightarrow \delta$ except on a set of $\mu$-measure 0, then
+    $$\sup_{A \in \F} | \nu(A) - \nu_n(A) | \leq \int_\Omega |\delta - \delta_n| d\mu \rightarrow 0$$
+
+    In other words, the total variation of two measures is bounded above by the $L^1$ difference of the densities, hence if the densities convergence, then the measures converge.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is uniform integrability?}
+    A sequence $f_n$ is uniformly integrable if
+    $$\lim_{\alpha \rightarrow \infty} \sup_n \int_{[|f_n| \geq \alpha]} |f_n| d\mu = 0$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is an application of uniform integrablity?}
+    Suppose $\mu(\Omega) < \infty$ and $f_n \rightarrow f$ a.e.
+
+    (i) if $f_n$ are uniformly integrable, then $f$ is integrable and
+    $$\int f_n d\mu \rightarrow \int f d\mu$$
+
+    (ii) if $f$ and $f_n$ are nonnegative and integrable, then the conclusion of (i) implies that $f_n$ are uniformly integrable.
+
+    If $\mu(\Omega) < \infty$, $f$ and $f_n$ are integrable, and $f_n \rightarrow f$ a.e., then the following are equivalent:
+    \begin{itemize}
+        \item $f_n$ are uniformly integrable,
+        \item $\int | f - f_n | d\mu \rightarrow 0$,
+        \item $\int |f_n| d\mu \rightarrow \int |f| d\mu$.
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is Riemann integrability?}
+    A real function $f$ on $(a,b]$ is Riemann integrable with integral $r$ if: for all $\epsilon$ there exists a $\delta$ with
+    $$| r - \sum_i f(x_i) \lambda(I_i) | < \epsilon$$
+    if $\{ I_i \}$ is any finite partition of $(a,b]$ into subintervals satisfying $\lambda(I_i) < \delta$ and if $x_i \in I_i$ for each $i$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a product space? What is the product measure?}
+    Given two measure spaces $(X,\mathcal X)$ and $(Y,\mathcal Y)$, the product space is $(X \times Y, \mathcal X \times \mathcal Y)$ where $\mathcal X \times \mathcal Y$ is the set of sets $A \times B$ where $A \in \mathcal X$ and $B \in \mathcal Y$.
+
+    Given two measures $\mu, \nu$, the product measure is a measure $\pi$ with $\pi(A \times B) = \mu(A) \nu(B)$. This measure is unique.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is Fubini's theorem?}
+    If $(X, \mathcal X, \mu)$ and $(Y, \mathcal Y, \vu)$ are $\sigf$ measure spaces, then
+    $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_X \left [ \int_Y f(x,y) \nu(dy) \right ] \mu(dx)$$
+    $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_Y \left [ \int_X f(x,y) \nu(dx) \right ] \mu(dy)$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is convergence in probability?}
+    Random variables $X_n$ converge in probability to $X$, written $X_n \rightarrow_P X$ if for each positive $\epsilon$
+    $$\lim_n P(|X_n - X| \geq \epsilon) = 0$$
+
+    A necessary and sufficient condition for convergence in probability is that each subsequence $X_{n_i}$ contain a further subsequence $X_{n_{k(i)}}$ such that $X_{n_{k(i)}} \rightarrow X$ with probability 1 as $i \rightarrow \infty$.
+
+    In nonprobabilistic contexts, convergence in probability becomes convergence in measure.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the Glivenko-Cantelli theorem?}
+    Suppose that $X_1, X_2, \dots$ are independent and have a common distribution function $F$; put $D_n(w) = \sup_x |F_n(x, w) - F(x)|$, where
+    $$F_n(x,w) = \frac 1 n \sum_{i=1}^n I_{(-\infty,x]}(X_i(w))$$
+    Then $D_n \rightarrow 0$ with probability 1.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the definition of expected value? Same some things about it and limits.}
+    $\E[X] = \int X dP = \int_\Omega X(w) P(dw).$
+
+    $\E[X 1_A] = \int_A X dP$.
+
+    $\E[g(X)] = \int_\Omega g(X(w)) P(dw)$.
+
+    Absolute moments $\E[|X|^k] = \int_{-\infty}^\infty |x|^k P(dx)$.
+
+    By the way $P(dx)$ intuitively refers to the $P$ measure of a small change in $x$.
+
+    If $X_n$ are dominated by an integrable random variable (or uniformly integrable), then $\E[X_n] \rightarrow \E[X]$ follows if $X_n \rightarrow_P X$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the MGF? What is it for normal, exponential, Poisson, and Binomial dists?}
+    The MGF is
+    $$M_X(t) = \E[e^{tX}] = \int_{-\infty}^\infty e^{sx} \mu(dx)$$
+
+    The standard normal distribution: $M_X(t) = e^{t^2/2}$.
+
+    The exponential: $M_X(t) = \frac{\alpha}{\alpha - s}$ defined for $s < \alpha$.
+
+    The Poisson: $M_X(t) = e^{\lambda (e^t - 1)}$.
+
+    The Binomial: $M_X(t) = p e^t + (1-p)$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Roughly sketch the proof of the strong law of large numbers from first principles.}
+    You only need to show it for nonnegative rvs, by $\E[X_1^+] - \E[X_1^-] = \E[X]$.
+
+    Truncated random variables and two applications of Borel-Cantelli and some other things.
+
+\end{flashcard}
+
+
+\begin{flashcard}
+    {The weak law of large numbers? State and prove it.}
+    $n^{-1} S_n \rightarrow_P \E[X_1]$.
+
+    This follows in the same condition from the strong law, because a.s. convergence implies convergence in probability.
+
+    A distribution concentrated on $[0,\infty)$ is determined by its MGF or its Laplace transform.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
 \end{flashcard}
 
 
