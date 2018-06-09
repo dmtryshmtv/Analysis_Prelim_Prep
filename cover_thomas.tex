@@ -3,27 +3,7 @@
 \cardfrontstyle[\large\slshape]{headings}
 \cardbackstyle{empty}
 
-\usepackage{amssymb, amsmath, amsfonts}
-\usepackage{mathtools}
-\usepackage{physics}
-\usepackage{enumerate}
-\usepackage{array}
-\usepackage{enumitem}
-
-
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\rar}{\rightarrow}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\Oc}{\mathcal{O}}
-\newcommand{\la}{\langle}
-\newcommand{\ra}{\rangle}
-%\newcommand{\alert}[1]{\textcolor{red}{#1}}
-\newcommand{\Var}{\text{Var}}
-\newcommand{\sigf}{\sigma-\text{field}}
-\newcommand{\F}{\mathcal F}
+\input{commands}
 
 
 \begin{document}
@@ -32,43 +12,95 @@
 
 \begin{flashcard}
     {Define entropy and list some properties}
-    For a finite-valued random variable $X$, $H(X) = - \sum_i p(x_i) \log p(x_i)$.
+    \begin{definition}
+        For a finite-valued random variable $X$, $H(X) = - \sum_i p(x_i) \log p(x_i)$.
+    \end{definition}
 
-    \begin{enumerate}
-        \item Entropy is non-negative $H(X) \geq 0$ (for finite-ranged rvs).
-        \item Entropy is bounded by the log of the size of the range $H(X) \leq \log |\mathcal X|$.
-        \item It is concave: $H(\lambda p_1(x) + (1-\lambda) p_2(x)) \geq \lambda H(p_1(x)) + (1- \lambda) H(p_2(x))$.
-    \end{enumerate}
+    \begin{properties}
+        \begin{enumerate}
+            \item Entropy is non-negative $H(X) \geq 0$ (for finite-ranged rvs).
+            \item Entropy is bounded by the log of the size of the range $H(X) \leq \log |\mathcal X|$.
+            \item It is concave: $H(\lambda p_1(x) + (1-\lambda) p_2(x)) \geq \lambda H(p_1(x)) + (1- \lambda) H(p_2(x))$.
+        \end{enumerate}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define conditional entropy and list some properties}
+    \begin{definition}
+        For two random variable $X$ and $Y$, the conditional entropy is
+        $$H[X|Y] = \sum_y p(y) H[X | Y = y]$$
+        where
+        $$H[X | Y = y] = \sum_x p(x | y) \log p(x | y)$$
+    \end{definition}
 
+    \begin{properties}
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define mutual information and list some properties}
+    \begin{definition}
+        For two finite random variables $X$ and $Y$, with joint density $p(x,y)$ and marginal densities $p(x),q(y)$ respectively, the mutual information is
+        $$I(X,Y) = KL(p(x,y) \| p(x)q(y)) = \sum_{x,y} p(x,y) \log \frac{p(x,y)}{p(x)q(y)}$$
+    \end{definition}
 
+    \begin{properties}
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define the Kullback-Leibler divergence and list some properties}
+    \begin{definition}
+        For two finite random variables $X$ and $Y$, with densities $p(x),q(x)$ respectively, the Kullback-Leibler divergence is
+        $$KL(p(x) \| q(x)) = \sum_x p(x) \log \frac{p(x)}{q(x)}$$
+    \end{definition}
 
+    \begin{properties}
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {State the data processing inequality}
+    {State the data processing inequality and give a use case}
+    \begin{definition}
+        The data processing inequality says that for three random variables $X,Y,Z$ satisfying the Markov chain condition $X \rightarrow Y \rightarrow Z$ have $I(X,Y) \geq I(X,Z)$.
+    \end{definition}
 
+    \begin{example}
+
+    \end{example}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {State Fano's inequality}
-    
+    {State Fano's inequality and give a use case}
+    \begin{definition}
+        Fano's inequality states that for any two finite random variables $X,\hat X$, taking values in $\mathcal X$, we have
+        $$h(p) + p \log \mathcal X \leq H(X | \hat X)$$
+        where $p = \Pr(X \not = \hat X)$.
+    \end{definition}
+
+    \begin{example}
+
+    \end{example}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
 \end{flashcard}
 
 
