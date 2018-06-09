@@ -3,7 +3,7 @@
 \cardfrontstyle[\large\slshape]{headings}
 \cardbackstyle{empty}
 
-\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{amssymb, amsmath, amsfonts, amsthm}
 \usepackage{mathtools}
 \usepackage{physics}
 \usepackage{enumerate}
@@ -27,310 +27,431 @@
 \newcommand{\F}{\mathcal F}
 
 
+\newtheorem*{theorem}{Theorem}
+%\newtheorem{proof}[Proof]
+\newtheorem*{example}{Example}
+\newtheorem*{definition}{Definition}
+\newtheorem*{properties}{Properties}
+\newtheorem*{remark}{Remark}
+
+
 \begin{document}
 \cardfrontfoot{Billingsley}
 
 
 \begin{flashcard}
     {Define a field and a $\sigf$}
-    A field on a set $\Omega$ is a collection of subsets $\F$ such that:
-    \begin{enumerate}
-        \item (at least contains two sets) $\emptyset, \Omega \in \F$,
-        \item (closer under complement) if $A \in \F$, then $A^c \in \F$,
-        \item (closure under finite union) if $A, B \in \F$, then $A \cup B \in \F$
-    \end{enumerate}
+    \begin{definition}
+        A field on a set $\Omega$ is a collection of subsets $\F$ such that:
+        \begin{enumerate}
+            \item (at least contains two sets) $\emptyset, \Omega \in \F$,
+            \item (closer under complement) if $A \in \F$, then $A^c \in \F$,
+            \item (closure under finite union) if $A, B \in \F$, then $A \cup B \in \F$
+        \end{enumerate}
+    \end{definition}
 
-    A $\sigf$ $\F$ on the set $\Omega$ also has:
-    \begin{enumerate}[resume]
-        \item (closure under countable union) if $A_1, \dots \in \F$, then $\cup_i A_i \in \F$.
-    \end{enumerate}
+    \begin{definition}
+        A $\sigf$ $\F$ on the set $\Omega$ also has:
+        \begin{enumerate}[resume]
+            \item (closure under countable union) if $A_1, \dots \in \F$, then $\cup_i A_i \in \F$.
+        \end{enumerate}
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define a probability measure and give some of its properties}
-    A probability measure on a set $\Omega$ with field $\F$ is a function $P: \F \rightarrow [0, \infty)$ with:
-    \begin{enumerate}
-        \item $0 \leq P(A) \leq 1, \forall A \in \F$,
-        \item $P(\emptyset) = 0$ and $P(\Omega) = 1$,
-        \item if $A_1, \dots$ are disjoint and $\cup_i A_i \in \F$, then
-        $$P(\cup_i A_i) = \sum_i P(A_i)$$
-    \end{enumerate}
+    \begin{definition}
+        A probability measure on a set $\Omega$ with field $\F$ is a function $P: \F \rightarrow [0, \infty)$ with:
+        \begin{enumerate}
+            \item $0 \leq P(A) \leq 1, \forall A \in \F$,
+            \item $P(\emptyset) = 0$ and $P(\Omega) = 1$,
+            \item if $A_1, \dots$ are disjoint and $\cup_i A_i \in \F$, then
+            $$P(\cup_i A_i) = \sum_i P(A_i)$$
+        \end{enumerate}
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {List some properties of probability measures}
-    A probability measure $P$ on $\Omega$ with field $\F$ has
-    \begin{enumerate}
-        \item (monotonicity), if $A \subset B$, then $P(A) \leq P(B)$,
-        \item (inclusion-exclusion) $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ and more generally
-        $$P(\cup A_n) = \sum_i P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k)$$
-        $$+ \dots + (-1)^{n+1} P(A_1 \cap \dots A_n),$$
-        \item (countably subadditive) if $A_1, \dots \in \F$ and $\cup_i A_i \in \F$, then $P(\cup_i A_i) \leq \sum_i P(A_i)$,
-        \item (continuous from below) if $A_1 \subset A_2 \dots \subset A$, then $P(A_n) \uparrow P(A)$
-        \item (continuous from above) if $A_1 \supset A_2 \dots \supset A$, then $P(A_n) \downarrow P(A)$
-    \end{enumerate}
+    \begin{properties}
+        A probability measure $P$ on $\Omega$ with field $\F$ has
+        \begin{enumerate}
+            \item (monotonicity), if $A \subset B$, then $P(A) \leq P(B)$,
+            \item (inclusion-exclusion) $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ and more generally
+            $$P(\cup A_n) = \sum_i P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k)$$
+            $$+ \dots + (-1)^{n+1} P(A_1 \cap \dots A_n),$$
+            \item (countably subadditive) if $A_1, \dots \in \F$ and $\cup_i A_i \in \F$, then $P(\cup_i A_i) \leq \sum_i P(A_i)$,
+            \item (continuous from below) if $A_1 \subset A_2 \dots \subset A$, then $P(A_n) \uparrow P(A)$
+            \item (continuous from above) if $A_1 \supset A_2 \dots \supset A$, then $P(A_n) \downarrow P(A)$
+        \end{enumerate}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Briefly describe the process of showing the Lebesgue measure exists}
-    Theorem 3.1 (Cartheodory extension theorem): a probability measure on a field can be uniquely extended to the generated $\sigf$ if the measure is $\sigma$-finite.
-
-    Hence, to construct the Lebesgue measure, first we define the Lebesgue measure that assigns to half-open intervals the interval length, second we verify that this is a well-defined measure on the Borel field, and then we apply theorem 3.1.
-
-    Proving theorem 3.1 is involved. Also, studying $\sigma(\mathcal B_0)$ is necessary, where $\mathcal B_0$ is the field of finite unions and intersections of intervals.
+    \begin{proof}
+        \begin{itemize}
+            \item The main work horse is the \textbf{Cartheodory extension theorem (theorem 3.1)}: a probability measure on a field can be uniquely extended to the generated $\sigf$ if the measure is $\sigma$-finite.
+            \item So to construct the Lebesgue measure: first we define the Lebesgue measure that assigns to half-open intervals the interval length.
+            \item Second we verify that this is a well-defined measure on the Borel field, and then we apply theorem 3.1.
+            \item Proving theorem 3.1 is involved. Also, studying $\sigma(\mathcal B_0)$ is necessary, where $\mathcal B_0$ is the field of finite unions and intersections of intervals.
+        \end{itemize}
+    \end{proof}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define $\lim \sup_n A_n$ and $\lim \inf_n A_n$ of sets and give an interpretation and an inequality}
-    $\lim \sup_n A_n = \cup_n \cap_{k \geq n} A_k$. If $w$ is in LHS, then for every $n$, there exists some $k \geq n$ so that $w \in A_k$, hence $w$ is in infinitely many of the $A_n$. ``Infinitely often''.
-
-    $\lim \inf_n A_n = \cap_n \cup_{k \geq n} A_k$. If $w$ is in LHS, then there exists $n$ such that for all $k \geq n$, $w \in A_k$ for all $k$. Hence, $w$ is in all but finitely many $A_n$. ``Eventually''.
-
-    $$P(\lim \inf_n A_n) \leq \lim \inf_n P(A_n)$$
-    $$\leq \lim \sup_n P(A_n) \leq P(\lim \sup_n A_n)$$
+    \begin{definition}
+        $\lim \sup_n A_n = \cup_n \cap_{k \geq n} A_k$. If $w$ is in LHS, then for every $n$, there exists some $k \geq n$ so that $w \in A_k$, hence $w$ is in infinitely many of the $A_n$. ``Infinitely often''.
+    \end{definition}
+    \begin{definition}
+        $\lim \inf_n A_n = \cap_n \cup_{k \geq n} A_k$. If $w$ is in LHS, then there exists $n$ such that for all $k \geq n$, $w \in A_k$ for all $k$. Hence, $w$ is in all but finitely many $A_n$. ``Eventually''.
+    \end{definition}
+    \begin{properties}
+        $$P(\lim \inf_n A_n) \leq \lim \inf_n P(A_n)$$
+        $$\leq \lim \sup_n P(A_n) \leq P(\lim \sup_n A_n)$$
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Define measure-theoretic independence (events, collections of events, $\sigf$)}
-    \begin{itemize}
-        \item Two events $A$ and $B$ are independent if $P(A \cap B) = P(A) P(B)$.
-        \item A collection of events $\{ A_1, \dots, A_n \}$ are independent if
+    \begin{definition}
+        Two events $A$ and $B$ are independent if $P(A \cap B) = P(A) P(B)$.
+    \end{definition}
+
+    \begin{definition}
+        A collection of events $\{ A_1, \dots, A_n \}$ are independent if
         $$P(A_{k_1} \cap \dots A_{k_j}) = P(A_{k_1}) \dots P(A_{k_j})$$
         for all $2 \leq j \leq n$ and $1 \leq k_1 < \dots < k_n \leq n$.
-        \item A collection of classes $\mathcal A_1, \dots, \mathcal A_n$ in a $\sigf$ $\F$ are independent if for each choice of $A_i \in \mathcal A_i$, the collection $\{ A_n \}$ is independent.
-        \item Two $\sigf$s $\mathcal A$ and $\mathcal B$ are independent if for every $A \in \mathcal A$ and $B \in \mathcal B$, we have $\mu(A \cap B) = \mu(A) \mu(B)$.
-    \end{itemize}
+    \end{definition}
+
+    \begin{definition}
+        A collection of classes $\mathcal A_1, \dots, \mathcal A_n$ in a $\sigf$ $\F$ are independent if for each choice of $A_i \in \mathcal A_i$, the collection $\{ A_n \}$ is independent.
+    \end{definition}
+
+    \begin{definition}
+        Two $\sigf$s $\mathcal A$ and $\mathcal B$ are independent if for every $A \in \mathcal A$ and $B \in \mathcal B$, we have $\mu(A \cap B) = \mu(A) \mu(B)$.
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {State the Borel-Cantelli Lemma 1 and proof}
-    If $\sum P(A_n) < \infty$, then $P(\lim \sup_n A_n) = 0$.
+    \begin{theorem}
+        If $\sum P(A_n) < \infty$, then $P(\lim \sup_n A_n) = 0$.
+    \end{theorem}
 
-    \emph{Proof:} Observe that $\lim \sup_n A_n \subset \cup_{k \geq m} A_k$ for all $m$.
-    This implies that
-    $$P(\lim \sup_n A_n) \leq P(\cup_{k \geq m} A_k) \leq \sum_{k \geq m} P(A_k).$$
-    Since this holds for arbitrary $m$ and the right hand side sum goes to $0$ if the infinite sum converges, the lemma follows.
+    \begin{proof}
+        Observe that $\lim \sup_n A_n \subset \cup_{k \geq m} A_k$ for all $m$.
+        This implies that
+        $$P(\lim \sup_n A_n) \leq P(\cup_{k \geq m} A_k) \leq \sum_{k \geq m} P(A_k).$$
+        Since this holds for arbitrary $m$ and the right hand side sum goes to $0$ if the infinite sum converges, the lemma follows.
+    \end{proof}
 \end{flashcard}
 
 
 \begin{flashcard}
     {State the Borel-Cantelli Lemma 2 and proof}
-    If $\{ A_n \}$ are independent and $\sum P(A_n) = \infty$ then $P(\lim \sup_n A_n) = 1$.
+    \begin{theorem}
+        If $\{ A_n \}$ are independent and $\sum P(A_n) = \infty$ then $P(\lim \sup_n A_n) = 1$.
+    \end{theorem}
 
-    \emph{Proof:} It is enough to show that $P(\cup_n \cap_{k \geq n} A_k^c) = 0$ for which it is enough to show that $P(\cap_{k \geq n} A_k^c) = 0$ for all $k$. Note that $1 - x \leq e^{-x}$, then (by independence)
-    $$P(\cap_{k = n}^{n + j} A_k^c) = \prod_{k = n}^{n+j} 1 - P(A_k) \leq \exp \{ - \sum_{k = n}^{n + j} P(A_k) \}.$$
-    But since the sum diverges, as $j \rightarrow \infty$, the RHS goes to 0, hence
-    $$P( \cap_{k=n}^\infty A_k^c ) = \lim_j P(\cap_{k=n}^{n+j} A_k^c) = 0$$
+    \begin{proof}
+        It is enough to show that $P(\cup_n \cap_{k \geq n} A_k^c) = 0$ for which it is enough to show that $P(\cap_{k \geq n} A_k^c) = 0$ for all $k$. Note that $1 - x \leq e^{-x}$, then (by independence)
+        $$P(\cap_{k = n}^{n + j} A_k^c) = \prod_{k = n}^{n+j} 1 - P(A_k) \leq \exp \{ - \sum_{k = n}^{n + j} P(A_k) \}.$$
+        But since the sum diverges, as $j \rightarrow \infty$, the RHS goes to 0, hence
+        $$P( \cap_{k=n}^\infty A_k^c ) = \lim_j P(\cap_{k=n}^{n+j} A_k^c) = 0$$
+    \end{proof}
 \end{flashcard}
+
 
 \begin{flashcard}
     {What's a use case of the Borel-Cantelli lemmas (both)?}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {Define tail $\sigf$ and state the Kolmogorov 0-1 law}
-    Given a sequence of events $A_1, A_2, \dots$ in a probability space $(\Omega, \F, P)$, the tail $\sigf$ associated with the sequence $\{ A_n \}$ is
-    $$\mathcal T = \cap_{n=1}^\infty \sigma(A_n, A_{n+1}, \dots).$$
-    The $\lim \sup_n A_n$ and $\lim \inf_n A_n$ are events in the tail $\sigf$.
-
-    The Kolmogorov zero-one law: if $A_1, A_2, \dots$ are independent, then for each event $A$ in the tail $\sigf$, $P(A)$ is either 0 or 1.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What's a use case of the 0-1 law?}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {Simple random variables}
-    A random variables $X$ on $(\Omega, \F)$ is simple iff it can be written as
-    $$X(w) = \sum_i x_i I_{A_i}$$
-    for some finite set of $x_i$ and $A_i \in \F$.
-
-    Simple random variables $X_n$ converge to $X$ with probability 1 ($\lim_n X_n = X$) iff $\forall \epsilon > 0$,
-    $$P(|X_n - X| > \epsilon \text{ i.o.}) = 0$$
-    which, if the above holds, implies that
-    $$\lim_n P(|X_n - X| > \epsilon) = 0.$$
-
-    Note that
-    $$\{ \lim_n X_n = X \}^c = \cup_\epsilon \{ | X_n - X | \geq \epsilon \text{ i.o.} \} = \cup_\epsilon \cup_n \cap_{k \geq n} \{ |X_n - X| \geq \epsilon \}.$$
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove the Markov's inequality}
-    Markov's inequality: For a random variable $X$, nonnegative, then for positive $\alpha$, we have
-    $$P(X \geq \alpha) \leq \frac 1 \alpha \E[X].$$
-
-    \emph{Proof:} Note that for any convex $f$ and any set $A$, we have that
-    $$\min_{x \in A} f(x) \mathbf 1_{A} \leq E[X \mathbf 1_{A}] \leq E[X]$$
-
-    Hence, with $f(x) = x$ and $A = [\alpha,\infty)$, the result follows. If we use $f(x) = |x|^k$, then we have for positive $\alpha$:
-    $$\Pr(|X| \geq \alpha) \leq \frac 1 \alpha^k \E[|X|^k]$$
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What's a use case of Markov's inequality?}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove Chebyshev's inequality}
-    Chebyshev's inequality: for a random variable $X$, we have
-    $$\Pr(|X - m| \geq \alpha) \leq \frac 1 \alpha^2 \Var(X)$$
-
-    \emph{Proof:} Applying Markov's inequality with $k=2$ and subtracting $m = \E[X]$, we obtain the desired result.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What's a use case of Chebyshev's inequality?}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove Jensen's inequality (finite case).}
-    Jensen's inequality says that for a convex function $\phi(x)$ and a random variable $X$, we have
-    $$\E[\phi(X)] \geq \phi(\E[X])$$
-
-    \emph{Proof:} the proof follows by induction (base case follows form convexity; induction step follows from grouping $n$ of the sum terms together).
-
-    \href{https://en.wikipedia.org/wiki/Jensen%27s_inequality#Proofs}{More details here.}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What's a use case of Jensen's inequality?}
-    Markov's inequality. Non-negativity of the Kullback-Leibler divergence and hence mutual information. The fact that $H(X) \leq \log | \mathcal X |$. The fact that $H(X | Y) \leq H(X)$. Independence bound on entropy (entropy of a collection of random variables is bounded above by the sum of their individual entropies).
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove Holder's inequality.}
-    Suppose that $\frac 1 p + \frac 1 q = 1$ for $p,q>1$. Then:
-    $$\E[|XY|] \leq \E[|X|^p]^{\frac 1 p} \E[|Y|^q]^{\frac 1 q}$$
-
-    \emph{Proof:} Young's. \href{https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality#Proof_of_H%C3%B6lder's_inequality}{Here.}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What's a use case of Holder's inequality?}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove the strong law of large numbers.}
-    If $X_n$ are iid and $\E[X_n] = m$, then
-    $$\Pr(\lim_n n^{-1} S_n = m) = 1$$
-
-    \emph{Proof:} WLOG $m=0$. It is enough to show that $\Pr(|n^{-1} S_n| \geq \epsilon \text{ i.o}) = 0$ for each $\epsilon$.
-
-    Let $\E[X_i^2] = \sigma^2$ and $\E[X_i^4] = \xi^4$. By independence, we have
-    $$\E[S_n^4] = n \xi^4 + 3n(n-1) \sigma^4 \leq K n^2$$
-    where $K$ does not depend on $n$. By Markov's inequality for $k=4$,
-    $$\Pr(|S_n| \geq n \epsilon) \leq K n^{-2} \epsilon^{-4},$$
-    so the result follows by the first Borel-Cantelli lemma (the event probs are summable, hence the lim sup is $0$).
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State and prove the weak law of large numbers.}
-    If $X_n$ are iid and $\E[X_n] = m$, then for all $\epsilon$
-    $$\lim_n \Pr(| n^{-1} S_n - m| \geq \epsilon) = 0.$$
-
-    \emph{Proof:} By appealing to the strong law, we have
-    $$\Pr(| n^{-1} S_n - m| \geq \epsilon) \leq \frac{\Var(S_n)}{n^2 \epsilon^2} = \frac{n \Var(X_1)}{n^2 \epsilon^2} \rightarrow 0.$$
-\end{flashcard}
-
-
-\begin{flashcard}
-    {Demonstrate a use of the strong law.}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {Demonstrate a use of the weak law.}
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What is a measurable mapping? What are some properties?}
-    For two measure spaces $(\Omega, \F)$ and $(\Omega', \F')$, a transformation $T: \Omega \rightarrow \Omega'$ is measurable $\F / \F'$ iff for all $A \in \F'$, $T^{-1}(A) \in \F$.
-
-    If $T^{-1}(A) \in \F$ for each $A \in \mathcal A$, where $\mathcal A$ generates $\F'$, then $T$ is $\F / \F'$ measurable.
-
-    A random vector is measurable iff each component function is measurable.
-
-    Continuous functions are measurable. If $f_k: \Omega \rightarrow \R$ are measurable $\F$, then $g(f_1(w),\dots,f_k(w))$ is measurable $\F$ if $g: \R^k \rightarrow \R$ is measurable.
-
-    Composition of measurable functions is measurable. Sum, sup, lim sup, product are measure-preserving. A limit of measurable functions is measurable if the limit exists everywhere. We can construct a sequence of simple measurable functions that increase to any given measurable function.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What is the pushforward measure?}
-    Given $(\Omega, \F)$ and $(\Omega',\F')$ and a measurable transformation $T:\Omega \rightarrow \Omega'$ and a measure $\mu$ on $\F$, then $\mu T^{-1}(A') = \mu (T^{-1}(A'))$ is a pushforward measure on $\F'$.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {What is the change-of-variables formula?}
-    A measurable function $g$ on $\Omega'$ is integrable with respect to the pushforward measure $\mu T^{-1} = T(\mu)$ iff the composition $g \circ T$ is integrable with respect to the measure $\mu$. In that case,
-    $$\int_{\Omega'} g d(\mu T^{-1}) = \int_{\Omega} g \circ T d\mu$$
-\end{flashcard}
-
-
-\begin{flashcard}
-    {Say a few things about distribution functions.}
-    A distribution function for a random variable $X$ on $\R$ is $F(x) = \Pr(X \leq x)$. It is non-decreasing, right-continuous (by continuity from above). By continuity from below, $\lim_{y \uparrow x} F(y) = F(x^-) = \Pr(X < x)$.
-
-    For every non-decreasing, right-continuous function with $\lim_{x \rightarrow -\infty} F(x) = 0$ and $\lim_{x \rightarrow \infty} F(x) = 1$, there exists on some probability space a random variable $X$ for $F$ is the distribution function.
-
-    If $\lim_n F_n(x) = F(x)$ for all $x$, then we write $F_n \implies F$ and say that the distributions converge weakly and their corresponding random variables converge weakly.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {How is the integral defined for a non-negative measurable function? Properties?}
-    $\int_\Omega f d\mu = \sup \sum_i (\inf_{w \in A_i} f(w)) \mu(A_i)$ where the sup is taken over all partitions of $\Omega$.
-
-    If $f \leq g$ then $\int f \leq \int g$.
-
-    If $f_n \uparrow f$ then $\int f_n \uparrow \int f$.
-
-    The integral is linear.
-
-    If $f = 0$ a.e., then $\int f = 0$. If the measure of the set where $f$ is non-zero is positive, then the integral is positive. If the integral exists, then $f < \infty$ a.e.
-\end{flashcard}
-
-
-\begin{flashcard}
-    {State some properties of the general integral (addition, limits)}
+    Use-cases:
     \begin{itemize}
-        \item Monotonicity: (i) if $f \leq g$ and are integrable, then $\int f d\mu \leq \int g d\mu$,
-        \item Linearity: if $f,g$ are integrable, then $\int (\alpha f + \beta g) d\mu \leq \alpha \int f d\mu + \beta \int g d\mu$.
-        \item Monotone convergence: if $0 \leq f_n \uparrow f$ a.e., then $\int f_n d\mu \uparrow \int f d\mu$,
-        \item Fatou's lemma: for non-negative $f_n$, $\int \lim \inf f_n d\mu \leq \lim \inf \int f_n d\mu$,
-        \item Dominated convergence: if $|f_n| \leq g$ a.e., where $g$ is integrable, and if $f_n \rightarrow f$ a.e., then $f$ and $f_n$ are integrable and $\int f_n d\mu \rightarrow \int f d\mu$.
+        \item The first one can be used to show the strong law of large numbers. The process there is to show that the deviations of the sum have a decaying (summable) probability, hence the tail event is probability zero.
+        \item The second one can be used like this. Consider a sequence of fair coin flips $X_1, X_2, \dots$ and define the event $A_n = [X_n = 1]$. Then, $\Pr(A_n) = \frac 1 2$, are all independent, and hence $\Pr( [X_n = 1 \text{i.o.}] ) = 1$.
+        \item In general, it's a way to get information about the limit event when you have information about the individual events.
     \end{itemize}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {Give an application of MCT.}
-    Consider the space $\{ 1, 2, \dots \}$ with the counting measure. If for all $m$, we have $0 \leq x_{n,m} \uparrow x_m$ as $n \rightarrow \infty$, then $\lim_n \sum_m x_{n,m} = \sum_m x_m$.
+    {Define the tail $\sigf$ and state the Kolmogorov 0-1 law}
+    \begin{definition}
+        Given a sequence of events $A_1, A_2, \dots$ in a probability space $(\Omega, \F, P)$, the tail $\sigf$ associated with the sequence $\{ A_n \}$ is
+        $$\mathcal T = \cap_{n=1}^\infty \sigma(A_n, A_{n+1}, \dots).$$
+        The $\lim \sup_n A_n$ and $\lim \inf_n A_n$ are events in the tail $\sigf$.
+    \end{definition}
 
-    For an infinite sequence of measures $\mu_n$ on $\F$, $\mu(A) = \sum_n \mu_n(A)$ defines another measure (countably additive because sums can be reversed in a nonnegative double series). You can show that $\int f d\mu = \sum_n \int f d\mu_n$ holds for all nonnegative $f$.
+    \begin{theorem}
+        If $A_1, A_2, \dots$ are independent, then for each event $A$ in the tail $\sigf$, $P(A)$ is either 0 or 1.
+    \end{theorem}
+
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of the 0-1 law?}
+    Use cases:
+    \begin{itemize}
+        \item Given a sequence of independent events $A_n$, we know that $P(\lim \sup_n A_n)$ is either 0 or 1. The Borel-Cantelli lemmas go further and give us a summability condition to decide whether the probability is 0 or 1.
+        \item Any random variable measurable with respect to the tail $\sigf$ is equal to a constant almost surely. Consider a random variable $X$ on $\R$ that is measurable with respect to a tail $\sigf$ $\mathcal T$. By Kolmogorov's 0-1 law, we have $P(A) \in \{ 0, 1\}$ for all $A \in \mathcal T$. Hence, since $A_n = [X(w) \in (n,n+1] ]$ is measurable and is either $0$ or $1$. Since $\cup_n A_n$ is the whole measure space, whose measure is $1$, we know that $P(A_n) = 1$ only for a single $A_n$. We can then continue subdividing intervals in a similar way and using Cantor's intersection theorem (that the intersection of a nested sequence of compact sets is non-empty) we know that $P(X(w) = c) = 1$ and hence almost surely.
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What are simple random variables?}
+    \begin{definition}
+        A random variables $X$ on $(\Omega, \F)$ is \textbf{simple} iff it can be written as
+        $$X(w) = \sum_i x_i I_{A_i}$$
+        for some finite set of $x_i$ and $A_i \in \F$.
+    \end{definition}
+
+    \begin{remark}
+        Simple rand om variables $X_n$ converge to $X$ with probability 1 ($\lim_n X_n = X$) iff $\forall \epsilon > 0$,
+        $$P(|X_n - X| > \epsilon \text{ i.o.}) = 0$$
+        which, if the above holds, implies that
+        $$\lim_n P(|X_n - X| > \epsilon) = 0.$$
+
+        Note that
+        $$\{ \lim_n X_n = X \}^c = \cup_\epsilon \{ | X_n - X | \geq \epsilon \text{ i.o.} \} = \cup_\epsilon \cup_n \cap_{k \geq n} \{ |X_n - X| \geq \epsilon \}.$$
+    \end{remark}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the Markov's inequality}
+    \begin{theorem}
+        For a random variable $X$, nonnegative, then for positive $\alpha$, we have
+        $$P(X \geq \alpha) \leq \frac 1 \alpha \E[X].$$
+    \end{theorem}
+
+    \begin{proof}
+        Note that for any convex $f$ and any set $A$, we have that
+        $$\min_{x \in A} f(x) \mathbf 1_{A} \leq E[X \mathbf 1_{A}] \leq E[X]$$
+
+        Hence, with $f(x) = x$ and $A = [\alpha,\infty)$, the result follows. If we use $f(x) = |x|^k$, then we have for positive $\alpha$:
+        $$\Pr(|X| \geq \alpha) \leq \frac 1 \alpha^k \E[|X|^k]$$
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of Markov's inequality?}
+    Use cases:
+    \begin{itemize}
+        \item Well, say we flip $n$ fair coins and count the number of heads. What's a bound on the probability of getting $.9n$ heads?
+        $$\Pr(X \geq 0.9n) \leq \frac {0.5n}{0.9n} = \frac 5 9$$
+        \item The main limitation on Markov's inequality seems to be that it works on positive random variables. Hence, given $X$ we can do:
+        $$\Pr(|X - \mu| \geq \epsilon) \leq \frac{\E[X]}{\epsilon}$$
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Chebyshev's inequality}
+    \begin{theorem}
+        For a random variable $X$, we have
+        $$\Pr(|X - m| \geq \alpha) \leq \frac 1 \alpha^2 \Var(X)$$
+    \end{theorem}
+
+    \begin{proof}
+        Applying Markov's inequality with the absolute value function, exponent $k=2$, and subtracting $m = \E[X]$, we obtain the desired result.
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of Chebyshev's inequality?}
+    When proving the strong law of large numbers by appealing to moments, we can bound the deviations of $S_n$ by its variance times a factor in $n$.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Jensen's inequality (finite case).}
+    \begin{theorem}
+        Jensen's inequality says that for a convex function $\phi(x)$ and a random variable $X$, we have
+        $$\E[\phi(X)] \geq \phi(\E[X])$$
+    \end{theorem}
+
+    \begin{proof}
+        The proof follows by induction (base case follows form convexity; induction step follows from grouping $n$ of the sum terms together).
+
+        \href{https://en.wikipedia.org/wiki/Jensen%27s_inequality#Proofs}{More details here.}
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of Jensen's inequality?}
+    Uses:
+    \begin{itemize}
+        \item Markov's inequality.
+        \item Non-negativity of the Kullback-Leibler divergence and hence mutual information.
+        \item The fact that $H(X) \leq \log | \mathcal X |$.
+        \item The fact that $H(X | Y) \leq H(X)$.
+        \item Independence bound on entropy (entropy of a collection of random variables is bounded above by the sum of their individual entropies).
+    \end{itemize}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove Holder's inequality.}
+    \begin{theorem}
+        Suppose that $\frac 1 p + \frac 1 q = 1$ for $p,q>1$. Then:
+        $$\E[|XY|] \leq \E[|X|^p]^{\frac 1 p} \E[|Y|^q]^{\frac 1 q}$$
+    \end{theorem}
+
+    \begin{proof}
+        Young's. \href{https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality#Proof_of_H%C3%B6lder's_inequality}{Here.}
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What's a use case of Holder's inequality?}
+    We can show that $\| f \|_r \leq \| f \|_p \mu(X)^s$ for $0 \leq r \leq p$ and $\frac 1 s + \frac r p = 1$. Using Holder's:
+    $$\| f \|_r^r = \int_X |f|^r d\mu \leq \left( \int_X (|f|^r)^{p/r} d\mu \right )^{r/p} \left ( \int_X 1 d\mu \right )^{1/s} \leq \| f \|_p^r \mu(X)^{1/s}$$
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the strong law of large numbers}
+    \begin{theorem}
+        If $X_n$ are iid and $\E[X_n] = m$, then
+        $$\Pr(\lim_n n^{-1} S_n = m) = 1$$
+    \end{theorem}
+
+    \begin{proof}
+        WLOG $m=0$. It is enough to show that $\Pr(|n^{-1} S_n| \geq \epsilon \text{ i.o}) = 0$ for each $\epsilon$.
+
+        Let $\E[X_i^2] = \sigma^2$ and $\E[X_i^4] = \xi^4$. By independence, we have
+        $$\E[S_n^4] = n \xi^4 + 3n(n-1) \sigma^4 \leq K n^2$$
+        where $K$ does not depend on $n$. By Markov's inequality for $k=4$,
+        $$\Pr(|S_n| \geq n \epsilon) \leq K n^{-2} \epsilon^{-4},$$
+        so the result follows by the first Borel-Cantelli lemma (the event probs are summable, hence the lim sup is $0$).
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State and prove the weak law of large numbers}
+    \begin{theorem}
+        If $X_n$ are iid and $\E[X_n] = m$, then for all $\epsilon$
+        $$\lim_n \Pr(| n^{-1} S_n - m| \geq \epsilon) = 0.$$
+    \end{theorem}
+
+    \begin{proof}
+        By appealing to the strong law, we have
+        $$\Pr(| n^{-1} S_n - m| \geq \epsilon) \leq \frac{\Var(S_n)}{n^2 \epsilon^2} = \frac{n \Var(X_1)}{n^2 \epsilon^2} \rightarrow 0.$$
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Demonstrate a use of the strong law}
+    Obviously, the probability that the sample mean is $\epsilon > 0$ away infinitely often is zero.
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Demonstrate a use of the weak law}
+    The probability that the sample mean is $\epsilon > 0$ away decays to zero with $n$ (can still be infinitely often).
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a measurable mapping? What are some properties?}
+    \begin{definition}
+        For two measure spaces $(\Omega, \F)$ and $(\Omega', \F')$, a transformation $T: \Omega \rightarrow \Omega'$ is measurable $\F / \F'$ iff for all $A \in \F'$, $T^{-1}(A) \in \F$.
+    \end{definition}
+
+    \begin{properties}
+        \begin{itemize}
+            \item If $T^{-1}(A) \in \F$ for each $A \in \mathcal A$, where $\mathcal A$ generates $\F'$, then $T$ is $\F / \F'$ measurable.
+            \item A random vector is measurable iff each component function is measurable.
+            \item Continuous functions are measurable. If $f_k: \Omega \rightarrow \R$ are measurable $\F$, then $g(f_1(w),\dots,f_k(w))$ is measurable $\F$ if $g: \R^k \rightarrow \R$ is measurable.
+            \item Composition of measurable functions is measurable. Sum, sup, lim sup, product are measure-preserving. A limit of measurable functions is measurable if the limit exists everywhere. We can construct a sequence of simple measurable functions that increase to any given measurable function.
+        \end{itemize}
+    \end{properties}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the pushforward measure?}
+    \begin{definition}
+        Given $(\Omega, \F)$ and $(\Omega',\F')$ and a measurable transformation $T:\Omega \rightarrow \Omega'$ and a measure $\mu$ on $\F$, then $\mu T^{-1}(A') = \mu (T^{-1}(A'))$ is a pushforward measure on $\F'$.
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the change-of-variables formula?}
+    \begin{definition}
+        A measurable function $g$ on $\Omega'$ is integrable with respect to the pushforward measure $\mu T^{-1} = T(\mu)$ iff the composition $g \circ T$ is integrable with respect to the measure $\mu$. In that case,
+        $$\int_{\Omega'} g d(\mu T^{-1}) = \int_{\Omega} g \circ T d\mu$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Say a few things about distribution functions.}
+    \begin{properties}
+        \begin{itemize}
+            \item A distribution function for a random variable $X$ on $\R$ is $F(x) = \Pr(X \leq x)$. It is non-decreasing, right-continuous (by continuity from above). By continuity from below, $\lim_{y \uparrow x} F(y) = F(x^-) = \Pr(X < x)$.
+            \item For every non-decreasing, right-continuous function with $\lim_{x \rightarrow -\infty} F(x) = 0$ and $\lim_{x \rightarrow \infty} F(x) = 1$, there exists on some probability space a random variable $X$ for $F$ is the distribution function.
+            \item If $\lim_n F_n(x) = F(x)$ for all $x$, then we write $F_n \Rightarrow F$ and say that the distributions converge weakly and their corresponding random variables converge weakly.
+        \end{itemize}
+    \end{properties}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {How is the integral defined for a non-negative measurable function? Properties?}
+    \begin{definition}
+        $\int_\Omega f d\mu = \sup \sum_i (\inf_{w \in A_i} f(w)) \mu(A_i)$ where the sup is taken over all partitions of $\Omega$.
+    \end{definition}
+
+    \begin{properties}
+        \begin{itemize}
+            \item If $f \leq g$ then $\int f \leq \int g$.
+            \item If $f_n \uparrow f$ then $\int f_n \uparrow \int f$.
+            \item The integral is linear.
+            \item If $f = 0$ a.e., then $\int f = 0$. If the measure of the set where $f$ is non-zero is positive, then the integral is positive. If the integral exists, then $f < \infty$ a.e.
+        \end{itemize}
+    \end{properties}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State some properties of the general integral (addition, limits)}
+    \begin{properties}
+        \begin{itemize}
+            \item Monotonicity: (i) if $f \leq g$ and are integrable, then $\int f d\mu \leq \int g d\mu$,
+            \item Linearity: if $f,g$ are integrable, then $\int (\alpha f + \beta g) d\mu \leq \alpha \int f d\mu + \beta \int g d\mu$.
+            \item Monotone convergence: if $0 \leq f_n \uparrow f$ a.e., then $\int f_n d\mu \uparrow \int f d\mu$,
+            \item Fatou's lemma: for non-negative $f_n$, $\int \lim \inf f_n d\mu \leq \lim \inf \int f_n d\mu$,
+            \item Dominated convergence: if $|f_n| \leq g$ a.e., where $g$ is integrable, and if $f_n \rightarrow f$ a.e., then $f$ and $f_n$ are integrable and $\int f_n d\mu \rightarrow \int f d\mu$.
+        \end{itemize}
+    \end{properties}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Give an application of MCT.}
+    \begin{example}
+        Consider the space $\{ 1, 2, \dots \}$ with the counting measure. If for all $m$, we have $0 \leq x_{n,m} \uparrow x_m$ as $n \rightarrow \infty$, then $\lim_n \sum_m x_{n,m} = \sum_m x_m$.
+    \end{example}
+    \begin{example}
+        For an infinite sequence of measures $\mu_n$ on $\F$, $\mu(A) = \sum_n \mu_n(A)$ defines another measure (countably additive because sums can be reversed in a nonnegative double series). You can show that $\int f d\mu = \sum_n \int f d\mu_n$ holds for all nonnegative $f$.
+    \end{example}
 \end{flashcard}
 
 
@@ -348,191 +469,494 @@
 
 \begin{flashcard}
     {What is the continuous mapping theorem?}
-    A sequence of random variables $X_n$ converging in distribution/probability/as to $X$ implies that $g(X_n)$ converges to $g(X)$ if $g$ is continuous.
+    \begin{theorem}
+        A sequence of random variables $X_n$ converging in distribution/probability/as to $X$ implies that $g(X_n)$ converges to $g(X)$ if $g$ is continuous.
+    \end{theorem}
 
-    If $g$ is just a function on $\R \rightarrow \R$ and it's a composition, this is fine. However, if you want this to state something about the expectation, then $g(X) \coloneqq \E[X^k]$ (so $g$ is now an operator), this is only continuous if the moments are bounded. However even in a space of bounded moment random variables (aka. $L^p(X)$), one can find a sequence of random variables whose integrals will blow up, so this $g$ is not a bounded operator, hence not continuous.
-
-    If random variables converge in distribution, then do their moments converge? No:
-    $Pr(X_n = n^2) = 1/n, Pr(X_n = 0) = 1 - 1/n.$
+    \begin{remark}
+        If $g$ is just a function on $\R \rightarrow \R$ and it's a composition, this is fine. However, if you want this to state something about the expectation, then $g(X) \coloneqq \E[X^k]$ (so $g$ is now an operator), this is only continuous if the moments are bounded. However even in a space of bounded moment random variables (aka. $L^p(X)$), one can find a sequence of random variables whose integrals will blow up, so this $g$ is not a bounded operator, hence not continuous.
+    \end{remark}
+    \begin{remark}
+        If random variables converge in distribution, then do their moments converge? No:
+        $Pr(X_n = n^2) = 1/n, Pr(X_n = 0) = 1 - 1/n.$
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
     {When do the integral values determine the integrands?}
-    If $f$ and $g$ are nonnegative and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ and if $\mu$ is $\sigf$ then $f = g$ a.e.
-
-    If $f$ and $g$ are integrable and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ then $f = g$ a.e.
+    \begin{theorem}
+        If $f$ and $g$ are nonnegative and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ and if $\mu$ is $\sigf$ then $f = g$ a.e.
+    \end{theorem}
+    \begin{theorem}
+        If $f$ and $g$ are integrable and $\int_A f d\mu = \int_A g d\mu$ for all $A \in \F$ then $f = g$ a.e.
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is a density?}
-    $\delta$ is a density if it is a nonnegative function so that for two measures $\nu$ and $\mu$ we have
-    $$\nu(A) = \int_A \delta d\mu, \quad A \in \F$$
+    \begin{definition}
+        $\delta$ is a density if it is a nonnegative function so that for two measures $\nu$ and $\mu$ we have
+        $$\nu(A) = \int_A \delta d\mu, \quad A \in \F$$
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is Scheffe's theorem?}
-    Suppose $\nu_n(A) = \int_A \delta_n d\mu$ and $\nu(A) = \int_A \delta d\mu$ for densities $\delta_n$ and $\delta$. If
-    $$\nu_n(\Omega) = \nu(\Omega)< \infty, \quad n = 1,2\dots,$$
-    and if $\delta_n \rightarrow \delta$ except on a set of $\mu$-measure 0, then
-    $$\sup_{A \in \F} | \nu(A) - \nu_n(A) | \leq \int_\Omega |\delta - \delta_n| d\mu \rightarrow 0$$
+    \begin{theorem}
+        Suppose $\nu_n(A) = \int_A \delta_n d\mu$ and $\nu(A) = \int_A \delta d\mu$ for densities $\delta_n$ and $\delta$. If
+        $$\nu_n(\Omega) = \nu(\Omega)< \infty, \quad n = 1,2\dots,$$
+        and if $\delta_n \rightarrow \delta$ except on a set of $\mu$-measure 0, then
+        $$\sup_{A \in \F} | \nu(A) - \nu_n(A) | \leq \int_\Omega |\delta - \delta_n| d\mu \rightarrow 0$$
+    \end{theorem}
 
-    In other words, the total variation of two measures is bounded above by the $L^1$ difference of the densities, hence if the densities convergence, then the measures converge.
+    \begin{remark}
+        In other words, the total variation of two measures is bounded above by the $L^1$ difference of the densities, hence if the densities convergence, then the measures converge.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is uniform integrability?}
-    A sequence $f_n$ is uniformly integrable if
-    $$\lim_{\alpha \rightarrow \infty} \sup_n \int_{[|f_n| \geq \alpha]} |f_n| d\mu = 0$$
+    \begin{definition}
+        A sequence $f_n$ is uniformly integrable if
+        $$\lim_{\alpha \rightarrow \infty} \sup_n \int_{[|f_n| \geq \alpha]} |f_n| d\mu = 0$$
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is an application of uniform integrablity?}
-    Suppose $\mu(\Omega) < \infty$ and $f_n \rightarrow f$ a.e.
+    \begin{theorem}
+        Suppose $\mu(\Omega) < \infty$ and $f_n \rightarrow f$ a.e.
 
-    (i) if $f_n$ are uniformly integrable, then $f$ is integrable and
-    $$\int f_n d\mu \rightarrow \int f d\mu$$
+        (i) if $f_n$ are uniformly integrable, then $f$ is integrable and
+        $$\int f_n d\mu \rightarrow \int f d\mu$$
 
-    (ii) if $f$ and $f_n$ are nonnegative and integrable, then the conclusion of (i) implies that $f_n$ are uniformly integrable.
-
-    If $\mu(\Omega) < \infty$, $f$ and $f_n$ are integrable, and $f_n \rightarrow f$ a.e., then the following are equivalent:
-    \begin{itemize}
-        \item $f_n$ are uniformly integrable,
-        \item $\int | f - f_n | d\mu \rightarrow 0$,
-        \item $\int |f_n| d\mu \rightarrow \int |f| d\mu$.
-    \end{itemize}
+        (ii) if $f$ and $f_n$ are nonnegative and integrable, then the conclusion of (i) implies that $f_n$ are uniformly integrable.
+    \end{theorem}
+    \begin{theorem}
+        If $\mu(\Omega) < \infty$, $f$ and $f_n$ are integrable, and $f_n \rightarrow f$ a.e., then the following are equivalent:
+        \begin{itemize}
+            \item $f_n$ are uniformly integrable,
+            \item $\int | f - f_n | d\mu \rightarrow 0$,
+            \item $\int |f_n| d\mu \rightarrow \int |f| d\mu$.
+        \end{itemize}
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is Riemann integrability?}
-    A real function $f$ on $(a,b]$ is Riemann integrable with integral $r$ if: for all $\epsilon$ there exists a $\delta$ with
-    $$| r - \sum_i f(x_i) \lambda(I_i) | < \epsilon$$
-    if $\{ I_i \}$ is any finite partition of $(a,b]$ into subintervals satisfying $\lambda(I_i) < \delta$ and if $x_i \in I_i$ for each $i$.
+    \begin{definition}
+        A real function $f$ on $(a,b]$ is Riemann integrable with integral $r$ if: for all $\epsilon$ there exists a $\delta$ with
+        $$| r - \sum_i f(x_i) \lambda(I_i) | < \epsilon$$
+        if $\{ I_i \}$ is any finite partition of $(a,b]$ into subintervals satisfying $\lambda(I_i) < \delta$ and if $x_i \in I_i$ for each $i$.
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is a product space? What is the product measure?}
-    Given two measure spaces $(X,\mathcal X)$ and $(Y,\mathcal Y)$, the product space is $(X \times Y, \mathcal X \times \mathcal Y)$ where $\mathcal X \times \mathcal Y$ is the set of sets $A \times B$ where $A \in \mathcal X$ and $B \in \mathcal Y$.
+    \begin{definition}
+        Given two measure spaces $(X,\mathcal X)$ and $(Y,\mathcal Y)$, the product space is $(X \times Y, \mathcal X \times \mathcal Y)$ where $\mathcal X \times \mathcal Y$ is the set of sets $A \times B$ where $A \in \mathcal X$ and $B \in \mathcal Y$.
+    \end{definition}
 
-    Given two measures $\mu, \nu$, the product measure is a measure $\pi$ with $\pi(A \times B) = \mu(A) \nu(B)$. This measure is unique.
+    \begin{definition}
+        Given two measures $\mu, \nu$, the product measure is a measure $\pi$ with $\pi(A \times B) = \mu(A) \nu(B)$. This measure is unique.
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is Fubini's theorem?}
-    If $(X, \mathcal X, \mu)$ and $(Y, \mathcal Y, \vu)$ are $\sigf$ measure spaces, then
-    $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_X \left [ \int_Y f(x,y) \nu(dy) \right ] \mu(dx)$$
-    $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_Y \left [ \int_X f(x,y) \nu(dx) \right ] \mu(dy)$$
+    \begin{theorem}
+        If $(X, \mathcal X, \mu)$ and $(Y, \mathcal Y, \vu)$ are $\sigf$ measure spaces, then
+        $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_X \left [ \int_Y f(x,y) \nu(dy) \right ] \mu(dx)$$
+        $$\int_{X \times Y} f(x,y) \pi(d(x,y)) = \int_Y \left [ \int_X f(x,y) \nu(dx) \right ] \mu(dy)$$
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is convergence in probability?}
-    Random variables $X_n$ converge in probability to $X$, written $X_n \rightarrow_P X$ if for each positive $\epsilon$
-    $$\lim_n P(|X_n - X| \geq \epsilon) = 0$$
+    \begin{definition}
+        Random variables $X_n$ converge in probability to $X$, written $X_n \rightarrow_P X$ if for each positive $\epsilon$
+        $$\lim_n P(|X_n - X| \geq \epsilon) = 0$$
+    \end{definition}
 
-    A necessary and sufficient condition for convergence in probability is that each subsequence $X_{n_i}$ contain a further subsequence $X_{n_{k(i)}}$ such that $X_{n_{k(i)}} \rightarrow X$ with probability 1 as $i \rightarrow \infty$.
+    \begin{theorem}
+        A necessary and sufficient condition for convergence in probability is that each subsequence $X_{n_i}$ contain a further subsequence $X_{n_{k(i)}}$ such that $X_{n_{k(i)}} \rightarrow X$ with probability 1 as $i \rightarrow \infty$.
+    \end{theorem}
 
-    In nonprobabilistic contexts, convergence in probability becomes convergence in measure.
+    \begin{remark}
+        In nonprobabilistic contexts, convergence in probability becomes convergence in measure.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is the Glivenko-Cantelli theorem?}
-    Suppose that $X_1, X_2, \dots$ are independent and have a common distribution function $F$; put $D_n(w) = \sup_x |F_n(x, w) - F(x)|$, where
-    $$F_n(x,w) = \frac 1 n \sum_{i=1}^n I_{(-\infty,x]}(X_i(w))$$
-    Then $D_n \rightarrow 0$ with probability 1.
+    \begin{theorem}
+        Suppose that $X_1, X_2, \dots$ are independent and have a common distribution function $F$; put $D_n(w) = \sup_x |F_n(x, w) - F(x)|$, where
+        $$F_n(x,w) = \frac 1 n \sum_{i=1}^n I_{(-\infty,x]}(X_i(w))$$
+        Then $D_n \rightarrow 0$ with probability 1.
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is the definition of expected value? Same some things about it and limits.}
-    $\E[X] = \int X dP = \int_\Omega X(w) P(dw).$
+    \begin{definition}
+        \begin{itemize}
+            \item $\E[X] = \int X dP = \int_\Omega X(w) P(dw).$
+            \item $\E[X 1_A] = \int_A X dP$.
+            \item $\E[g(X)] = \int_\Omega g(X(w)) P(dw)$.
+            \item Absolute moments: $\E[|X|^k] = \int_{-\infty}^\infty |x|^k P(dx)$.
+        \end{itemize}
+    \end{definition}
 
-    $\E[X 1_A] = \int_A X dP$.
-
-    $\E[g(X)] = \int_\Omega g(X(w)) P(dw)$.
-
-    Absolute moments $\E[|X|^k] = \int_{-\infty}^\infty |x|^k P(dx)$.
-
-    By the way $P(dx)$ intuitively refers to the $P$ measure of a small change in $x$.
-
-    If $X_n$ are dominated by an integrable random variable (or uniformly integrable), then $\E[X_n] \rightarrow \E[X]$ follows if $X_n \rightarrow_P X$.
+    \begin{remark}
+        By the way $P(dx)$ intuitively refers to the $P$ measure of a small change in $x$.
+    \end{remark}
+    \begin{remark}
+        If $X_n$ are dominated by an integrable random variable (or uniformly integrable), then $\E[X_n] \rightarrow \E[X]$ follows if $X_n \rightarrow_P X$.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
     {What is the MGF? What is it for normal, exponential, Poisson, and Binomial dists?}
-    The MGF is
-    $$M_X(t) = \E[e^{tX}] = \int_{-\infty}^\infty e^{sx} \mu(dx)$$
+    \begin{definition}
+        The MGF is
+        $$M_X(t) = \E[e^{tX}] = \int_{-\infty}^\infty e^{sx} \mu(dx)$$
+    \end{definition}
 
-    The standard normal distribution: $M_X(t) = e^{t^2/2}$.
-
-    The exponential: $M_X(t) = \frac{\alpha}{\alpha - s}$ defined for $s < \alpha$.
-
-    The Poisson: $M_X(t) = e^{\lambda (e^t - 1)}$.
-
-    The Binomial: $M_X(t) = p e^t + (1-p)$.
+    \begin{properties}
+        \begin{itemize}
+            \item The standard normal distribution: $M_X(t) = e^{t^2/2}$.
+            \item The exponential: $M_X(t) = \frac{\alpha}{\alpha - s}$ defined for $s < \alpha$.
+            \item The Poisson: $M_X(t) = e^{\lambda (e^t - 1)}$.
+            \item The Binomial: $M_X(t) = p e^t + (1-p)$.
+        \end{itemize}
+    \end{properties}
 \end{flashcard}
 
 
 \begin{flashcard}
     {Roughly sketch the proof of the strong law of large numbers from first principles.}
-    You only need to show it for nonnegative rvs, by $\E[X_1^+] - \E[X_1^-] = \E[X]$.
-
-    Truncated random variables and two applications of Borel-Cantelli and some other things.
-
+    \begin{proof}
+        \begin{itemize}
+            \item You only need to show it for nonnegative rvs, by $\E[X_1^+] - \E[X_1^-] = \E[X]$.
+            \item Truncated random variables and two applications of Borel-Cantelli and some other things.
+        \end{itemize}
+    \end{proof}
 \end{flashcard}
 
 
 \begin{flashcard}
     {The weak law of large numbers? State and prove it.}
-    $n^{-1} S_n \rightarrow_P \E[X_1]$.
+    \begin{theorem}
+        $n^{-1} S_n \rightarrow_P \E[X_1]$.
+    \end{theorem}
 
-    This follows in the same condition from the strong law, because a.s. convergence implies convergence in probability.
-
-    A distribution concentrated on $[0,\infty)$ is determined by its MGF or its Laplace transform.
+    \begin{proof}
+        This follows in the same condition from the strong law, because a.s. convergence implies convergence in probability.
+    \end{proof}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {What is the connection between the MGF and the Laplace transform?}
+    \begin{theorem}
+        Let $\mu$ and $\nu$ be probability measures on $[0,\infty)$. If
+        $$\int_0^\infty e^{-sx} \mu(dx) = \int_0^\infty e^{-sx} \nu(dx), \quad s \geq s_0$$
+        where $s_0 \geq 0$, then $\mu = \nu$.
+    \end{theorem}
+    \begin{remark}
+        A distribution concentrated on $[0,\infty)$ is determined by its MGF or its Laplace transform.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {What is Kolmogorov's maximal inequality?}
+    \begin{theorem}
+        Suppose that $X_1, X_2, \dots$ are independent with mean 0 and finite variances. For $\alpha > 0$,
+        $$P( \max_{1 \leq k \leq n} |S_k| \geq \alpha) \leq \frac 1 {\alpha^2} \Var(S_n)$$
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {What is a condition for random series to converge?}
+    \begin{theorem}
+        Suppose that $\{ X_n \}$ are independent and $\E[X_n] = 0$. If $\sum \Var(X_n) < \infty$, then $\sum X_n$ converges with probability 1.
+    \end{theorem}
+
+    \begin{theorem}
+        For an independent sequence $\{ X_n \}$, the $S_n$ converge with probability if and only if they converge in probability.
+    \end{theorem}
+
+    \begin{theorem}
+        Suppose that $\{ X_n \}$ are independent and consider the three series
+        $$\sum P(|X_n| > c), \quad \sum \E[X_n^{(c)}], \quad \sum \Var(X_n^{(c)}).$$
+        In order that $\sum X_n$ converge with probability 1, it is necessary that the three series converge for all positive $c$ and sufficient that they converge for some positive $c$.
+    \end{theorem}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {Define weak convergence}
+    \begin{definition}
+        Distribution functions $F_n$ converge weakly to $F$ if
+        $$\lim_n F_n(x) = F(x)$$
+        for every continuity point $x$ of $F$. We write $F_n \Rightarrow F$.
+    \end{definition}
+
+    \begin{definition}
+        Measures $\mu_n$ converge weakly if
+        $$\lim_n \mu_n((-\infty,x]) = \mu((-\infty,x])$$
+        for every $x$ for which $\mu(\{ x \}) = 0$.
+    \end{definition}
+
+    \begin{definition}
+        Random variables $X_n$ converge weakly to $X$ if their respective distribution functions converge weakly $F_n \Rightarrow F$.
+    \end{definition}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {What's an example of weak convergence of random variables?}
+    \begin{remark}
+        Let $\mu_n$ be the binomial distribution for $p = \lambda / n$ and let $\mu$ be the Poisson distribution. For nonnegative integers $k$,
+        $$\mu_n(k) = \binom{n}{k} \left ( \frac \lambda n \right )^k \left ( 1 - \frac \lambda n \right)^{n-k}$$
+        $$= \frac{\lambda^k (1 - \lambda/n)^n}{k!} \times \frac{1}{(1-\lambda/n)^k} \prod_{i=0}^{k-1}(1 - \frac i n)$$
+        $$\overset{{n \rightarrow \infty}}{\rightarrow} \frac{\lambda^k e^{-\lambda}}{k!} = \mu(k)$$
+        if $n \geq k$ and $k$ stays fixed as we take the limit.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {What's the relationship between convergence in probability and weak convergence?}
+    \begin{remark}
+
+    \end{remark}
+
+    \begin{remark}
+        Convergence in probability is equivalent to convergence in distribution when limiting to constants.
+    \end{remark}
 \end{flashcard}
 
 
 \begin{flashcard}
-    {}
+    {Give examples of convergence in distribution but not in probability and in probability but not almost surely}
+    \begin{example}
+        Consider two independent Bernoulli random variables $X$ and $Y$ with $p=\frac 1 2$. If $X_n = Y$, then certainly $X_n \Rightarrow X$ because their distributions are the same. However, $\Pr(|X_n - X|) = \frac 1 2$.
+    \end{example}
+
+    \begin{example}
+        Consider the independent random variables $X_n =
+        \begin{cases}
+            1, & p=\frac 1 n\\
+            0, & 1-p = 1 - \frac 1 n
+        \end{cases}$. Clearly $X_n \rightarrow 0$ a.e. as functions and $\Pr(|X_n| \geq \epsilon) = \frac 1 n \rightarrow 0$. However, $\sum_n \Pr(X_n = 1) = \infty$, while the $X_n$ are independent, hence by Borel-Cantelli 2, we have $\Pr(\lim \sup_n X_n = 1) = 1$ so $X_n$ do not converge almost surely.
+    \end{example}
+
+    \begin{example}
+        An analysis version, aka the ``typewriter sequence'': partition the interval $[0,1]$ into two sets and choose the indicator functions of those sets to be $f_1, f_2$. Then partition into three and set the indicators of those sets to be $f_3,f_4,f_5$. Repeat this and note that in measure these functions converge to the zero function, while not converging pointwise.
+    \end{example}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {When does a parallel converging weak sequence converge to the same limit?}
+    \begin{theorem}
+        If $X_n \Rightarrow X$ and $X_n - Y_n \Rightarrow 0$, then $Y_n \Rightarrow X$.
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What are some equivalent conditions for weak convergence of measures?}
+    \begin{theorem}
+        The following are equivalent:
+        \begin{itemize}
+            \item $\mu_n \Rightarrow \mu$,
+            \item $\int f d\mu_n \rightarrow \int f d\mu$ for every bounded, continuous real $f$,
+            \item $\mu_n(A) \rightarrow \mu(A)$ for every $\mu$-continuity set $A$
+        \end{itemize}
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a theorem on weak convergence and compactness?}
+    \begin{theorem}
+        (Helly selection theorem): For every sequence $\{ F_n \}$ of distribution functions there exists a subsequence $\{ F_{n_k} \}$ and a non-decreasing, right-continuous function $F$ such that $\lim_k F_{n_k}(x) = F(x)$ at continuity points $x$ of $F$.
+    \end{theorem}
+
+    \begin{theorem}
+        Tightness is necessary and sufficient so that for every subsequence $\{ \mu_{n_k} \}$ there exists a further subsequence $\{ \mu_{n_{k(i)}} \}$ and a probabilistic measure $\mu$ such that $\mu_{n_{k(i)}} \Rightarrow \mu$.
+    \end{theorem}
+
+    \begin{remark}
+        The first theorem guarantees compactness of distribution functions, but in the larger space of functions -- that is $F$, may not be a distribution.
+
+        The second theorem gives the necessary and sufficient condition for that compactness be in the space of probability measures.
+    \end{remark}
+
+    \begin{remark}
+        Tightness for sequences of unit mass probability measures $\mu_n$ at $x_n$ corresponds to boundedness of the sequence. A sequence of normal distributions is tight iff the means and variances are bounded.
+    \end{remark}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is tightness?}
+    \begin{definition}
+        A sequence of measures is tight if $\forall \epsilon > 0, \exists (a,b]$ s.t. $\forall n, \mu_n(a,b] > 1 - \epsilon$. The equivalent condition on the distributions is $\forall \epsilon > 0, \exists (a,b]$ such that $F_n(a) < \epsilon, F_n(b) > 1 - \epsilon$.
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {Does weak convergence imply convergence of means?}
+    \begin{theorem}
+        If $X_n \Rightarrow X$ and $X_n$ are uniformly integrable, then $X$ is integrable and $\E[X_n] \rightarrow \E[X]$.
+    \end{theorem}
+
+    \begin{theorem}
+        Let $r$ be a positive integer. If $X_n \Rightarrow X$ and $\sup_n \E[|X_n|^{r+\epsilon}] < \infty$, where $\epsilon > 0$, then $\E[|X|^r] < \infty$ and $\E[X^r] \rightarrow \E[X^r]$.
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the characteristic function? }
+    \begin{definition}
+        The characteristic function of a probability measure $\mu$ is defined for real $t$ by
+        $$\phi(t) = \int_{-\infty}^\infty e^{itx} \mu(dx).$$
+
+        A random variable with distribution $\mu$ has characteristic function
+        $$\phi(t) = \E[e^{itX}] = \int_{-\infty}^\infty e^{itx} \mu(dx).$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What are important properties of the characteristic function?}
+    \begin{properties}
+        \begin{itemize}
+            \item It is the Fourier transform of the random variable's density. It is the MGF with $t$ replaced by $it$. It always exists and is bounded.
+            \item if $\mu_1$ and $\mu_2$ have characteristic functions $\phi_1(t)$ and $\phi_2(t)$ then $\mu_1 * \mu_2$ has characteristic function $\phi_1(t) \phi_2(t)$
+            \item The characeristic function always determines the distribution.
+            \item From the pointwise convergence of characteristic functions follows weak convergence of the corresponding distributions.
+        \end{itemize}
+    \end{properties}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {State the CLT and sketch the proof}
+    \begin{theorem}
+        Suppose that $X_n$ are iid random variables with mean $c$ and finite positive variance $\sigma^2$. If $S_n = X_1 + \dots + X_n$, then
+        $$\frac{S_n - nc}{\sigma \sqrt n} \Rightarrow N(0,1)$$
+    \end{theorem}
+
+    \begin{proof}
+        Consider the special case where $X_n$ takes the values $\pm 1$ with probability $\frac 1 2$ each. Then the characteristic function is $\phi(t) = \cos t$ and the characteristic function of $S_n / \sqrt n$ is $\phi(t / \sqrt n)^n = \cos(t / \sqrt n)^n$. If we show that this converges to $e^{-t^2/2}$, then by the continuity mapping theorem we get convergence in distribution. The rest requires analysis.
+    \end{proof}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {When is a measure determined by its moments?}
+    \begin{theorem}
+        A measure $\mu$ is determined by its moments if it has finite moments $\alpha_k$ of all orders and the power series $\sum_k \alpha_k \frac{r^k}{k!}$ has a positive radius of convergence.
+    \end{theorem}
+
+    \begin{theorem}
+        If a random variable $X$ has finite moments of all orders and a sequence of random variables $X_n$ has $\lim_n \E[X_n^r] = \E[X^r]$ for all $r$, then $X_n \Rightarrow X$.
+    \end{theorem}
+
+    \begin{remark}
+        One can also show the CLT using the method of moments.
+    \end{remark}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is an additive set function?}
+    \begin{definition}
+        A functino $\phi$ on $\F$ is an additive set function if
+        $$\phi(\cup A_i) = \sum \phi(A_i)$$
+        whenever $\{ A_i \}$ are a countable sequence of disjoint sets.
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the Hahn decomposition theorem?}
+    \begin{theorem}
+        For any additive set function, there exist two sets $A^+$ and $A^-$ with $A^+ \cup A^- = \Omega$, and $\phi(E) \geq 0$ for all $E$ in $A^+$, and $\phi(E) \leq 0$ for all $E$ in $A^-$.
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the Radon-Nikodym theorem?}
+    \begin{theorem}
+        If $\mu$ and $\nu$ are $\sigf$ measures and $\nu \ll \mu$, then there exists an almost everywhere unique non-negative function $f$ such that
+        $$\nu(A) = \int_A f d\mu$$
+        for all $A \in \F$.
+    \end{theorem}
+
+    \begin{remark}
+        This is the converse of the statement that if $\nu(A) = \int_A f d\mu$, then $\nu \ll \mu$.
+    \end{remark}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {How is conditional probability defined measure theoretically?}
+    \begin{theorem}
+        Let $X$ be a random variable $(\Omega, \F, P)$ and let $\mathcal G$ be a $\sigf$ in $\F$. Then there exists a function $\mu(H,w)$ defined for $H \in \mathcal R$ and $w \in \Omega$ with:
+        \begin{itemize}
+            \item for each $w$ in $\Omega$, $\mu(\cdot,w)$ is a probability measure on $\mathcal R$,
+            \item for each $H$ in $\F$, $\mu(H,\cdot)$ is a version of $P(X \in H | \mathcal G)$
+        \end{itemize}
+    \end{theorem}
+
+    \begin{definition}
+        A version is a function $f = P(A | \mathcal G)$ specifying a random variable such that $P(A | \mathcal G)$ is measurable $\mathcal G$ and integrable and
+        $$\int_G P(A | \mathcal G) dP = P(A \cap G), \quad G \in \mathcal G$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is conditional expectation?}
+    \begin{definition}
+        A conditional expectation of $X$ given $\mathcal G$ is a random variable $\E[X | \mathcal G]$ satisfying (i) that $\E[X | \mathcal G]$ is measurable $\mathcal G$ and integrable, (ii) that
+        $$\int_G E[X | \mathcal G] dP = \int_G X dP$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the tower property of expectation?}
+    \begin{theorem}
+        If $X$ is a random variable $\mathcal G_1$ and $\mathcal G_2$ are two $\sigf$ with $\mathcal G_1 \subset \mathcal G_2$, then
+        $$\E[\E[X | \mathcal G_2] | \mathcal G_1] = \E[X | \mathcal G_1]$$
+    \end{theorem}
+
+    \begin{remark}
+        The average is a smoothing operation, in which we loose information about $X$ up to the average of $X$ in $\mathcal G$. Hence, averaging over a fine and then a coarser $\sigf$ leaves the coarser result.
+    \end{remark}
 \end{flashcard}
 
 
