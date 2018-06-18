@@ -40,7 +40,7 @@ Mostly probability theory and statistics.
     * Conditional expectation
 
 ### Cover and Thomas.
-- [ ] Ch 2
+- [x] Ch 2
     * Entropy
     * Conditional entropy
     * Mutual information
@@ -56,6 +56,6 @@ Mostly probability theory and statistics.
     * Standard estimation reduction to testing
 
 ### Bickel and Docksum.
-- [ ] Estimators. Umvue. Fisher info. Max likelihood.
+- [x] Estimators. Umvue. Fisher info. Max likelihood.
 - [ ] Risk minimization. Minimax risk results.
 - [ ] Neymann Pearson. Hypothesis testing.

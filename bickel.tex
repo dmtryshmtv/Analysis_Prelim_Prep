@@ -11,11 +11,120 @@
 
 
 \begin{flashcard}
+    {What is Bayes risk? What is a Bayes rule?}
+    \begin{definition}
+        Given a loss function $l$ and a decision procedure $\delta$ and a set of probability distributions $P_\theta$ parameterized by $\theta$ with a distribution $P'$ on the $\theta$ the Bayes risk is
+        $$r(\delta) = \E[l(\delta(X),\theta)]$$
+        where the expectation is taken over $P'$ and $P_\theta$.
+    \end{definition}
+
+    \begin{definition}
+        A Bayes rule is a decision procedure $\delta^*$ with
+        $$r(\delta^*) = \min_\delta r(\delta)$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is minimax risk?}
+    \begin{definition}
+        Given a loss function $l$ and a decision procedure $\delta$ and a set of probability distributions $P_\theta$, the max risk is
+        $$R(\delta) = \sup_\theta \E[l(\delta(X),\theta)]$$
+    \end{definition}
+
+    \begin{definition}
+        The minimax procedure is a procedure $\delta^*$ with
+        $$R(\delta^*) = \min_\delta r(\delta)$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is mean squared error and how does it decompose?}
+    \begin{definition}
+        The mean squared error is the risk under the quadratic loss function:
+        $$R(\delta(X),\theta) = \E[(\delta(X) - \theta)^2] = \text{Bias}(\delta)^2 + \text{Var}(\delta)$$
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What are one parameter exponential families?}
+    \begin{definition}
+        Probability densities with the form
+        $$p(x,\theta) = h(x) \exp \{ \eta(\theta)T(x) - B(\theta) \}$$
+    \end{definition}
+
+    \begin{example}
+        Normal, Binomial, Poisson, exponential.
+    \end{example}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is a risk set?}
+    \begin{definition}
+        The risk set is the set of risk vectors for every decision rule
+        $$S = \{ (R(\theta,\delta))_{\theta \in \Theta} \mid \delta \in \mathcal D \}$$
+        where $\mathcal D$ is the set of decision rules and $R(\theta,\delta)$ is the risk for the particular value of $\theta$.
+    \end{definition}
+
+    \begin{remark}
+        The risk set is a finite set of points in $\R^{|\Theta|}$ if the action space for the decision rules is finite. If stochastic decisions are allowed, the risk set becomes the convex hull of this finite set. For different priors $\pi$, the risk for a stochastic strategy is $\la \pi, (R(\delta,\theta)) \ra$, hence the level sets of Bayes risk are $\la \pi, \cdot \ra = c$. The Bayes estimator is the solution to this linear programming problem over a convex hull and hence is either on a line of the boundary or on a corner. Hence, deterministic strategies do well enough for Bayes risk.
+    \end{remark}
+
+    \begin{remark}
+        For minimax strategies, the problem, geometrically, is about finding the smallest square that fits below the convex hull.
+    \end{remark}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is an admissible rule?}
+    \begin{definition}
+        A rule is admissible if it's not inadmissible. An inadmissible rule is one where there exists another rule that improves on it.
+    \end{definition}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {What is the relationship between minimax rules and Bayes rules?}
+    \begin{theorem}
+        If $\Theta$ is finite and minimax procedures exist, they are Bayes procedures. (see pg 49 in Bickel for more references)
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
+    {When are stochastic decisions an improvement on deterministic ones?}
+    \begin{theorem}
+        When $\Theta$ is not finite, typically Bayes procedures are not admissible. (see pg 49 in Bickel for more references)
+    \end{theorem}
+\end{flashcard}
+
+
+\begin{flashcard}
     {}
 
 \end{flashcard}
 
 
+\begin{flashcard}
+    {}
+
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+
+\end{flashcard}
+
+
+\begin{flashcard}
+    {}
+
+\end{flashcard}
 
 
 \end{document}
